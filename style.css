@@ -25,7 +25,7 @@ nav a:hover, nav a.active {
     color: #007bff;
 }
 
-.language-selector button {
+.language-selector a {
     background-color: #007bff;
     color: white;
     border: none;
@@ -33,9 +33,10 @@ nav a:hover, nav a.active {
     border-radius: 5px;
     cursor: pointer;
     margin-left: 0.5rem;
+    text-decoration: none;
 }
 
-.language-selector button:hover {
+.language-selector a:hover {
     background-color: #0056b3;
 }
 
@@ -45,4 +46,25 @@ main {
 
 #content h1 {
     color: #007bff;
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+    }
+
+    nav {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+
+    nav a {
+        margin: 0.5rem 0;
+    }
+
+    main {
+        padding: 1rem;
+    }
 }
