@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azienda Agricola</title>
+    <title data-localize-key="home.title"></title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-page">
     <header>
         <nav>
-            <a href="index.html" class="nav-link active">Home</a>
-            <a href="apartment.html" class="nav-link">Apartment</a>
-            <a href="tiny-house.html" class="nav-link">Tiny House</a>
-            <a href="roulotte.html" class="nav-link">Roulotte</a>
-            <a href="piazzola.html" class="nav-link">Piazzola</a>
-            <a href="philosophy.html" class="nav-link">Philosophy</a>
-            <a href="products.html" class="nav-link">Prodotti Agricoli</a>
-            <a href="activities.html" class="nav-link">Things To Do</a>
-            <a href="contacts.html" class="nav-link">Contacts</a>
+            <a href="index.html" class="nav-link active" data-localize-key="home.nav">Home</a>
+            <a href="apartment.html" class="nav-link" data-localize-key="apartment.nav">Apartment</a>
+            <a href="tiny-house.html" class="nav-link" data-localize-key="tiny-house.nav">Tiny House</a>
+            <a href="roulotte.html" class="nav-link" data-localize-key="roulotte.nav">Roulotte</a>
+            <a href="piazzola.html" class="nav-link" data-localize-key="piazzola.nav">Piazzola</a>
+            <a href="philosophy.html" class="nav-link" data-localize-key="philosophy.nav">Philosophy</a>
+            <a href="products.html" class="nav-link" data-localize-key="products.nav">Prodotti Agricoli</a>
+            <a href="activities.html" class="nav-link" data-localize-key="activities.nav">Things To Do</a>
+            <a href="contacts.html" class="nav-link" data-localize-key="contacts.nav">Contacts</a>
         </nav>
         <div class="language-selector">
             <a id="lang-en" href="index.html?lang=en">EN</a>
@@ -25,11 +25,69 @@
         </div>
     </header>
 
-    <main id="content">
-        <h1 id="content-title"></h1>
-        <p id="content-body"></p>
-        <img src="images/drone1.JPG" alt="Drone view of the farm" class="content-image">
-        <img src="images/melograni.jpg" alt="Pomegranates on the farm" class="content-image">
+    <main>
+        <section class="hero-section">
+            <img src="images/drone1.JPG" alt="Farm aerial view" class="hero-image">
+            <div class="hero-content">
+                <h1 data-localize-key="home.heroTitle"></h1>
+                <p data-localize-key="home.heroSubtitle"></p>
+            </div>
+        </section>
+
+        <section class="about-section">
+            <h2 data-localize-key="home.aboutTitle"></h2>
+            <p data-localize-key="home.aboutContent"></p>
+            <a href="philosophy.html" class="button" data-localize-key="home.aboutReadMore"></a>
+        </section>
+
+        <section class="featured-section">
+            <h2 data-localize-key="home.featuredAccommodationsTitle"></h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <img src="images/cucina.jpg" alt="Apartment interior" class="featured-image">
+                    <h3 data-localize-key="home.apartmentTitle"></h3>
+                    <p data-localize-key="home.apartmentDescription"></p>
+                    <a href="apartment.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+                <div class="featured-item">
+                    <img src="images/casette.jpg" alt="Tiny house exterior" class="featured-image">
+                    <h3 data-localize-key="home.tinyHouseTitle"></h3>
+                    <p data-localize-key="home.tinyHouseDescription"></p>
+                    <a href="tiny-house.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+                <div class="featured-item">
+                    <img src="images/bench.jpg" alt="Roulotte exterior" class="featured-image">
+                    <h3 data-localize-key="home.roulotteTitle"></h3>
+                    <p data-localize-key="home.roulotteDescription"></p>
+                    <a href="roulotte.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <h2 data-localize-key="home.featuredProductsTitle"></h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <img src="images/cavolonero.jpg" alt="Agricultural Products" class="featured-image">
+                    <h3 data-localize-key="home.productsTitle"></h3>
+                    <p data-localize-key="home.productsDescription"></p>
+                    <a href="products.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section">
+            <h2 data-localize-key="home.featuredActivitiesTitle"></h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <img src="images/bosco.jpg" alt="Things To Do" class="featured-image">
+                    <h3 data-localize-key="home.activitiesTitle"></h3>
+                    <p data-localize-key="home.activitiesDescription"></p>
+                    <a href="activities.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <script src="app.js"></script>

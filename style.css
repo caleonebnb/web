@@ -1,3 +1,8 @@
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -9,19 +14,28 @@ body {
     color: #333;
 }
 
+body.home-page main {
+    padding-top: 0; /* No padding at the top of main for home page as hero is not fixed */
+}
+
 header {
-    background-color: #fff;
+    background-color: transparent; /* Make header transparent */
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: fixed; /* Make header fixed */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10; /* Ensure header is above other content */
+    box-shadow: none; /* Remove box shadow */
 }
 
 nav a {
     margin: 0 1rem;
     text-decoration: none;
-    color: #333;
+    color: white; /* Make nav links white for contrast on hero image */
     font-weight: bold;
 }
 
@@ -30,7 +44,7 @@ nav a:hover, nav a.active {
 }
 
 .language-selector a {
-    background-color: #007bff;
+    background-color: rgba(0, 123, 255, 0.7); /* Semi-transparent background for language buttons */
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -53,8 +67,13 @@ main {
 }
 
 @media (max-width: 768px) {
+    body.home-page main {
+        padding-top: 0; /* No padding at the top of main for home page as hero is not fixed */
+    }
+
     header {
         flex-direction: column;
+        background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque background on mobile */
     }
 
     nav {
@@ -66,16 +85,152 @@ main {
 
     nav a {
         margin: 0.5rem 0;
+        color: #333; /* Darker color for mobile nav links */
+    }
+
+    .language-selector a {
+        background-color: #007bff; /* Solid background on mobile */
     }
 
     main {
         padding: 1rem;
+        width: 100%;
+    }
+}
+
+
+.hero-section {
+    position: relative; /* Changed from fixed to relative */
+    width: 100%;
+    height: 100vh; /* Fill entire viewport height */
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    z-index: 1; /* Ensure it's above other body content, but header is above this */
+}
+
+.hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    filter: brightness(0.6);
+}
+
+.hero-content {
+    z-index: 1;
+    padding: 1rem;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 0.5rem;
+    color: white;
+}
+
+.hero-content p {
+    font-size: 1.2em;
+}
+
+.about-section, .featured-section {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    position: relative;
+    z-index: 2; /* Ensure these sections appear above the hero section */
+}
+
+.about-section h2, .featured-section h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #007bff;
+}
+
+.about-section p {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    text-align: justify;
+}
+
+.featured-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.featured-item {
+    background-color: #f9f9f9;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    text-align: center;
+}
+
+.featured-item img.featured-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.featured-item h3 {
+    margin: 1rem 0.5rem 0.5rem;
+    color: #007bff;
+}
+
+.featured-item p {
+    padding: 0 1rem;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    margin: 1rem 0;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .about-section, .featured-section {
+        margin: 1rem auto;
+        padding: 1rem;
+    }
+
+    .featured-grid {
+        grid-template-columns: 1fr;
     }
 }
 
 .content-image {
-    max-width: 100%;
-    height: auto;
+    max-width: 100% !important;
+    height: auto !important;
     display: block;
     margin: 1.5rem 0;
     border-radius: 8px;
