@@ -20,11 +20,24 @@ body.home-page main {
     padding-top: 0; /* No padding at the top of main for home page as hero is not fixed */
 }
 
+/* Padding for main content on non-home pages */
+body:not(.home-page) main {
+    padding-top: 5rem; /* Adjust based on header height */
+}
+
+/* Styles for header on non-home pages */
+body:not(.home-page) header {
+    background-color: #E5E3DF;
+    position: relative; /* Override fixed position */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Re-add shadow */
+    justify-content: space-between; /* Restore default header behavior */
+}
+
 header {
     background-color: transparent;
     padding: 1rem;
     display: flex;
-    justify-content: flex-start; /* Changed to flex-start */
+    justify-content: flex-start;
     align-items: center;
     position: fixed;
     top: 0;
@@ -32,40 +45,130 @@ header {
     width: 100%;
     z-index: 10;
     box-shadow: none;
+    transition: background-color 0.3s ease-in-out; /* Add transition for smooth background change */
+}
+
+header.scrolled {
+    background-color: rgba(0, 0, 0, 0.3); /* 30% transparent black */
+}
+
+body:not(.home-page) nav a {
+    color: #333333;
+}
+
+body:not(.home-page) nav a:hover {
+    color: #E45C4F;
 }
 
 nav {
     display: flex;
     align-items: center;
-    margin-right: auto; /* Push language selector to the right */
+    margin-right: auto;
 }
 
 nav a {
     margin: 0 1rem;
     text-decoration: none;
-    color: white; /* Make nav links white for contrast on hero image */
+    color: white;
     font-weight: bold;
 }
 
 nav a:hover, nav a.active {
-    color: #007bff;
+    color: #61B5D8;
 }
 
 .nav-logo-link {
     display: flex;
     align-items: center;
-    /* margin-right: auto; */ /* Removed this */
-    height: 50px;
+    position: relative; /* For absolute positioning of child images */
+    width: 150px; /* Set a fixed width for the logo container */
+    height: 50px; /* Set a fixed height for the logo container */
 }
 
-.nav-logo {
-    height: 50px; /* Set desired height for the logo */
-    width: auto; /* Maintain aspect ratio */
-    vertical-align: middle;
+.nav-logo-link:hover {
+    cursor: pointer;
+}
+
+.nav-logo, .nav-logo-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Ensure logo fits within its container */
+    transition: opacity 0.3s ease-in-out;
+}
+
+.nav-logo-hover {
+    opacity: 0; /* Hidden by default */
+}
+
+.nav-logo-link:hover .nav-logo-default {
+    opacity: 0; /* Hide default logo on hover */
+}
+
+.nav-logo-link:hover .nav-logo-hover {
+    opacity: 1; /* Show hover logo on hover */
+}
+
+body:not(.home-page) .hamburger-menu .bar {
+    background-color: #333333;
+}
+
+/* Hamburger Menu styles */
+.hamburger-menu {
+    display: none; /* Hidden by default, shown on mobile */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 11; /* Above header and nav links */
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+}
+
+.hamburger-menu .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: white; /* White bars for contrast on hero image */
+    transition: all 0.3s ease-in-out;
+}
+
+/* Default nav links styling (desktop) */
+nav.nav-links {
+    display: flex;
+    align-items: center;
+    margin-right: auto;
+}
+
+nav.nav-links a {
+    margin: 0 1rem;
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+nav.nav-links a:hover, nav.nav-links a.active {
+    color: #61B5D8;
+}
+
+body:not(.home-page) .language-selector a {
+    color: #333333;
+    background-color: transparent;
+    border: 1px solid #333333;
+}
+
+body:not(.home-page) .language-selector a:hover {
+    background-color: #E45C4F;
+    color: white;
+    border-color: #E45C4F;
 }
 
 .language-selector a {
-    background-color: rgba(0, 123, 255, 0.7); /* Semi-transparent background for language buttons */
+    background-color: rgba(0, 123, 255, 0.7);
     color: white;
     border: none;
     padding: 0.5rem 1rem;
@@ -76,46 +179,55 @@ nav a:hover, nav a.active {
 }
 
 .language-selector a:hover {
-    background-color: #0056b3;
+    background-color: #3F92BC;
 }
 
 main {
-    padding: 0; /* Removed default padding */
+    padding: 0;
 }
 
 #content h1 {
-    color: #007bff;
+    color: #61B5D8;
 }
 
 @media (max-width: 768px) {
-    body.home-page main {
-        padding-top: 0; /* No padding at the top of main for home page as hero is not fixed */
+    /* Mobile specific styles */
+    .hamburger-menu {
+        display: block; /* Show hamburger on mobile */
     }
 
-    header {
+    nav.nav-links {
+        position: fixed;
+        top: 0;
+        left: -100%; /* Hidden off-screen by default */
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.9); /* Dark overlay */
         flex-direction: column;
-        background-color: rgba(255, 255, 255, 0.9); /* Slightly opaque background on mobile */
-    }
-
-    nav {
-        display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        margin-bottom: 1rem;
+        transition: left 0.3s ease-in-out;
     }
 
-    nav a {
-        margin: 0.5rem 0;
-        color: #333; /* Darker color for mobile nav links */
+    nav.nav-links.open {
+        left: 0; /* Slide in when open */
+    }
+
+    nav.nav-links a {
+        margin: 1rem 0;
+        color: white; /* White links for dark overlay */
+        font-size: 1.5em;
+    }
+
+    .language-selector {
+        position: fixed; /* Keep language selector fixed */
+        top: 1rem;
+        right: 50px; /* Position it next to hamburger icon */
+        z-index: 11;
     }
 
     .language-selector a {
-        background-color: #007bff; /* Solid background on mobile */
-    }
-
-    main {
-        padding: 1rem;
-        width: 100%;
+        background-color: rgba(0, 123, 255, 0.7);
     }
 }
 
@@ -173,7 +285,7 @@ main {
 .about-section h2, .featured-section h2 {
     text-align: center;
     margin-bottom: 1.5rem;
-    color: #007bff;
+    color: #61B5D8;
 }
 
 .about-section p {
@@ -206,7 +318,7 @@ main {
 
 .featured-item h3 {
     margin: 1rem 0.5rem 0.5rem;
-    color: #007bff;
+    color: #61B5D8;
 }
 
 .featured-item p {
@@ -217,7 +329,7 @@ main {
 
 .button {
     display: inline-block;
-    background-color: #007bff;
+    background-color: #61B5D8;
     color: white;
     padding: 0.75rem 1.5rem;
     border-radius: 5px;
@@ -227,7 +339,7 @@ main {
 }
 
 .button:hover {
-    background-color: #0056b3;
+    background-color: #3F92BC;
 }
 
 @media (max-width: 768px) {
@@ -256,4 +368,17 @@ main {
     margin: 1.5rem 0;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+footer {
+    background-color: #9DDABD;
+    text-align: center;
+    padding: 2rem 1rem;
+    color: white; /* Changed footer text color to white */
+    margin-top: 2rem;
+}
+
+footer p {
+    margin: 0.5rem 0;
+    line-height: 1.5;
 }

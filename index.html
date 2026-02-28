@@ -8,10 +8,15 @@
 </head>
 <body class="home-page">
     <header>
-        <nav>
-            <a href="index.html" class="nav-logo-link">
-                <img src="images/logo.png" alt="Azienda Agricola Logo" class="nav-logo">
-            </a>
+                    <a href="index.html" class="nav-logo-link">
+                        <img src="images/logo.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+                        <img src="images/logo-hover.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+                    </a>        <button class="hamburger-menu" id="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
             <a href="apartment.html" class="nav-link" data-localize-key="apartment.nav">Apartment</a>
             <a href="tiny-house.html" class="nav-link" data-localize-key="tiny-house.nav">Tiny House</a>
             <a href="roulotte.html" class="nav-link" data-localize-key="roulotte.nav">Roulotte</a>
@@ -91,6 +96,11 @@
         </section>
 
     </main>
+
+    <footer>
+        <p><b>Azienda Agricola Ca’ Leone</b></p>
+        <p>Ozzano dell’Emilia</p>
+    </footer>
 
     <script src="app.js"></script>
 </body>

@@ -196,3 +196,39 @@ function renderContent() {
 }
 
 window.addEventListener('DOMContentLoaded', renderContent);
+
+// Mobile navigation toggle
+const hamburgerMenu = document.getElementById('hamburger-menu');
+const navLinks = document.getElementById('nav-links');
+
+if (hamburgerMenu && navLinks) {
+    hamburgerMenu.addEventListener('click', () => {
+        navLinks.classList.toggle('open');
+        hamburgerMenu.classList.toggle('open'); // Optional: for animating hamburger icon
+    });
+
+    // Close menu when a link is clicked (for single-page navigation)
+    navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            if (navLinks.classList.contains('open')) {
+                navLinks.classList.remove('open');
+                hamburgerMenu.classList.remove('open');
+            }
+        });
+    });
+}
+
+// Homepage header scroll effect
+const header = document.querySelector('header');
+const heroSection = document.querySelector('.hero-section');
+
+if (header && heroSection && document.body.classList.contains('home-page')) {
+    window.addEventListener('scroll', () => {
+        const heroHeight = heroSection.offsetHeight; // Get the height of the hero section
+        if (window.scrollY > heroHeight - header.offsetHeight) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    });
+}

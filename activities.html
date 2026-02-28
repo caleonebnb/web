@@ -8,16 +8,25 @@
 </head>
 <body>
     <header>
-        <nav>
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="apartment.html" class="nav-link">Apartment</a>
-            <a href="tiny-house.html" class="nav-link">Tiny House</a>
-            <a href="roulotte.html" class="nav-link">Roulotte</a>
-            <a href="piazzola.html" class="nav-link">Piazzola</a>
-            <a href="philosophy.html" class="nav-link">Philosophy</a>
-            <a href="products.html" class="nav-link">Prodotti Agricoli</a>
-            <a href="activities.html" class="nav-link active">Things To Do</a>
-            <a href="contacts.html" class="nav-link">Contacts</a>
+        <a href="index.html" class="nav-logo-link">
+            <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+            <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+        </a>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a href="index.html" class="nav-link" data-localize-key="home.nav">Home</a>
+            <a href="apartment.html" class="nav-link" data-localize-key="apartment.nav">Apartment</a>
+            <a href="tiny-house.html" class="nav-link" data-localize-key="tiny-house.nav">Tiny House</a>
+            <a href="roulotte.html" class="nav-link" data-localize-key="roulotte.nav">Roulotte</a>
+            <a href="piazzola.html" class="nav-link" data-localize-key="piazzola.nav">Piazzola</a>
+            <a href="philosophy.html" class="nav-link" data-localize-key="philosophy.nav">Philosophy</a>
+            <a href="products.html" class="nav-link" data-localize-key="products.nav">Prodotti Agricoli</a>
+            <a href="activities.html" class="nav-link active" data-localize-key="activities.nav">Things To Do</a>
+            <a href="contacts.html" class="nav-link" data-localize-key="contacts.nav">Contacts</a>
         </nav>
         <div class="language-selector">
             <a id="lang-en" href="activities.html?lang=en">EN</a>
@@ -31,6 +40,11 @@
         <img src="images/bosco.jpg" alt="Forest near the farm" class="content-image">
         <img src="images/vigna.jpg" alt="Vineyard on the farm" class="content-image">
     </main>
+
+    <footer>
+        <p><b>Azienda Agricola Ca’ Leone</b></p>
+        <p>Ozzano dell’Emilia</p>
+    </footer>
 
     <script src="app.js"></script>
 </body>
