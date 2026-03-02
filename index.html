@@ -360,6 +360,39 @@
             background: rgba(0,0,0,0.07);
         }
 
+        /* ── Host section ── */
+        .host-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: #f5f5f3;
+        }
+
+        .host-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            margin: 0 0 2rem;
+        }
+
+        .host-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .button-outline {
+            background-color: transparent !important;
+            border: 1px solid #38695b;
+            color: #38695b !important;
+        }
+
+        .button-outline:hover {
+            background-color: #38695b !important;
+            color: white !important;
+        }
+
         /* ── Pull quote ── */
         .pull-quote-section {
             padding: 4rem 2rem;
@@ -563,15 +596,11 @@
             </div>
         </section>
 
-        <section class="featured-section">
-            <h2 data-localize-key="home.featuredActivitiesTitle"></h2>
-            <div class="featured-grid">
-                <div class="featured-item">
-                    <img src="images/bosco.jpg" alt="Things To Do" class="featured-image">
-                    <h3 data-localize-key="home.activitiesTitle"></h3>
-                    <p data-localize-key="home.activitiesDescription"></p>
-                    <a href="activities.html" class="button" data-localize-key="home.viewDetails"></a>
-                </div>
+        <section class="host-section">
+            <h2 class="host-title">We can't wait to host you.</h2>
+            <div class="host-buttons">
+                <a href="activities.html" class="button">Visit our FAQs</a>
+                <a href="contacts.html" class="button button-outline">Contact us for more information</a>
             </div>
         </section>
 
