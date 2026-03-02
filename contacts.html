@@ -79,6 +79,10 @@
             text-decoration: none;
         }
 
+        .ct-item-text a.ct-book-btn {
+            color: white;
+        }
+
         .ct-item-text a:hover {
             text-decoration: underline;
         }
@@ -92,6 +96,28 @@
             display: block;
             margin-bottom: 0.2rem;
         }
+
+        /* ── Airbnb button ── */
+        .ct-book-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            background-color: #FF5A5F;
+            color: white;
+            text-decoration: none;
+            padding: 0.85rem 1.8rem;
+            border-radius: 10px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s ease, transform 0.2s ease;
+        }
+        .ct-book-btn:hover {
+            background-color: #e04e53;
+            transform: translateY(-1px);
+            color: white;
+        }
+        .ct-book-btn i { font-size: 1.1rem; }
 
         /* ── Socials ── */
         .ct-socials {
@@ -250,17 +276,9 @@
                         <div class="ct-item-text">
                             <span class="ct-item-label">Address</span>
                             Azienda Agricola Ca' Leone<br>
-                            Via del Leone 12<br>
-                            40064 Ozzano dell'Emilia (BO)<br>
+                            Via della Quercia 15<br>
+                            Ozzano dell'Emilia (BO)<br>
                             Italy
-                        </div>
-                    </div>
-
-                    <div class="ct-item">
-                        <i class="ct-item-icon fa-solid fa-phone"></i>
-                        <div class="ct-item-text">
-                            <span class="ct-item-label">Phone</span>
-                            <a href="tel:+391234567890">+39 123 456 7890</a>
                         </div>
                     </div>
 
@@ -268,16 +286,16 @@
                         <i class="ct-item-icon fa-solid fa-envelope"></i>
                         <div class="ct-item-text">
                             <span class="ct-item-label">Email</span>
-                            <a href="mailto:info@caleone.it">info@caleone.it</a>
+                            <a href="mailto:lacollinabnb@gmail.com">lacollinabnb@gmail.com</a>
                         </div>
                     </div>
 
                     <div class="ct-item">
-                        <i class="ct-item-icon fa-solid fa-clock"></i>
                         <div class="ct-item-text">
-                            <span class="ct-item-label">Check-in / Check-out</span>
-                            Check-in from 3:00 pm<br>
-                            Check-out by 11:00 am
+                            <a href="https://www.airbnb.com/rooms/35970510" target="_blank" rel="noopener" class="ct-book-btn">
+                                <i class="fa-brands fa-airbnb"></i>
+                                Book on Airbnb
+                            </a>
                         </div>
                     </div>
 
@@ -303,7 +321,7 @@
 
                 <!-- Right: image -->
                 <div class="ct-image">
-                    <img src="images/drone2.JPG" alt="Ca' Leone from above">
+                    <img src="images/vigna.jpg" alt="Ca' Leone vineyard">
                 </div>
 
             </div>
