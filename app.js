@@ -16,6 +16,8 @@ const content = {
             tinyHouseDescription: "A cozy and romantic retreat.",
             roulotteTitle: "Roulotte",
             roulotteDescription: "A charming vintage caravan.",
+            piazzolaTitle: "Piazzola",
+            piazzolaDescription: "A spacious pitch for tents and campers.",
             featuredProductsTitle: "Our Organic Products",
             productsTitle: "Farm Products",
             productsDescription: "Taste the freshness of our organic produce.",
@@ -27,7 +29,46 @@ const content = {
         apartment: {
             nav: "Apartment",
             title: "Azienda Agricola - Apartment",
-            content: "A beautiful and spacious apartment with all the comforts. Ideal for families or groups of friends."
+            heroTitle: "Apartment",
+            locationArea: "Ozzano dell'Emilia",
+            locationRegion: "Bologna",
+            infoTheme: "Country life",
+            keyFactsDistance: "10 km from Bologna",
+            keyFactsPets: "Pets welcome",
+            petsNote: "On request",
+            keyFactsParking: "Parking",
+            parkingNote: "Available on site",
+            keyFactsPrivacy: "High privacy",
+            privacyNote: "Private area",
+            amenityWifi: "Wi-Fi",
+            wifiNote: "Free connection",
+            descriptionTitle: "The Apartment",
+            description: "A beautiful apartment nestled in the Bologna countryside, with all the comforts for an authentic and restorative stay. Ideal for families or groups of friends looking for tranquility, nature, and the genuine flavours of the farm.",
+            amenitiesTitle: "What you will find",
+            amenityBedroom: "Bedroom",
+            amenityBedroomSub: "Double bed, max 2 adults + 1 child",
+            amenityKitchen: "Kitchen",
+            amenityKitchenSub: "Hob, fridge, pots and crockery",
+            amenityBathroom: "Bathroom",
+            amenityBathroomSub: "Shower and private facilities",
+            amenityBasicKit: "Basic cooking kit",
+            amenityBasicKitSub: "Oil, salt, coffee, tea and essentials",
+            amenityClimateControl: "Temperature control",
+            amenityClimateControlSub: "Heating and ventilation",
+            amenityView: "Panoramic view",
+            amenityViewSub: "Views of the countryside and surrounding green",
+            amenityEssentials: "Essentials",
+            amenityEssentialsSub: "Bed linen, towels, toiletries",
+            amenitySafety: "Safety",
+            amenitySafetySub: "Smoke detector, extinguisher, first aid kit",
+            servicesTitle: "Services",
+            checkIn: "Self Check-in from 3:00 pm",
+            checkOut: "Check-out by 11:00 am",
+            comfortSafety: "Comfort & Safety",
+            territory: "Guide to explore the area (sent before arrival)",
+            parkingService: "Private parking on site",
+            otherAccommodationsTitle: "Other Accommodations",
+            relatedLocation: "Ozzano dell'Emilia · Bologna"
         },
         'tiny-house': {
             nav: "Tiny House",
@@ -82,6 +123,8 @@ const content = {
             tinyHouseDescription: "Un rifugio accogliente e romantico.",
             roulotteTitle: "Roulotte",
             roulotteDescription: "Un'affascinante roulotte vintage.",
+            piazzolaTitle: "Piazzola",
+            piazzolaDescription: "Un'ampia piazzola per tende e camper.",
             featuredProductsTitle: "I Nostri Prodotti Biologici",
             productsTitle: "Prodotti Agricoli",
             productsDescription: "Assapora la freschezza dei nostri prodotti biologici.",
@@ -93,7 +136,46 @@ const content = {
         apartment: {
             nav: "Appartamento",
             title: "Azienda Agricola - Appartamento",
-            content: "Un bellissimo e spazioso appartamento con tutti i comfort. Ideale per famiglie o gruppi di amici."
+            heroTitle: "Appartamento",
+            locationArea: "Ozzano dell'Emilia",
+            locationRegion: "Bologna",
+            infoTheme: "Vita in campagna",
+            keyFactsDistance: "10 km da Bologna",
+            keyFactsPets: "Animali ammessi",
+            petsNote: "Su richiesta",
+            keyFactsParking: "Parcheggio",
+            parkingNote: "Disponibile in loco",
+            keyFactsPrivacy: "Alta privacy",
+            privacyNote: "Zona riservata",
+            amenityWifi: "Wi-Fi",
+            wifiNote: "Connessione gratuita",
+            descriptionTitle: "L'Appartamento",
+            description: "Un bellissimo appartamento immerso nella campagna bolognese, con tutti i comfort per un soggiorno autentico e rigenerante. Ideale per famiglie o gruppi di amici che cercano tranquillità, natura e i sapori genuini dell'azienda agricola.",
+            amenitiesTitle: "Cosa troverai",
+            amenityBedroom: "Camera da letto",
+            amenityBedroomSub: "Letto matrimoniale, max 2 adulti + 1 bambino",
+            amenityKitchen: "Cucina",
+            amenityKitchenSub: "Piano cottura, frigorifero, pentole e stoviglie",
+            amenityBathroom: "Bagno",
+            amenityBathroomSub: "Doccia e servizi privati",
+            amenityBasicKit: "Kit base cucina",
+            amenityBasicKitSub: "Olio, sale, caffè, tè e accessori essenziali",
+            amenityClimateControl: "Controllo temperatura",
+            amenityClimateControlSub: "Riscaldamento e ventilazione",
+            amenityView: "Vista panoramica",
+            amenityViewSub: "Vista sulla campagna e sul verde circostante",
+            amenityEssentials: "Essenziali",
+            amenityEssentialsSub: "Biancheria, asciugamani, articoli da toilette",
+            amenitySafety: "Sicurezza",
+            amenitySafetySub: "Rilevatore di fumo, estintore, kit primo soccorso",
+            servicesTitle: "Servizi",
+            checkIn: "Self Check-in dalle 15:00",
+            checkOut: "Check-out entro le 11:00",
+            comfortSafety: "Comfort e sicurezza",
+            territory: "Guida per esplorare il territorio (inviata prima dell'arrivo)",
+            parkingService: "Parcheggio privato in loco",
+            otherAccommodationsTitle: "Altre Sistemazioni",
+            relatedLocation: "Ozzano dell'Emilia · Bologna"
         },
         'tiny-house': {
             nav: "Tiny House",
@@ -177,17 +259,6 @@ function renderContent() {
             }
         }
     });
-
-    // For non-home pages, update h1 and p
-    if (pageId !== 'home') {
-        const pageContent = content[lang][pageId];
-        if (pageContent) {
-            const h1Element = document.getElementById('content-title');
-            const pElement = document.getElementById('content-body');
-            if (h1Element) h1Element.innerText = pageContent.title;
-            if (pElement) pElement.innerText = pageContent.content;
-        }
-    }
 
     // Update language links
     const currentPath = window.location.pathname;
