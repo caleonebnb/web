@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Azienda Agricola</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="nav-logo-link">
+            <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+            <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+        </a>
+        <button class="hamburger-menu" id="hamburger-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+        <nav class="nav-links" id="nav-links">
+            <a href="index.html" class="nav-link" data-localize-key="home.nav">Home</a>
+            <a href="apartment.html" class="nav-link active" data-localize-key="apartment.nav">Apartment</a>
+            <a href="tiny-house.html" class="nav-link" data-localize-key="tiny-house.nav">Tiny House</a>
+            <a href="roulotte.html" class="nav-link" data-localize-key="roulotte.nav">Roulotte</a>
+            <a href="piazzola.html" class="nav-link" data-localize-key="piazzola.nav">Piazzola</a>
+            <a href="philosophy.html" class="nav-link" data-localize-key="philosophy.nav">Philosophy</a>
+            <a href="products.html" class="nav-link" data-localize-key="products.nav">Prodotti Agricoli</a>
+            <a href="activities.html" class="nav-link" data-localize-key="activities.nav">Things To Do</a>
+            <a href="contacts.html" class="nav-link" data-localize-key="contacts.nav">Contacts</a>
+        </nav>
+        <div class="language-selector">
+            <a id="lang-en" href="apartment.html?lang=en">EN</a>
+            <a id="lang-it" href="apartment.html?lang=it">IT</a>
+        </div>
+    </header>
+
+    <main>
+        <h1 class="page-title" data-localize-key="apartment.heroTitle"></h1>
+        <section class="gallery-grid-section">
+            <div class="gallery-grid">
+                <div class="gallery-small-items">
+                    <div class="gallery-item">
+                        <img src="images/drone2.JPG" alt="Apartment Image 2" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/casette.jpg" alt="Apartment Image 3" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/cavolonero.jpg" alt="Apartment Image 4" class="gallery-image">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/bosco.jpg" alt="Apartment Image 5" class="gallery-image">
+                    </div>
+                </div>
+                <div class="gallery-item gallery-item-large">
+                    <img src="images/cucina.jpg" alt="Apartment Image 1" class="gallery-image">
+                </div>
+            </div>
+        </section>
+
+        <section class="key-info-band">
+            <div class="key-info-item">
+                <span class="key-info-icon">📏</span>
+                <p data-localize-key="apartment.keyFactsDistance"></p>
+            </div>
+            <div class="key-info-item">
+                <span class="key-info-icon">🐾</span>
+                <p data-localize-key="apartment.keyFactsPets"></p>
+            </div>
+            <div class="key-info-item">
+                <span class="key-info-icon">🅿️</span>
+                <p data-localize-key="apartment.keyFactsParking"></p>
+            </div>
+            <div class="key-info-item">
+                <span class="key-info-icon">🤫</span>
+                <p data-localize-key="apartment.keyFactsPrivacy"></p>
+            </div>
+            <div class="key-info-item">
+                <span class="key-info-icon">📶</span>
+                <p data-localize-key="apartment.amenityWifi"></p>
+            </div>
+        </section>
+
+        <section class="description-section">
+            <h2 data-localize-key="apartment.descriptionTitle"></h2>
+            <p data-localize-key="apartment.description"></p>
+        </section>
+
+        <section class="amenities-section">
+            <h2 data-localize-key="apartment.amenitiesTitle"></h2>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <span class="amenity-icon">🏠</span>
+                    <p data-localize-key="apartment.amenityBedroom"></p>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🍳</span>
+                    <p data-localize-key="apartment.amenityKitchen"></p>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🚿</span>
+                    <p data-localize-key="apartment.amenityBathroom"></p>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">❄️🔥</span>
+                    <p data-localize-key="apartment.amenityClimateControl"></p>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">🧺</span>
+                    <p data-localize-key="apartment.amenityEssentials"></p>
+                </div>
+                <div class="amenity-item">
+                    <span class="amenity-icon">📶</span>
+                    <p data-localize-key="apartment.amenityWifi"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="services-section">
+            <h2 data-localize-key="apartment.servicesTitle"></h2>
+            <div class="services-list">
+                <div class="service-item">
+                    <span class="service-icon">🔑</span>
+                    <p data-localize-key="apartment.checkIn"></p>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">🚪</span>
+                    <p data-localize-key="apartment.checkOut"></p>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">🛡️</span>
+                    <p data-localize-key="apartment.comfortSafety"></p>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">🗺️</span>
+                    <p data-localize-key="apartment.territory"></p>
+                </div>
+                <div class="service-item">
+                    <span class="service-icon">🚗</span>
+                    <p data-localize-key="apartment.parkingService"></p>
+                </div>
+            </div>
+        </section>
+
+        <section class="reviews-section">
+            <h2 data-localize-key="apartment.reviewsTitle"></h2>
+            <p data-localize-key="apartment.reviewsContent"></p>
+        </section>
+
+        <section class="environmental-impact-section">
+            <h2 data-localize-key="apartment.environmentalImpactTitle"></h2>
+            <p data-localize-key="apartment.environmentalImpactContent"></p>
+        </section>
+
+        <section class="faq-section">
+            <h2 data-localize-key="apartment.faqTitle"></h2>
+            <p data-localize-key="apartment.faqContent"></p>
+        </section>
+
+        <section class="other-accommodations-section">
+            <h2 data-localize-key="apartment.otherAccommodationsTitle"></h2>
+            <div class="featured-grid">
+                <div class="featured-item">
+                    <img src="images/casette.jpg" alt="Tiny house exterior" class="featured-image">
+                    <h3 data-localize-key="home.tinyHouseTitle"></h3>
+                    <p data-localize-key="home.tinyHouseDescription"></p>
+                    <a href="tiny-house.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+                <div class="featured-item">
+                    <img src="images/roulotte.jpg" alt="Roulotte exterior" class="featured-image">
+                    <h3 data-localize-key="home.roulotteTitle"></h3>
+                    <p data-localize-key="home.roulotteDescription"></p>
+                    <a href="roulotte.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+                <div class="featured-item">
+                    <img src="images/orto.JPG" alt="Piazzola" class="featured-image">
+                    <h3 data-localize-key="home.piazzolaTitle"></h3>
+                    <p data-localize-key="home.piazzolaDescription"></p>
+                    <a href="piazzola.html" class="button" data-localize-key="home.viewDetails"></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p><b>Azienda Agricola Ca’ Leone</b></p>
+        <p>Ozzano dell’Emilia</p>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
