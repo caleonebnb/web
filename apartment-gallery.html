@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apartment — Photos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background: #111;
+            min-height: 100vh;
+        }
+
+        /* ── Close button ── */
+        .gl-close {
+            position: fixed;
+            top: 1.2rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            z-index: 100;
+            transition: background 0.2s ease;
+        }
+
+        .gl-close:hover {
+            background: rgba(0,0,0,0.8);
+        }
+
+        .gl-close svg {
+            width: 16px;
+            height: 16px;
+            stroke: white;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        /* ── Grid ── */
+        .gl-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .gl-grid img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* First image spans both columns */
+        .gl-grid img:first-child {
+            grid-column: 1 / -1;
+        }
+
+        @media (max-width: 600px) {
+            .gl-grid {
+                grid-template-columns: 1fr;
+            }
+            .gl-grid img:first-child {
+                grid-column: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <a href="apartment.html" class="gl-close">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+    </a>
+
+    <div class="gl-grid">
+        <img src="https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg" alt="Apartment">
+        <img src="https://a0.muscache.com/im/pictures/6c90cd19-8ac1-4301-a649-4f12f929ad2e.jpg" alt="Apartment">
+        <img src="https://a0.muscache.com/im/pictures/a4148259-3b5e-4ea3-a3c4-d5b932897200.jpg" alt="Apartment">
+        <img src="https://a0.muscache.com/im/pictures/b682b360-77b5-4813-896f-3412c5640799.jpg" alt="Apartment">
+        <img src="https://a0.muscache.com/im/pictures/629d394d-48a0-4bff-bbcb-6bcdcd548ef9.jpg" alt="Apartment">
+    </div>
+
+</body>
+</html>

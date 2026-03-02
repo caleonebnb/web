@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roulotte — Photos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #111; min-height: 100vh; }
+
+        .gl-close {
+            position: fixed;
+            top: 1.2rem;
+            left: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #fff;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            z-index: 100;
+            transition: background 0.2s ease;
+        }
+        .gl-close:hover { background: rgba(0,0,0,0.8); }
+        .gl-close svg { width: 16px; height: 16px; stroke: white; stroke-width: 2; fill: none; }
+
+        .gl-grid {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 5rem 1.5rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .gl-grid img { width: 100%; height: auto; display: block; border-radius: 4px; }
+        .gl-grid img:first-child { grid-column: 1 / -1; }
+
+        @media (max-width: 600px) {
+            .gl-grid { grid-template-columns: 1fr; }
+            .gl-grid img:first-child { grid-column: 1; }
+        }
+    </style>
+</head>
+<body>
+    <a href="roulotte.html" class="gl-close">
+        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+        Back
+    </a>
+    <div class="gl-grid">
+        <img src="images/tinybench.jpg" alt="Roulotte">
+        <img src="images/bench2.jpg" alt="Outdoor area">
+        <img src="images/vigna.jpg" alt="Vineyard">
+        <img src="images/drone2.JPG" alt="Farm view">
+        <img src="images/drone3.JPG" alt="Countryside">
+    </div>
+</body>
+</html>
