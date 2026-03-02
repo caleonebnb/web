@@ -352,6 +352,28 @@
             background: rgba(0,0,0,0.07);
         }
 
+        /* ── Pull quote ── */
+        .pull-quote-section {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .pull-quote {
+            font-family: 'Cormorant Garamond', 'Raleway', serif;
+            font-size: 2rem;
+            font-weight: 300;
+            font-style: italic;
+            color: #2c2c2c;
+            margin: 0 auto;
+            max-width: 700px;
+            line-height: 1.5;
+            letter-spacing: 0.01em;
+        }
+
+        @media (max-width: 680px) {
+            .pull-quote { font-size: 1.4rem; }
+        }
+
         /* ── Products hero section ── */
         .products-hero-section {
             position: relative;
@@ -493,15 +515,12 @@
             </div>
         </section>
 
-        <section class="about-section">
-            <h2 data-localize-key="home.aboutTitle"></h2>
-            <p data-localize-key="home.aboutContent"></p>
-            <a href="philosophy.html" class="button" data-localize-key="home.aboutReadMore"></a>
+        <section class="pull-quote-section">
+            <p class="pull-quote">Slow down and let your soul catch up.</p>
         </section>
 
         <section class="accom-split">
-            <h2 class="accom-split-title" data-localize-key="home.featuredAccommodationsTitle"></h2>
-            <div class="accom-split-grid">
+<div class="accom-split-grid">
                 <a href="apartment.html" class="accom-panel" style="background-image: url('https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg')">
                     <div class="accom-panel-overlay"></div>
                     <div class="accom-panel-content">
@@ -519,6 +538,12 @@
                     </div>
                 </a>
             </div>
+        </section>
+
+        <section class="about-section">
+            <h2 data-localize-key="home.aboutTitle"></h2>
+            <p data-localize-key="home.aboutContent"></p>
+            <a href="philosophy.html" class="button" data-localize-key="home.aboutReadMore"></a>
         </section>
 
         <section class="products-hero-section">

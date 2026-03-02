@@ -19,7 +19,7 @@ const content = {
             piazzolaTitle: "Piazzola",
             piazzolaDescription: "A spacious pitch for tents and campers.",
             featuredProductsTitle: "Our Organic Products",
-            productsTitle: "Farm Products",
+            productsTitle: "Vineyard, Olive Grove and Vegetable Gardens",
             productsDescription: "Taste the freshness of our organic produce.",
             featuredActivitiesTitle: "Things To Do",
             activitiesTitle: "Activities",
