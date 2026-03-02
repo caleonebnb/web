@@ -659,10 +659,10 @@ main {
 }
 
 footer {
-    background-color: #9DDABD;
+    background-color: transparent;
     text-align: center;
     padding: 2rem 1rem;
-    color: white; /* Changed footer text color to white */
+    color: #333333;
     margin-top: 2rem;
 }
 

@@ -36,8 +36,34 @@
         /* Sections */
         .about-section, .featured-section {
             box-shadow: none;
-            border: 1px solid #e4e4e4;
             border-radius: 14px;
+        }
+
+        .about-section {
+            background-color: #f5f5f3;
+            border: none;
+            border-radius: 0;
+            box-shadow: none;
+            max-width: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 3rem 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .about-section .button {
+            background-color: #38695b;
+            color: white;
+        }
+
+        .about-section .button:hover {
+            background-color: #2c5248;
+        }
+
+        .featured-section {
+            border: 1px solid #e4e4e4;
         }
 
         .about-section h2, .featured-section h2 {
@@ -49,6 +75,10 @@
         .about-section p {
             color: #555;
             line-height: 1.9;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
         }
 
         /* Featured cards */
@@ -72,6 +102,104 @@
 
         .featured-item p {
             color: #999;
+        }
+
+        /* ── Accommodation split ── */
+        .accom-split {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .accom-split-title {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            color: #1a1a1a;
+            text-align: center;
+            padding: 2.5rem 1rem 1.5rem;
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .accom-split-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            height: 520px;
+        }
+
+        .accom-panel {
+            position: relative;
+            background-size: cover;
+            background-position: center;
+            text-decoration: none;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .accom-panel-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+            transition: background 0.4s ease;
+        }
+
+        .accom-panel:hover .accom-panel-overlay {
+            background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+        }
+
+        .accom-panel:hover {
+            transform: scale(1.01);
+            transition: transform 0.4s ease;
+        }
+
+        .accom-panel-content {
+            position: relative;
+            z-index: 1;
+            padding: 2rem 2.5rem;
+            color: white;
+        }
+
+        .accom-panel-content h3 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2rem;
+            font-weight: 300;
+            margin: 0 0 0.4rem;
+            color: white;
+        }
+
+        .accom-panel-content p {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+            margin: 0 0 1.2rem;
+            line-height: 1.5;
+        }
+
+        .accom-panel-btn {
+            display: inline-block;
+            border: 1px solid rgba(255,255,255,0.7);
+            color: white;
+            padding: 0.5rem 1.3rem;
+            border-radius: 8px;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: background 0.2s ease;
+        }
+
+        .accom-panel:hover .accom-panel-btn {
+            background: rgba(255,255,255,0.2);
+        }
+
+        @media (max-width: 680px) {
+            .accom-split-grid {
+                grid-template-columns: 1fr;
+                height: auto;
+            }
+            .accom-panel {
+                height: 340px;
+            }
         }
 
         /* Buttons */
@@ -211,26 +339,23 @@
         }
 
         .footer-lang a {
-            color: white;
+            color: #333333;
             text-decoration: none;
             padding: 0.25rem 0.65rem;
-            border: 1px solid rgba(255,255,255,0.5);
+            border: 1px solid #ccc;
             border-radius: 4px;
             font-size: 0.82em;
             transition: background 0.2s ease;
         }
 
         .footer-lang a:hover {
-            background: rgba(255,255,255,0.25);
+            background: rgba(0,0,0,0.07);
         }
 
         /* ── Products hero section ── */
         .products-hero-section {
             position: relative;
-            max-width: 1200px;
-            margin: 2rem auto;
-            border-radius: 14px;
-            overflow: hidden;
+            width: 100%;
             height: 400px;
             background: url('images/cavolonero.jpg') center/cover no-repeat;
             display: flex;
@@ -249,6 +374,11 @@
             z-index: 1;
             padding: 2.5rem;
             color: white;
+            width: 100%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .products-hero-content h2 {
@@ -343,7 +473,7 @@
                 </div>
             </div>
             <div class="nav-dropdown">
-                <a class="nav-link nav-dropdown-trigger">Agricolture</a>
+                <a class="nav-link nav-dropdown-trigger">Agriculture</a>
                 <div class="nav-dropdown-menu">
                     <a href="philosophy.html" class="nav-dropdown-item">Philosophy</a>
                     <a href="products.html" class="nav-dropdown-item">Prodotti Agricoli</a>
@@ -369,27 +499,25 @@
             <a href="philosophy.html" class="button" data-localize-key="home.aboutReadMore"></a>
         </section>
 
-        <section class="featured-section">
-            <h2 data-localize-key="home.featuredAccommodationsTitle"></h2>
-            <div class="featured-grid">
-                <div class="featured-item">
-                    <img src="images/cucina.jpg" alt="Apartment interior" class="featured-image">
-                    <h3 data-localize-key="home.apartmentTitle"></h3>
-                    <p data-localize-key="home.apartmentDescription"></p>
-                    <a href="apartment.html" class="button" data-localize-key="home.viewDetails"></a>
-                </div>
-                <div class="featured-item">
-                    <img src="images/casette.jpg" alt="Tiny house exterior" class="featured-image">
-                    <h3 data-localize-key="home.tinyHouseTitle"></h3>
-                    <p data-localize-key="home.tinyHouseDescription"></p>
-                    <a href="tiny-house.html" class="button" data-localize-key="home.viewDetails"></a>
-                </div>
-                <div class="featured-item">
-                    <img src="images/bench.jpg" alt="Roulotte exterior" class="featured-image">
-                    <h3 data-localize-key="home.roulotteTitle"></h3>
-                    <p data-localize-key="home.roulotteDescription"></p>
-                    <a href="roulotte.html" class="button" data-localize-key="home.viewDetails"></a>
-                </div>
+        <section class="accom-split">
+            <h2 class="accom-split-title" data-localize-key="home.featuredAccommodationsTitle"></h2>
+            <div class="accom-split-grid">
+                <a href="apartment.html" class="accom-panel" style="background-image: url('https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg')">
+                    <div class="accom-panel-overlay"></div>
+                    <div class="accom-panel-content">
+                        <h3>700 Year Old Restored Barn</h3>
+                        <p data-localize-key="home.apartmentDescription"></p>
+                        <span class="accom-panel-btn" data-localize-key="home.viewDetails"></span>
+                    </div>
+                </a>
+                <a href="tiny-house.html" class="accom-panel" style="background-image: url('images/tiny1.jpg')">
+                    <div class="accom-panel-overlay"></div>
+                    <div class="accom-panel-content">
+                        <h3>Dreamy Tiny Home</h3>
+                        <p data-localize-key="home.tinyHouseDescription"></p>
+                        <span class="accom-panel-btn" data-localize-key="home.viewDetails"></span>
+                    </div>
+                </a>
             </div>
         </section>
 
@@ -417,11 +545,22 @@
     </main>
 
     <footer>
-        <p><b>Azienda Agricola Ca’ Leone</b></p>
-        <p>Ozzano dell’Emilia</p>
-        <div class="footer-lang">
-            <a id="lang-en" href="index.html?lang=en">EN</a>
-            <a id="lang-it" href="index.html?lang=it">IT</a>
+        <div style="display: inline-flex; gap: 3rem; align-items: center; text-align: left;">
+            <!-- Left column: logos -->
+            <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                <img src="images/logo-nero.png" alt="Ca’ Leone" style="height: 75px;">
+                <img src="images/agriturismo-italia.jpg" alt="Agriturismo Italia" style="height: 75px;">
+            </div>
+            <!-- Right column: text -->
+            <div>
+                <p><b>Azienda Agricola Ca’ Leone</b></p>
+                <p>Via della Quercia 15, Ozzano dell’Emilia (BO)</p>
+                <p>CIN IT037020B5XZWWDUI8</p>
+                <div class="footer-lang" style="justify-content: flex-start; margin-top: 0.8rem;">
+                    <a id="lang-en" href="index.html?lang=en">EN</a>
+                    <a id="lang-it" href="index.html?lang=it">IT</a>
+                </div>
+            </div>
         </div>
     </footer>
 
