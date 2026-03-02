@@ -6,8 +6,9 @@
     <title>Azienda Agricola</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Overpass:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         /* ── Base overrides for apartment page ── */
         body {
@@ -28,8 +29,8 @@
         }
 
         .ap-title h1 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.8rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.4rem;
             font-weight: 400;
             color: #1a1a1a;
             margin: 0 0 0.3rem;
@@ -129,8 +130,11 @@
         }
 
         .ap-infoband-icon {
-            font-size: 1.4rem;
+            font-size: 1.1rem;
             flex-shrink: 0;
+            color: #2c2c2c;
+            width: 1.4rem;
+            text-align: center;
         }
 
         .ap-infoband-text p {
@@ -156,7 +160,7 @@
         }
 
         .ap-description h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Raleway', sans-serif;
             font-size: 2.2rem;
             font-weight: 400;
             color: #1a1a1a;
@@ -181,10 +185,11 @@
         /* ── Amenities ── */
         .ap-amenities {
             padding: 3rem 0;
+            background-color: #9DDABD;
         }
 
         .ap-amenities h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Raleway', sans-serif;
             font-size: 2.2rem;
             font-weight: 400;
             color: #1a1a1a;
@@ -198,9 +203,10 @@
         }
 
         .ap-amenity-card {
-            border: 1px solid #e4e4e4;
+            border: 1px solid rgba(255,255,255,0.4);
             border-radius: 12px;
             padding: 1.4rem 1.1rem;
+            background-color: rgba(255,255,255,0.55);
         }
 
         .ap-amenity-card .ap-amenity-icon {
@@ -226,44 +232,100 @@
 
         /* ── Services ── */
         .ap-services {
-            padding: 3rem 0;
+            position: relative;
+            background: url('images/vigna.jpg') center/cover no-repeat;
+        }
+
+        .ap-services::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .ap-services .ap-wrap {
+            position: relative;
+            z-index: 1;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
         }
 
         .ap-services h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Raleway', sans-serif;
             font-size: 2.2rem;
             font-weight: 400;
-            color: #1a1a1a;
+            color: white;
             margin: 0 0 2rem;
+        }
+
+        .ap-services-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
         }
 
         .ap-services-row {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
+            flex-direction: column;
+            gap: 0.3rem;
         }
 
         .ap-service-card {
             display: flex;
             align-items: center;
-            gap: 0.85rem;
-            background: #f7f7f5;
-            border-radius: 12px;
-            padding: 1rem 1.4rem;
-            flex: 1;
-            min-width: 170px;
+            gap: 0.5rem;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            border-radius: 0;
+            padding: 0.45rem 0;
+        }
+
+        .ap-services-right p {
+            color: white;
+            line-height: 1.8;
+            margin: 0 0 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .ap-services-right ul,
+        .ap-services-left ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .ap-services-right ul li,
+        .ap-services-left ul li {
+            color: white;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.9rem;
+        }
+
+        .ap-services-right ul li:last-child,
+        .ap-services-left ul li:last-child {
+            border-bottom: none;
+        }
+
+        .ap-services-right ul li::before,
+        .ap-services-left ul li::before {
+            content: '→ ';
+            color: white;
         }
 
         .ap-service-card .ap-svc-icon {
-            font-size: 1.3rem;
+            font-size: 0.9rem;
             flex-shrink: 0;
+            opacity: 0.6;
         }
 
         .ap-service-card p {
-            font-size: 0.83rem;
-            color: #555;
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.65);
             margin: 0;
-            line-height: 1.45;
+            line-height: 1.4;
         }
 
         /* ── Related ── */
@@ -272,7 +334,7 @@
         }
 
         .ap-related h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Raleway', sans-serif;
             font-size: 2.2rem;
             font-weight: 400;
             color: #1a1a1a;
@@ -312,7 +374,7 @@
         }
 
         .ap-related-body h3 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Raleway', sans-serif;
             font-size: 1.5rem;
             font-weight: 400;
             margin: 0 0 0.2rem;
@@ -335,6 +397,151 @@
             line-height: 1.5;
         }
 
+        /* ── Logo link as one home button ── */
+        .nav-logo-link {
+            width: auto;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo-img-wrap {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-img-wrap .nav-logo,
+        .nav-logo-img-wrap .nav-logo-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ── Brand text beside logo ── */
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 0.15rem;
+            line-height: 1.2;
+        }
+
+        .nav-brand-name {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-brand-sub {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: #777;
+            letter-spacing: 0.03em;
+        }
+
+        /* ── Right-align nav ── */
+        header nav.nav-links {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        /* ── Nav: no colour, underline only ── */
+        body:not(.home-page) nav a,
+        body:not(.home-page) nav a:hover,
+        body:not(.home-page) nav a:active,
+        body:not(.home-page) nav a.active {
+            color: #333;
+            text-decoration: none;
+        }
+
+        body:not(.home-page) nav a:hover,
+        body:not(.home-page) nav a.active {
+            text-decoration: underline;
+        }
+
+        /* ── Dropdown menus ── */
+        .nav-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-dropdown-trigger {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: #fff;
+            border: 1px solid #e4e4e4;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            min-width: 170px;
+            z-index: 200;
+            padding: 0.4rem 0;
+            overflow: hidden;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-item {
+            display: block;
+            padding: 0.6rem 1.2rem;
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.88em;
+            transition: background 0.15s ease;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown-item:hover {
+            background: #f7f7f5;
+            text-decoration: underline;
+            color: #333;
+        }
+
+        .nav-dropdown-item.active {
+            text-decoration: underline;
+            color: #333;
+        }
+
+        /* ── Footer language selector ── */
+        .footer-lang {
+            margin-top: 0.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .footer-lang a {
+            color: white;
+            text-decoration: none;
+            padding: 0.25rem 0.65rem;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            font-size: 0.82em;
+            transition: background 0.2s ease;
+        }
+
+        .footer-lang a:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
         /* ── Responsive ── */
         @media (max-width: 900px) {
             .ap-amenities-grid {
@@ -342,6 +549,39 @@
             }
             .ap-related-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-dropdown {
+                flex-direction: column;
+            }
+            .nav-dropdown-menu {
+                position: static;
+                display: block;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                padding: 0;
+            }
+            .nav-dropdown-trigger {
+                color: white;
+                font-size: 1.5em;
+                margin: 1rem 0 0.3rem;
+            }
+            .nav-caret {
+                display: none;
+            }
+            .nav-dropdown-item {
+                color: white;
+                font-size: 1.2em;
+                text-align: center;
+                padding: 0.4rem 0;
+                background: transparent;
+            }
+            .nav-dropdown-item:hover {
+                background: transparent;
+                color: #9DDABD;
             }
         }
 
@@ -382,8 +622,14 @@
 <body>
     <header>
         <a href="index.html" class="nav-logo-link">
-            <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
-            <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+            <div class="nav-logo-img-wrap">
+                <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+                <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+            </div>
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">Ca' Leone</span>
+                <span class="nav-brand-sub">Agriturismo, Agricamping</span>
+            </div>
         </a>
         <button class="hamburger-menu" id="hamburger-menu">
             <span class="bar"></span>
@@ -391,20 +637,25 @@
             <span class="bar"></span>
         </button>
         <nav class="nav-links" id="nav-links">
-            <a href="index.html" class="nav-link" data-localize-key="home.nav">Home</a>
-            <a href="apartment.html" class="nav-link active" data-localize-key="apartment.nav">Apartment</a>
-            <a href="tiny-house.html" class="nav-link" data-localize-key="tiny-house.nav">Tiny House</a>
-            <a href="roulotte.html" class="nav-link" data-localize-key="roulotte.nav">Roulotte</a>
-            <a href="piazzola.html" class="nav-link" data-localize-key="piazzola.nav">Piazzola</a>
-            <a href="philosophy.html" class="nav-link" data-localize-key="philosophy.nav">Philosophy</a>
-            <a href="products.html" class="nav-link" data-localize-key="products.nav">Prodotti Agricoli</a>
+            <div class="nav-dropdown">
+                <a class="nav-link nav-dropdown-trigger">Accommodation</a>
+                <div class="nav-dropdown-menu">
+                    <a href="apartment.html" class="nav-dropdown-item active">Apartment</a>
+                    <a href="tiny-house.html" class="nav-dropdown-item">Tiny House</a>
+                    <a href="roulotte.html" class="nav-dropdown-item">Roulotte</a>
+                    <a href="piazzola.html" class="nav-dropdown-item">Piazzola</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-link nav-dropdown-trigger">Agricolture</a>
+                <div class="nav-dropdown-menu">
+                    <a href="philosophy.html" class="nav-dropdown-item">Philosophy</a>
+                    <a href="products.html" class="nav-dropdown-item">Prodotti Agricoli</a>
+                </div>
+            </div>
             <a href="activities.html" class="nav-link" data-localize-key="activities.nav">Things To Do</a>
             <a href="contacts.html" class="nav-link" data-localize-key="contacts.nav">Contacts</a>
         </nav>
-        <div class="language-selector">
-            <a id="lang-en" href="apartment.html?lang=en">EN</a>
-            <a id="lang-it" href="apartment.html?lang=it">IT</a>
-        </div>
     </header>
 
     <main style="padding-top: 5rem;">
@@ -420,20 +671,20 @@
         <div class="ap-wrap">
             <div class="ap-gallery">
                 <div class="ap-gallery-main">
-                    <img src="images/cucina.jpg" alt="Appartamento interno">
+                    <img src="https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg" alt="Appartamento">
                 </div>
                 <div class="ap-gallery-thumbs">
                     <div class="ap-gallery-thumb">
-                        <img src="images/drone2.JPG" alt="Vista aerea">
+                        <img src="https://a0.muscache.com/im/pictures/6c90cd19-8ac1-4301-a649-4f12f929ad2e.jpg" alt="Appartamento">
                     </div>
                     <div class="ap-gallery-thumb">
-                        <img src="images/casette.jpg" alt="Esterno">
+                        <img src="https://a0.muscache.com/im/pictures/a4148259-3b5e-4ea3-a3c4-d5b932897200.jpg" alt="Appartamento">
                     </div>
                     <div class="ap-gallery-thumb">
-                        <img src="images/bosco.jpg" alt="Bosco">
+                        <img src="https://a0.muscache.com/im/pictures/b682b360-77b5-4813-896f-3412c5640799.jpg" alt="Appartamento">
                     </div>
                     <div class="ap-gallery-thumb">
-                        <img src="images/cavolonero.jpg" alt="Orto">
+                        <img src="https://a0.muscache.com/im/pictures/629d394d-48a0-4bff-bbcb-6bcdcd548ef9.jpg" alt="Appartamento">
                     </div>
                 </div>
             </div>
@@ -443,35 +694,35 @@
         <div class="ap-infoband">
             <div class="ap-infoband-inner">
                 <div class="ap-infoband-item">
-                    <span class="ap-infoband-icon">🌿</span>
+                    <i class="ap-infoband-icon fa-solid fa-leaf"></i>
                     <div class="ap-infoband-text">
                         <p class="ap-ib-label" data-localize-key="apartment.infoTheme">Vita in campagna</p>
                         <p class="ap-ib-sub" data-localize-key="apartment.keyFactsDistance">10 km da Bologna</p>
                     </div>
                 </div>
                 <div class="ap-infoband-item">
-                    <span class="ap-infoband-icon">🐾</span>
+                    <i class="ap-infoband-icon fa-solid fa-person-shelter"></i>
                     <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="apartment.keyFactsPets">Animali ammessi</p>
-                        <p class="ap-ib-sub" data-localize-key="apartment.petsNote">Su richiesta</p>
+                        <p class="ap-ib-label" data-localize-key="apartment.sleeps">Sleeps 2–6</p>
+                        <p class="ap-ib-sub" data-localize-key="apartment.sleepsNote">Extra beds on request</p>
                     </div>
                 </div>
                 <div class="ap-infoband-item">
-                    <span class="ap-infoband-icon">🅿️</span>
+                    <i class="ap-infoband-icon fa-solid fa-square-parking"></i>
                     <div class="ap-infoband-text">
                         <p class="ap-ib-label" data-localize-key="apartment.keyFactsParking">Parcheggio</p>
                         <p class="ap-ib-sub" data-localize-key="apartment.parkingNote">Disponibile in loco</p>
                     </div>
                 </div>
                 <div class="ap-infoband-item">
-                    <span class="ap-infoband-icon">🤫</span>
+                    <i class="ap-infoband-icon fa-solid fa-eye-slash"></i>
                     <div class="ap-infoband-text">
                         <p class="ap-ib-label" data-localize-key="apartment.keyFactsPrivacy">Alta privacy</p>
                         <p class="ap-ib-sub" data-localize-key="apartment.privacyNote">Zona riservata</p>
                     </div>
                 </div>
                 <div class="ap-infoband-item">
-                    <span class="ap-infoband-icon">📶</span>
+                    <i class="ap-infoband-icon fa-solid fa-wifi"></i>
                     <div class="ap-infoband-text">
                         <p class="ap-ib-label" data-localize-key="apartment.amenityWifi">Wi-Fi</p>
                         <p class="ap-ib-sub" data-localize-key="apartment.wifiNote">Connessione gratuita</p>
@@ -485,6 +736,11 @@
             <div class="ap-wrap">
                 <h2 data-localize-key="apartment.descriptionTitle">L'Appartamento</h2>
                 <p data-localize-key="apartment.description">Un bellissimo appartamento immerso nella campagna bolognese, con tutti i comfort per un soggiorno autentico e rigenerante. Ideale per famiglie o gruppi di amici che cercano tranquillità, natura e i sapori genuini dell'azienda agricola.</p>
+                <p>The apartment is one half of an independent house surrounded by nature. The owners live next door.</p>
+                <p>On the ground floor you will find a large dining/lounge/kitchen area with fully equipped kitchen and dining area, a bathroom, a laundry and exclusive access to the surrounding garden with sunbeds, hammock and BBQ in summertime. On the second floor there are two large bedrooms, a spacious master bedroom with private bath and walk-in wardrobe, and a second double bedroom with bathroom on the ground floor.</p>
+                <p>If requested we can provide fold-out single beds (for the 5th and 6th person) in both of the bedrooms.</p>
+                <p>The fireplace is available to use only during the winter months, firewood is available to purchase for 5euro a box.</p>
+                <p>It's a perfect base to visit Bologna or Emilia Romagna. Around 25 minutes to Bologna centre by car, or visit anywhere in the north-centre of Italy, Venice, Firenze, Milan or a lot of beautiful smaller cities in the surrounding area like Ravenna, Brisighella or Ferrara. The house is 7 minutes from the local train station and 25 minutes drive from the Bologna International airport.</p>
             </div>
         </section>
 
@@ -544,27 +800,20 @@
         <!-- Services -->
         <section class="ap-services">
             <div class="ap-wrap">
-                <h2 data-localize-key="apartment.servicesTitle">Servizi</h2>
-                <div class="ap-services-row">
-                    <div class="ap-service-card">
-                        <span class="ap-svc-icon">🔑</span>
-                        <p data-localize-key="apartment.checkIn">Self Check-in dalle 15:00</p>
+                <h2 data-localize-key="apartment.servicesTitle">Local Support</h2>
+                <div class="ap-services-inner">
+                    <div class="ap-services-right">
+                        <p>We are here to make your stay as comfortable and memorable as possible. As your hosts, we are always nearby and happy to share our knowledge of the local area — from hidden gems to the best places to eat, drink and explore.</p>
                     </div>
-                    <div class="ap-service-card">
-                        <span class="ap-svc-icon">🚪</span>
-                        <p data-localize-key="apartment.checkOut">Check-out entro le 11:00</p>
-                    </div>
-                    <div class="ap-service-card">
-                        <span class="ap-svc-icon">🛡️</span>
-                        <p data-localize-key="apartment.comfortSafety">Comfort e sicurezza</p>
-                    </div>
-                    <div class="ap-service-card">
-                        <span class="ap-svc-icon">🗺️</span>
-                        <p data-localize-key="apartment.territory">Guida per esplorare il territorio (inviata prima dell'arrivo)</p>
-                    </div>
-                    <div class="ap-service-card">
-                        <span class="ap-svc-icon">🚗</span>
-                        <p data-localize-key="apartment.parkingService">Parcheggio privato in loco</p>
+                    <div class="ap-services-left">
+                        <ul>
+                            <li>Restaurant and trattoria recommendations</li>
+                            <li>Local markets and farm shops</li>
+                            <li>Hiking and cycling routes</li>
+                            <li>Day trips to Bologna, Ravenna and beyond</li>
+                            <li>Wine tastings and agriturismo visits</li>
+                            <li>Train and transport connections</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -610,6 +859,10 @@
     <footer>
         <p><b>Azienda Agricola Ca' Leone</b></p>
         <p>Ozzano dell'Emilia</p>
+        <div class="footer-lang">
+            <a id="lang-en" href="apartment.html?lang=en">EN</a>
+            <a id="lang-it" href="apartment.html?lang=it">IT</a>
+        </div>
     </footer>
 
     <script src="app.js"></script>

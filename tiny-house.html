@@ -3,14 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azienda Agricola</title>
+    <title data-localize-key="tiny-house.title">Azienda Agricola - Tiny House</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        body { font-family: 'Overpass', sans-serif; background: #fff; color: #2c2c2c; }
+
+        .ap-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .ap-title { padding: 0 0 1.5rem; }
+        .ap-title h1 { font-family: 'Raleway', sans-serif; font-size: 2.4rem; font-weight: 400; color: #1a1a1a; margin: 0 0 0.3rem; line-height: 1; }
+
+        .ap-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; height: 540px; border-radius: 14px; overflow: hidden; }
+        .ap-gallery-main { overflow: hidden; }
+        .ap-gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+        .ap-gallery-main:hover img { transform: scale(1.03); }
+        .ap-gallery-thumbs { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; }
+        .ap-gallery-thumb { overflow: hidden; }
+        .ap-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
+        .ap-gallery-thumb:hover img { transform: scale(1.05); }
+
+        .ap-infoband { border-top: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; margin: 2.5rem 0; }
+        .ap-infoband-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; }
+        .ap-infoband-item { flex: 1; display: flex; align-items: center; gap: 0.8rem; padding: 1.25rem 1.5rem; border-right: 1px solid #e4e4e4; }
+        .ap-infoband-item:first-child { padding-left: 0; }
+        .ap-infoband-item:last-child { border-right: none; }
+        .ap-infoband-icon { font-size: 1.1rem; flex-shrink: 0; color: #2c2c2c; width: 1.4rem; text-align: center; }
+        .ap-infoband-text p { margin: 0; line-height: 1.3; }
+        .ap-infoband-text .ap-ib-label { font-size: 0.83rem; font-weight: 600; color: #2c2c2c; }
+        .ap-infoband-text .ap-ib-sub { font-size: 0.76rem; color: #999; margin-top: 0.1rem; }
+
+        .ap-description { padding-bottom: 3rem; }
+        .ap-description h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 1rem; }
+        .ap-description p { font-size: 0.95rem; line-height: 1.95; color: #555; max-width: 750px; margin: 0 0 1rem; }
+
+        .ap-sep { border: none; border-top: 1px solid #e4e4e4; margin: 0; }
+
+        .ap-amenities { padding: 3rem 0; background-color: #9DDABD; }
+        .ap-amenities h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 2rem; }
+        .ap-amenities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+        .ap-amenity-card { border: 1px solid rgba(255,255,255,0.4); border-radius: 12px; padding: 1.4rem 1.1rem; background-color: rgba(255,255,255,0.55); }
+        .ap-amenity-card .ap-amenity-icon { font-size: 1.7rem; display: block; margin-bottom: 0.8rem; }
+        .ap-amenity-card h3 { font-family: 'Overpass', sans-serif; font-size: 0.83rem; font-weight: 600; margin: 0 0 0.35rem; color: #2c2c2c; }
+        .ap-amenity-card p { font-size: 0.76rem; color: #999; margin: 0; line-height: 1.55; }
+
+        .ap-services { position: relative; background: url('images/bosco.jpg') center/cover no-repeat; }
+        .ap-services::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
+        .ap-services .ap-wrap { position: relative; z-index: 1; padding-top: 3rem; padding-bottom: 3rem; }
+        .ap-services h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: white; margin: 0 0 2rem; }
+        .ap-services-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+        .ap-services-right p { color: white; line-height: 1.8; margin: 0 0 1.5rem; font-size: 0.95rem; }
+        .ap-services-right ul, .ap-services-left ul { list-style: none; padding: 0; margin: 0; }
+        .ap-services-right ul li, .ap-services-left ul li { color: white; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 0.9rem; }
+        .ap-services-right ul li:last-child, .ap-services-left ul li:last-child { border-bottom: none; }
+        .ap-services-right ul li::before, .ap-services-left ul li::before { content: '→ '; color: white; }
+
+        .ap-related { padding: 3rem 0 4rem; }
+        .ap-related h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 2rem; }
+        .ap-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .ap-related-card { border-radius: 14px; overflow: hidden; border: 1px solid #e4e4e4; text-decoration: none; color: inherit; display: block; transition: box-shadow 0.25s ease, transform 0.25s ease; }
+        .ap-related-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .ap-related-card img { width: 100%; height: 210px; object-fit: cover; display: block; }
+        .ap-related-body { padding: 1.1rem 1.2rem 1.4rem; }
+        .ap-related-body h3 { font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 400; margin: 0 0 0.2rem; color: #1a1a1a; }
+        .ap-related-body .ap-rel-loc { font-size: 0.78rem; font-weight: 600; color: #38695b; margin: 0 0 0.4rem; letter-spacing: 0.02em; text-transform: uppercase; }
+        .ap-related-body .ap-rel-desc { font-size: 0.82rem; color: #999; margin: 0; line-height: 1.5; }
+
+        .nav-logo-link { width: auto; display: flex; align-items: center; text-decoration: none; }
+        .nav-logo-img-wrap { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
+        .nav-logo-img-wrap .nav-logo, .nav-logo-img-wrap .nav-logo-hover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
+        .nav-brand-text { display: flex; flex-direction: column; justify-content: center; margin-left: 0.15rem; line-height: 1.2; }
+        .nav-brand-name { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 700; color: #1a1a1a; letter-spacing: 0.02em; }
+        .nav-brand-sub { font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 400; color: #777; letter-spacing: 0.03em; }
+
+        header nav.nav-links { margin-left: auto; margin-right: 0; }
+
+        body:not(.home-page) nav a,
+        body:not(.home-page) nav a:hover,
+        body:not(.home-page) nav a:active,
+        body:not(.home-page) nav a.active { color: #333; text-decoration: none; }
+        body:not(.home-page) nav a:hover,
+        body:not(.home-page) nav a.active { text-decoration: underline; }
+
+        .nav-dropdown { position: relative; display: inline-flex; align-items: center; }
+        .nav-dropdown-trigger { cursor: pointer; user-select: none; }
+        .nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e4e4e4; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-width: 170px; z-index: 200; padding: 0.4rem 0; overflow: hidden; }
+        .nav-dropdown:hover .nav-dropdown-menu { display: block; }
+        .nav-dropdown-item { display: block; padding: 0.6rem 1.2rem; color: #333; text-decoration: none; font-weight: bold; font-size: 0.88em; transition: background 0.15s ease; white-space: nowrap; }
+        .nav-dropdown-item:hover { background: #f7f7f5; text-decoration: underline; color: #333; }
+        .nav-dropdown-item.active { text-decoration: underline; color: #333; }
+
+        .footer-lang { margin-top: 0.8rem; display: flex; justify-content: center; gap: 0.4rem; }
+        .footer-lang a { color: white; text-decoration: none; padding: 0.25rem 0.65rem; border: 1px solid rgba(255,255,255,0.5); border-radius: 4px; font-size: 0.82em; transition: background 0.2s ease; }
+        .footer-lang a:hover { background: rgba(255,255,255,0.25); }
+
+        @media (max-width: 900px) {
+            .ap-amenities-grid { grid-template-columns: repeat(2, 1fr); }
+            .ap-related-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-dropdown { flex-direction: column; }
+            .nav-dropdown-menu { position: static; display: block; box-shadow: none; border: none; background: transparent; padding: 0; }
+            .nav-dropdown-trigger { color: white; font-size: 1.5em; margin: 1rem 0 0.3rem; }
+            .nav-dropdown-item { color: white; font-size: 1.2em; text-align: center; padding: 0.4rem 0; background: transparent; }
+            .nav-dropdown-item:hover { background: transparent; color: #9DDABD; }
+        }
+        @media (max-width: 680px) {
+            .ap-title h1 { font-size: 2rem; }
+            .ap-gallery { grid-template-columns: 1fr; height: auto; }
+            .ap-gallery-main { height: 280px; }
+            .ap-gallery-thumbs { height: 160px; }
+            .ap-infoband-inner { flex-direction: column; }
+            .ap-infoband-item { border-right: none; border-bottom: 1px solid #e4e4e4; padding: 0.9rem 0; }
+            .ap-infoband-item:last-child { border-bottom: none; }
+            .ap-amenities-grid { grid-template-columns: repeat(2, 1fr); }
+            .ap-related-grid { grid-template-columns: 1fr; }
+            .ap-services-inner { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
     <header>
         <a href="index.html" class="nav-logo-link">
-            <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
-            <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+            <div class="nav-logo-img-wrap">
+                <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+                <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+            </div>
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">Ca' Leone</span>
+                <span class="nav-brand-sub">Agriturismo, Agricamping</span>
+            </div>
         </a>
         <button class="hamburger-menu" id="hamburger-menu">
             <span class="bar"></span>
@@ -18,31 +143,223 @@
             <span class="bar"></span>
         </button>
         <nav class="nav-links" id="nav-links">
-            <a href="index.html" class="nav-link" data-localize-key="home.nav">Home</a>
-            <a href="apartment.html" class="nav-link" data-localize-key="apartment.nav">Apartment</a>
-            <a href="tiny-house.html" class="nav-link active" data-localize-key="tiny-house.nav">Tiny House</a>
-            <a href="roulotte.html" class="nav-link" data-localize-key="roulotte.nav">Roulotte</a>
-            <a href="piazzola.html" class="nav-link" data-localize-key="piazzola.nav">Piazzola</a>
-            <a href="philosophy.html" class="nav-link" data-localize-key="philosophy.nav">Philosophy</a>
-            <a href="products.html" class="nav-link" data-localize-key="products.nav">Prodotti Agricoli</a>
+            <div class="nav-dropdown">
+                <a class="nav-link nav-dropdown-trigger">Accommodation</a>
+                <div class="nav-dropdown-menu">
+                    <a href="apartment.html" class="nav-dropdown-item">Apartment</a>
+                    <a href="tiny-house.html" class="nav-dropdown-item active">Tiny House</a>
+                    <a href="roulotte.html" class="nav-dropdown-item">Roulotte</a>
+                    <a href="piazzola.html" class="nav-dropdown-item">Piazzola</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-link nav-dropdown-trigger">Agricolture</a>
+                <div class="nav-dropdown-menu">
+                    <a href="philosophy.html" class="nav-dropdown-item">Philosophy</a>
+                    <a href="products.html" class="nav-dropdown-item">Prodotti Agricoli</a>
+                </div>
+            </div>
             <a href="activities.html" class="nav-link" data-localize-key="activities.nav">Things To Do</a>
             <a href="contacts.html" class="nav-link" data-localize-key="contacts.nav">Contacts</a>
         </nav>
-        <div class="language-selector">
-            <a id="lang-en" href="tiny-house.html?lang=en">EN</a>
-            <a id="lang-it" href="tiny-house.html?lang=it">IT</a>
-        </div>
     </header>
 
-    <main id="content">
-        <h1 id="content-title"></h1>
-        <p id="content-body"></p>
-        <img src="images/casette.jpg" alt="Tiny houses on the farm" class="content-image">
+    <main style="padding-top: 5rem;">
+
+        <section class="ap-title">
+            <div class="ap-wrap">
+                <h1 data-localize-key="tiny-house.heroTitle">Tiny House</h1>
+            </div>
+        </section>
+
+        <div class="ap-wrap">
+            <div class="ap-gallery">
+                <div class="ap-gallery-main">
+                    <img src="images/casette.jpg" alt="Tiny House">
+                </div>
+                <div class="ap-gallery-thumbs">
+                    <div class="ap-gallery-thumb">
+                        <img src="images/bosco.jpg" alt="Surrounding woods">
+                    </div>
+                    <div class="ap-gallery-thumb">
+                        <img src="images/drone1.JPG" alt="Aerial view">
+                    </div>
+                    <div class="ap-gallery-thumb">
+                        <img src="images/drone2.JPG" alt="Farm view">
+                    </div>
+                    <div class="ap-gallery-thumb">
+                        <img src="images/drone3.JPG" alt="Countryside">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ap-infoband">
+            <div class="ap-infoband-inner">
+                <div class="ap-infoband-item">
+                    <i class="ap-infoband-icon fa-solid fa-leaf"></i>
+                    <div class="ap-infoband-text">
+                        <p class="ap-ib-label" data-localize-key="tiny-house.infoTheme">Country life</p>
+                        <p class="ap-ib-sub" data-localize-key="tiny-house.keyFactsDistance">10 km from Bologna</p>
+                    </div>
+                </div>
+                <div class="ap-infoband-item">
+                    <i class="ap-infoband-icon fa-solid fa-person-shelter"></i>
+                    <div class="ap-infoband-text">
+                        <p class="ap-ib-label" data-localize-key="tiny-house.sleeps">Sleeps 2</p>
+                        <p class="ap-ib-sub" data-localize-key="tiny-house.sleepsNote">Ideal for couples</p>
+                    </div>
+                </div>
+                <div class="ap-infoband-item">
+                    <i class="ap-infoband-icon fa-solid fa-square-parking"></i>
+                    <div class="ap-infoband-text">
+                        <p class="ap-ib-label" data-localize-key="tiny-house.keyFactsParking">Parking</p>
+                        <p class="ap-ib-sub" data-localize-key="tiny-house.parkingNote">Available on site</p>
+                    </div>
+                </div>
+                <div class="ap-infoband-item">
+                    <i class="ap-infoband-icon fa-solid fa-eye-slash"></i>
+                    <div class="ap-infoband-text">
+                        <p class="ap-ib-label" data-localize-key="tiny-house.keyFactsPrivacy">High privacy</p>
+                        <p class="ap-ib-sub" data-localize-key="tiny-house.privacyNote">Private area</p>
+                    </div>
+                </div>
+                <div class="ap-infoband-item">
+                    <i class="ap-infoband-icon fa-solid fa-wifi"></i>
+                    <div class="ap-infoband-text">
+                        <p class="ap-ib-label" data-localize-key="tiny-house.amenityWifi">Wi-Fi</p>
+                        <p class="ap-ib-sub" data-localize-key="tiny-house.wifiNote">Free connection</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="ap-description">
+            <div class="ap-wrap">
+                <h2 data-localize-key="tiny-house.descriptionTitle">The Tiny House</h2>
+                <p data-localize-key="tiny-house.description">A cozy and romantic retreat nestled in the Bolognese countryside, perfect for couples seeking peace, nature and a genuinely restorative escape. Simple, warm and surrounded by green.</p>
+                <p>Each tiny house is a self-contained wooden cabin with its own private outdoor space — ideal for morning coffee with birdsong, stargazing at night, or simply slowing down.</p>
+                <p>Guests have access to the shared farm facilities including the vegetable garden, the orchard and the outdoor BBQ area. The owners are always nearby and happy to help with local recommendations.</p>
+                <p>A perfect base to explore the Bologna hills or the wider Emilia Romagna region — around 25 minutes to Bologna city centre, and close to hiking and cycling routes through the countryside.</p>
+            </div>
+        </section>
+
+        <hr class="ap-sep">
+
+        <section class="ap-amenities">
+            <div class="ap-wrap">
+                <h2 data-localize-key="tiny-house.amenitiesTitle">What you will find</h2>
+                <div class="ap-amenities-grid">
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🛏️</span>
+                        <h3 data-localize-key="tiny-house.amenityBed">Double Bed</h3>
+                        <p data-localize-key="tiny-house.amenityBedSub">Cosy double bed for two</p>
+                    </div>
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🍳</span>
+                        <h3 data-localize-key="tiny-house.amenityKitchenette">Kitchenette</h3>
+                        <p data-localize-key="tiny-house.amenityKitchenetteSub">Hob, mini fridge, basic utensils</p>
+                    </div>
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🚿</span>
+                        <h3 data-localize-key="tiny-house.amenityBathroom">Bathroom</h3>
+                        <p data-localize-key="tiny-house.amenityBathroomSub">Private shower and facilities</p>
+                    </div>
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🌿</span>
+                        <h3 data-localize-key="tiny-house.amenityTerrace">Private Terrace</h3>
+                        <p data-localize-key="tiny-house.amenityTerraceSub">Outdoor seating with nature views</p>
+                    </div>
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🌡️</span>
+                        <h3 data-localize-key="tiny-house.amenityHeating">Heating</h3>
+                        <p data-localize-key="tiny-house.amenityHeatingSub">Cosy warmth in every season</p>
+                    </div>
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🪟</span>
+                        <h3 data-localize-key="tiny-house.amenityView">Panoramic view</h3>
+                        <p data-localize-key="tiny-house.amenityViewSub">Views of the countryside and green</p>
+                    </div>
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🧺</span>
+                        <h3 data-localize-key="tiny-house.amenityEssentials">Essentials</h3>
+                        <p data-localize-key="tiny-house.amenityEssentialsSub">Bed linen, towels, toiletries</p>
+                    </div>
+                    <div class="ap-amenity-card">
+                        <span class="ap-amenity-icon">🔥</span>
+                        <h3 data-localize-key="tiny-house.amenityBBQ">BBQ Area</h3>
+                        <p data-localize-key="tiny-house.amenityBBQSub">Shared outdoor BBQ available</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="ap-sep">
+
+        <section class="ap-services">
+            <div class="ap-wrap">
+                <h2 data-localize-key="tiny-house.servicesTitle">Local Support</h2>
+                <div class="ap-services-inner">
+                    <div class="ap-services-right">
+                        <p>We are here to make your stay as comfortable and memorable as possible. As your hosts, we are always nearby and happy to share our knowledge of the local area — from hidden gems to the best places to eat, drink and explore.</p>
+                    </div>
+                    <div class="ap-services-left">
+                        <ul>
+                            <li>Restaurant and trattoria recommendations</li>
+                            <li>Local markets and farm shops</li>
+                            <li>Hiking and cycling routes</li>
+                            <li>Day trips to Bologna, Ravenna and beyond</li>
+                            <li>Wine tastings and agriturismo visits</li>
+                            <li>Train and transport connections</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr class="ap-sep">
+
+        <section class="ap-related">
+            <div class="ap-wrap">
+                <h2 data-localize-key="tiny-house.otherAccommodationsTitle">Other Accommodations</h2>
+                <div class="ap-related-grid">
+                    <a href="apartment.html" class="ap-related-card">
+                        <img src="images/cucina.jpg" alt="Apartment">
+                        <div class="ap-related-body">
+                            <p class="ap-rel-loc" data-localize-key="tiny-house.relatedLocation">Ozzano dell'Emilia · Bologna</p>
+                            <h3 data-localize-key="home.apartmentTitle">Apartment</h3>
+                            <p class="ap-rel-desc" data-localize-key="home.apartmentDescription">A spacious and comfortable apartment.</p>
+                        </div>
+                    </a>
+                    <a href="roulotte.html" class="ap-related-card">
+                        <img src="images/bench.jpg" alt="Roulotte">
+                        <div class="ap-related-body">
+                            <p class="ap-rel-loc" data-localize-key="tiny-house.relatedLocation">Ozzano dell'Emilia · Bologna</p>
+                            <h3 data-localize-key="home.roulotteTitle">Roulotte</h3>
+                            <p class="ap-rel-desc" data-localize-key="home.roulotteDescription">A charming vintage caravan.</p>
+                        </div>
+                    </a>
+                    <a href="piazzola.html" class="ap-related-card">
+                        <img src="images/orto.JPG" alt="Piazzola">
+                        <div class="ap-related-body">
+                            <p class="ap-rel-loc" data-localize-key="tiny-house.relatedLocation">Ozzano dell'Emilia · Bologna</p>
+                            <h3 data-localize-key="home.piazzolaTitle">Piazzola</h3>
+                            <p class="ap-rel-desc" data-localize-key="home.piazzolaDescription">A spacious pitch for tents and campers.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
-        <p><b>Azienda Agricola Ca’ Leone</b></p>
-        <p>Ozzano dell’Emilia</p>
+        <p><b>Azienda Agricola Ca' Leone</b></p>
+        <p>Ozzano dell'Emilia</p>
+        <div class="footer-lang">
+            <a id="lang-en" href="tiny-house.html?lang=en">EN</a>
+            <a id="lang-it" href="tiny-house.html?lang=it">IT</a>
+        </div>
     </footer>
 
     <script src="app.js"></script>

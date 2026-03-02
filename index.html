@@ -5,31 +5,353 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-localize-key="home.title"></title>
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700&family=Overpass:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Overpass', sans-serif;
+            background: #fff;
+            color: #2c2c2c;
+        }
+
+        /* Nav font */
+        nav a, nav.nav-links a {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Hero text */
+        .hero-content h1 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-content p {
+            font-family: 'Overpass', sans-serif;
+            font-weight: 300;
+        }
+
+        /* Sections */
+        .about-section, .featured-section {
+            box-shadow: none;
+            border: 1px solid #e4e4e4;
+            border-radius: 14px;
+        }
+
+        .about-section h2, .featured-section h2 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            color: #1a1a1a;
+        }
+
+        .about-section p {
+            color: #555;
+            line-height: 1.9;
+        }
+
+        /* Featured cards */
+        .featured-item {
+            border: 1px solid #e4e4e4;
+            border-radius: 14px;
+            box-shadow: none;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+        }
+
+        .featured-item:hover {
+            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .featured-item h3 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            color: #1a1a1a;
+        }
+
+        .featured-item p {
+            color: #999;
+        }
+
+        /* Buttons */
+        .button {
+            background-color: #38695b;
+            border-radius: 8px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+        }
+
+        .button:hover {
+            background-color: #2c5248;
+        }
+
+        /* ── Logo + brand text ── */
+        .nav-logo-link {
+            width: auto;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .nav-logo-img-wrap {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+        }
+
+        .nav-logo-img-wrap .nav-logo,
+        .nav-logo-img-wrap .nav-logo-hover {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-left: 0.15rem;
+            line-height: 1.2;
+        }
+
+        .nav-brand-name {
+            font-family: 'Raleway', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: white;
+            letter-spacing: 0.02em;
+        }
+
+        .nav-brand-sub {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 400;
+            color: rgba(255,255,255,0.75);
+            letter-spacing: 0.03em;
+        }
+
+        /* ── Right-align nav ── */
+        header nav.nav-links {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        /* ── Nav: underline only, no colour ── */
+        nav a, nav.nav-links a,
+        nav a:hover, nav.nav-links a:hover,
+        nav a.active, nav.nav-links a.active {
+            text-decoration: none;
+        }
+
+        nav a:hover, nav.nav-links a:hover,
+        nav a.active, nav.nav-links a.active {
+            text-decoration: underline;
+            color: white;
+        }
+
+        /* ── Dropdown menus ── */
+        .nav-dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .nav-dropdown-trigger {
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .nav-dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(0, 0, 0, 0.3);
+            border: none;
+            box-shadow: none;
+            border-radius: 8px;
+            min-width: 170px;
+            z-index: 200;
+            padding: 0.4rem 0;
+            overflow: hidden;
+        }
+
+        .nav-dropdown:hover .nav-dropdown-menu {
+            display: block;
+        }
+
+        .nav-dropdown-item {
+            display: block;
+            padding: 0.4rem 1.2rem;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.88em;
+            white-space: nowrap;
+        }
+
+        .nav-dropdown-item:hover {
+            background: transparent;
+            text-decoration: underline;
+            color: white;
+        }
+
+        /* ── Footer language selector ── */
+        .footer-lang {
+            margin-top: 0.8rem;
+            display: flex;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        .footer-lang a {
+            color: white;
+            text-decoration: none;
+            padding: 0.25rem 0.65rem;
+            border: 1px solid rgba(255,255,255,0.5);
+            border-radius: 4px;
+            font-size: 0.82em;
+            transition: background 0.2s ease;
+        }
+
+        .footer-lang a:hover {
+            background: rgba(255,255,255,0.25);
+        }
+
+        /* ── Products hero section ── */
+        .products-hero-section {
+            position: relative;
+            max-width: 1200px;
+            margin: 2rem auto;
+            border-radius: 14px;
+            overflow: hidden;
+            height: 400px;
+            background: url('images/cavolonero.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+        }
+
+        .products-hero-section::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .products-hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .products-hero-content h2 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.75);
+            margin: 0 0 0.5rem;
+        }
+
+        .products-hero-content h3 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: 400;
+            font-size: 2.2rem;
+            color: white;
+            margin: 0 0 0.75rem;
+        }
+
+        .products-hero-content p {
+            color: rgba(255,255,255,0.85);
+            margin: 0 0 1.5rem;
+            max-width: 480px;
+            line-height: 1.7;
+        }
+
+        .products-hero-content .button {
+            background-color: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.6);
+        }
+
+        .products-hero-content .button:hover {
+            background-color: rgba(255,255,255,0.35);
+        }
+
+        /* ── Mobile dropdowns ── */
+        @media (max-width: 768px) {
+            .nav-dropdown { flex-direction: column; }
+            .nav-dropdown-menu {
+                position: static;
+                display: block;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                padding: 0;
+            }
+            .nav-dropdown-trigger {
+                color: white;
+                font-size: 1.5em;
+                margin: 1rem 0 0.3rem;
+            }
+            .nav-dropdown-item {
+                color: white;
+                font-size: 1.2em;
+                text-align: center;
+                padding: 0.4rem 0;
+                background: transparent;
+            }
+            .nav-dropdown-item:hover {
+                background: transparent;
+                color: white;
+            }
+        }
+    </style>
 </head>
 <body class="home-page">
     <header>
-                    <a href="index.html" class="nav-logo-link">
-                        <img src="images/logo.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
-                        <img src="images/logo-hover.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
-                    </a>        <button class="hamburger-menu" id="hamburger-menu">
+        <a href="index.html" class="nav-logo-link">
+            <div class="nav-logo-img-wrap">
+                <img src="images/logo.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+                <img src="images/logo-hover.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
+            </div>
+            <div class="nav-brand-text">
+                <span class="nav-brand-name">Ca' Leone</span>
+                <span class="nav-brand-sub">Agriturismo, Agricamping</span>
+            </div>
+        </a>
+        <button class="hamburger-menu" id="hamburger-menu">
             <span class="bar"></span>
             <span class="bar"></span>
             <span class="bar"></span>
         </button>
         <nav class="nav-links" id="nav-links">
-            <a href="apartment.html" class="nav-link" data-localize-key="apartment.nav">Apartment</a>
-            <a href="tiny-house.html" class="nav-link" data-localize-key="tiny-house.nav">Tiny House</a>
-            <a href="roulotte.html" class="nav-link" data-localize-key="roulotte.nav">Roulotte</a>
-            <a href="piazzola.html" class="nav-link" data-localize-key="piazzola.nav">Piazzola</a>
-            <a href="philosophy.html" class="nav-link" data-localize-key="philosophy.nav">Philosophy</a>
-            <a href="products.html" class="nav-link" data-localize-key="products.nav">Prodotti Agricoli</a>
+            <div class="nav-dropdown">
+                <a class="nav-link nav-dropdown-trigger">Accommodation</a>
+                <div class="nav-dropdown-menu">
+                    <a href="apartment.html" class="nav-dropdown-item">Apartment</a>
+                    <a href="tiny-house.html" class="nav-dropdown-item">Tiny House</a>
+                    <a href="roulotte.html" class="nav-dropdown-item">Roulotte</a>
+                    <a href="piazzola.html" class="nav-dropdown-item">Piazzola</a>
+                </div>
+            </div>
+            <div class="nav-dropdown">
+                <a class="nav-link nav-dropdown-trigger">Agricolture</a>
+                <div class="nav-dropdown-menu">
+                    <a href="philosophy.html" class="nav-dropdown-item">Philosophy</a>
+                    <a href="products.html" class="nav-dropdown-item">Prodotti Agricoli</a>
+                </div>
+            </div>
             <a href="activities.html" class="nav-link" data-localize-key="activities.nav">Things To Do</a>
             <a href="contacts.html" class="nav-link" data-localize-key="contacts.nav">Contacts</a>
         </nav>
-        <div class="language-selector">
-            <a id="lang-en" href="index.html?lang=en">EN</a>
-            <a id="lang-it" href="index.html?lang=it">IT</a>
-        </div>
     </header>
 
     <main>
@@ -71,15 +393,12 @@
             </div>
         </section>
 
-        <section class="featured-section">
-            <h2 data-localize-key="home.featuredProductsTitle"></h2>
-            <div class="featured-grid">
-                <div class="featured-item">
-                    <img src="images/cavolonero.jpg" alt="Agricultural Products" class="featured-image">
-                    <h3 data-localize-key="home.productsTitle"></h3>
-                    <p data-localize-key="home.productsDescription"></p>
-                    <a href="products.html" class="button" data-localize-key="home.viewDetails"></a>
-                </div>
+        <section class="products-hero-section">
+            <div class="products-hero-content">
+                <h2 data-localize-key="home.featuredProductsTitle"></h2>
+                <h3 data-localize-key="home.productsTitle"></h3>
+                <p data-localize-key="home.productsDescription"></p>
+                <a href="products.html" class="button" data-localize-key="home.viewDetails"></a>
             </div>
         </section>
 
@@ -100,6 +419,10 @@
     <footer>
         <p><b>Azienda Agricola Ca’ Leone</b></p>
         <p>Ozzano dell’Emilia</p>
+        <div class="footer-lang">
+            <a id="lang-en" href="index.html?lang=en">EN</a>
+            <a id="lang-it" href="index.html?lang=it">IT</a>
+        </div>
     </footer>
 
     <script src="app.js"></script>
