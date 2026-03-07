@@ -18,7 +18,7 @@ const content = {
             roulotteDescription: "A charming vintage caravan.",
             piazzolaTitle: "Piazzola",
             piazzolaDescription: "A spacious pitch for tents and campers.",
-            featuredProductsTitle: "Our Organic Products",
+            featuredProductsTitle: "Our Organic Farm",
             productsTitle: "Vineyard, Olive Grove and Vegetable Gardens",
             productsDescription: "Taste the freshness of our organic produce.",
             featuredActivitiesTitle: "Things To Do",

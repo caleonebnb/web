@@ -213,10 +213,15 @@ main {
         left: 0; /* Slide in when open */
     }
 
-    nav.nav-links a {
+    nav.nav-links a,
+    body:not(.home-page) nav.nav-links a,
+    body:not(.home-page) nav.nav-links a:hover,
+    body:not(.home-page) nav.nav-links a:active,
+    body:not(.home-page) nav.nav-links a.active {
         margin: 1rem 0;
-        color: white; /* White links for dark overlay */
+        color: white !important;
         font-size: 1.5em;
+        text-decoration: none;
     }
 
     .language-selector {
