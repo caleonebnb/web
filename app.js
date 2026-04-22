@@ -4,7 +4,7 @@ const content = {
         home: {
             nav: "Home",
             title: "Azienda Agricola - Home",
-            heroTitle: "Experience the authentic Italian countryside",
+            heroTitle: "A working farm, built for the soul.",
             heroSubtitle: "Discover our unique accommodations and organic farm products.",
             aboutTitle: "All the comforts of your own home, nestled in the middle of nature.",
             aboutContent: "You can use our tiny home or restored barn to unwind for a long weekend, or use it as a base to explore the region.",
@@ -209,7 +209,7 @@ const content = {
         home: {
             nav: "Home",
             title: "Azienda Agricola - Home",
-            heroTitle: "Vivi l'autentica campagna italiana",
+            heroTitle: "Un'azienda agricola viva, costruita per l'anima.",
             heroSubtitle: "Scopri le nostre sistemazioni uniche e i prodotti biologici della fattoria.",
             aboutTitle: "Tutti i comfort di casa tua, immerso nella natura.",
             aboutContent: "Usa la nostra tiny house o il fienile restaurato per rilassarti un lungo weekend, o come base per esplorare la regione.",

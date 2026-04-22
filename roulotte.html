@@ -52,7 +52,9 @@
         .ap-sep { border: none; border-top: 1px solid #e4e4e4; margin: 0; }
 
         .ap-amenities { padding: 3rem 0; background-color: #9DDABD; }
-        .ap-amenities h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 2rem; }
+        .ap-amenities h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 1.5rem; }
+        .ap-amenities-list { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 3rem; }
+        .ap-amenities-list li { font-family: 'Overpass', sans-serif; font-size: 0.95rem; color: #2c2c2c; padding: 0.45rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
         .ap-amenities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
         .ap-amenity-card { border: 1px solid rgba(255,255,255,0.4); border-radius: 12px; padding: 1.4rem 1.1rem; background-color: rgba(255,255,255,0.55); }
         .ap-amenity-card .ap-amenity-icon { font-size: 1.7rem; display: block; margin-bottom: 0.8rem; }
@@ -164,7 +166,6 @@
             <div class="nav-dropdown">
                 <a class="nav-link nav-dropdown-trigger">Agriculture</a>
                 <div class="nav-dropdown-menu">
-                    <a href="philosophy.html" class="nav-dropdown-item">Philosophy</a>
                     <a href="products.html" class="nav-dropdown-item">Prodotti Agricoli</a>
                 </div>
             </div>
@@ -257,49 +258,19 @@
 
         <section class="ap-amenities">
             <div class="ap-wrap">
-                <h2 data-localize-key="roulotte.amenitiesTitle">What you will find</h2>
-                <div class="ap-amenities-grid">
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🛏️</span>
-                        <h3 data-localize-key="roulotte.amenityBed">Comfortable Bed</h3>
-                        <p data-localize-key="roulotte.amenityBedSub">Double bed, extra fold-out option</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🍳</span>
-                        <h3 data-localize-key="roulotte.amenityKitchenette">Kitchenette</h3>
-                        <p data-localize-key="roulotte.amenityKitchenetteSub">Hob, mini fridge, basic utensils</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🚿</span>
-                        <h3 data-localize-key="roulotte.amenityBathroom">Shared Bathroom</h3>
-                        <p data-localize-key="roulotte.amenityBathroomSub">Shower and toilet on site</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🌿</span>
-                        <h3 data-localize-key="roulotte.amenityOutdoor">Private Outdoor Area</h3>
-                        <p data-localize-key="roulotte.amenityOutdoorSub">Table, chairs and open views</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🔌</span>
-                        <h3 data-localize-key="roulotte.amenityElectric">Electric hook-up</h3>
-                        <p data-localize-key="roulotte.amenityElectricSub">Mains power connection</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🪟</span>
-                        <h3 data-localize-key="roulotte.amenityView">Panoramic view</h3>
-                        <p data-localize-key="roulotte.amenityViewSub">Views of the countryside and green</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🧺</span>
-                        <h3 data-localize-key="roulotte.amenityEssentials">Essentials</h3>
-                        <p data-localize-key="roulotte.amenityEssentialsSub">Bed linen, towels, toiletries</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🔥</span>
-                        <h3 data-localize-key="roulotte.amenityBBQ">BBQ Area</h3>
-                        <p data-localize-key="roulotte.amenityBBQSub">Shared outdoor BBQ available</p>
-                    </div>
-                </div>
+                <h2>What's included</h2>
+                <ul class="ap-amenities-list">
+                    <li>Double bed with extra fold-out option</li>
+                    <li>Kitchenette — hob, mini fridge, basic utensils</li>
+                    <li>Shared bathroom on site (shower and toilet)</li>
+                    <li>Private outdoor area — table, chairs and open views</li>
+                    <li>Electric hook-up</li>
+                    <li>Panoramic countryside views</li>
+                    <li>Bed linen, towels, toiletries</li>
+                    <li>Shared outdoor BBQ</li>
+                    <li>Wi-Fi</li>
+                    <li>Private parking on site</li>
+                </ul>
             </div>
         </section>
 

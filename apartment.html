@@ -210,7 +210,23 @@
             font-size: 2.2rem;
             font-weight: 400;
             color: #1a1a1a;
-            margin: 0 0 2rem;
+            margin: 0 0 1.5rem;
+        }
+
+        .ap-amenities-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            columns: 2;
+            column-gap: 3rem;
+        }
+
+        .ap-amenities-list li {
+            font-family: 'Overpass', sans-serif;
+            font-size: 0.95rem;
+            color: #2c2c2c;
+            padding: 0.45rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
         }
 
         .ap-amenities-grid {
@@ -723,7 +739,6 @@
             <div class="nav-dropdown">
                 <a class="nav-link nav-dropdown-trigger">Agriculture</a>
                 <div class="nav-dropdown-menu">
-                    <a href="philosophy.html" class="nav-dropdown-item">Philosophy</a>
                     <a href="products.html" class="nav-dropdown-item">Prodotti Agricoli</a>
                 </div>
             </div>
@@ -833,49 +848,19 @@
         <!-- Amenities -->
         <section class="ap-amenities">
             <div class="ap-wrap">
-                <h2 data-localize-key="apartment.amenitiesTitle">Cosa troverai</h2>
-                <div class="ap-amenities-grid">
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🛏️</span>
-                        <h3 data-localize-key="apartment.amenityBedroom">Camera da letto</h3>
-                        <p data-localize-key="apartment.amenityBedroomSub">Letto matrimoniale, max 2 adulti + 1 bambino</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🍳</span>
-                        <h3 data-localize-key="apartment.amenityKitchen">Cucina</h3>
-                        <p data-localize-key="apartment.amenityKitchenSub">Piano cottura, frigorifero, pentole e stoviglie</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🚿</span>
-                        <h3 data-localize-key="apartment.amenityBathroom">Bagno</h3>
-                        <p data-localize-key="apartment.amenityBathroomSub">Doccia e servizi privati</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🧂</span>
-                        <h3 data-localize-key="apartment.amenityBasicKit">Kit base cucina</h3>
-                        <p data-localize-key="apartment.amenityBasicKitSub">Olio, sale, caffè, tè e accessori essenziali</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🌡️</span>
-                        <h3 data-localize-key="apartment.amenityClimateControl">Controllo temperatura</h3>
-                        <p data-localize-key="apartment.amenityClimateControlSub">Riscaldamento e ventilazione</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🪟</span>
-                        <h3 data-localize-key="apartment.amenityView">Vista panoramica</h3>
-                        <p data-localize-key="apartment.amenityViewSub">Vista sulla campagna e sul verde circostante</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🧺</span>
-                        <h3 data-localize-key="apartment.amenityEssentials">Essenziali</h3>
-                        <p data-localize-key="apartment.amenityEssentialsSub">Biancheria, asciugamani, articoli da toilette</p>
-                    </div>
-                    <div class="ap-amenity-card">
-                        <span class="ap-amenity-icon">🛡️</span>
-                        <h3 data-localize-key="apartment.amenitySafety">Sicurezza</h3>
-                        <p data-localize-key="apartment.amenitySafetySub">Rilevatore di fumo, estintore, kit primo soccorso</p>
-                    </div>
-                </div>
+                <h2>What's included</h2>
+                <ul class="ap-amenities-list">
+                    <li>Two bedrooms — sleeps up to 6</li>
+                    <li>Fully equipped kitchen</li>
+                    <li>Two bathrooms</li>
+                    <li>Basic cooking kit — oil, salt, coffee, tea</li>
+                    <li>Heating and ventilation</li>
+                    <li>Panoramic countryside views</li>
+                    <li>Bed linen, towels, toiletries</li>
+                    <li>Smoke detector, fire extinguisher, first aid kit</li>
+                    <li>Wi-Fi</li>
+                    <li>Private parking on site</li>
+                </ul>
             </div>
         </section>
 

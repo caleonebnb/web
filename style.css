@@ -73,6 +73,15 @@ nav a {
     font-weight: bold;
 }
 
+.home-page nav a,
+.home-page nav.nav-links a {
+    color: #1a1a1a;
+}
+
+.home-page .hamburger-menu .bar {
+    background-color: #1a1a1a;
+}
+
 nav a:hover, nav a.active {
     color: #61B5D8;
 }
@@ -258,7 +267,7 @@ main {
     height: 100%;
     object-fit: cover;
     z-index: -1;
-    filter: brightness(0.6);
+    filter: none;
 }
 
 .hero-content {
