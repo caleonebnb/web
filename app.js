@@ -75,7 +75,7 @@ const content = {
         'tiny-house': {
             nav: "Tiny House",
             title: "Azienda Agricola - Tiny House",
-            heroTitle: "Romantic Tiny House",
+            heroTitle: "Dreamy tiny home nestled in the Italian hills",
             infoTheme: "Country life",
             keyFactsDistance: "10 km from Bologna",
             sleeps: "Sleeps 2",
@@ -280,7 +280,7 @@ const content = {
         'tiny-house': {
             nav: "Tiny House",
             title: "Azienda Agricola - Tiny House",
-            heroTitle: "Tiny House Romantica",
+            heroTitle: "Una tiny home da sogno immersa nelle colline italiane",
             infoTheme: "Vita in campagna",
             keyFactsDistance: "10 km da Bologna",
             sleeps: "Dorme 2 persone",
