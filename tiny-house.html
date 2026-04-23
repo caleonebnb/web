@@ -14,7 +14,7 @@
     <title data-localize-key="tiny-house.title">Azienda Agricola - Tiny House</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -26,63 +26,32 @@
         .ap-title h1 { font-family: 'Raleway', sans-serif; font-size: 2.4rem; font-weight: 400; color: #1a1a1a; margin: 0 0 0.3rem; line-height: 1; }
 
         /* ── Gallery ── */
-        .ap-gallery {
+        /* ── Photo grid ── */
+        .ap-photo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            height: 540px;
-            border-radius: 14px;
-            overflow: hidden;
+            gap: 8px;
         }
-
-        .ap-gallery-main {
-            overflow: hidden;
-        }
-
-        .ap-gallery-main a,
-        .ap-gallery-thumb a {
-            display: block;
+        .ap-photo-grid img {
             width: 100%;
-            height: 100%;
-        }
-
-        .ap-gallery-main img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
+            height: auto;
             display: block;
-            transition: transform 0.4s ease;
+            border-radius: 4px;
         }
-
-        .ap-gallery-main:hover img {
-            transform: scale(1.03);
+        .ap-photo-grid img:first-child { grid-column: 1 / -1; }
+        .ap-photo-grid img.portrait { grid-row: span 2; }
+        .ap-photo-grid img.fill { height: 100%; object-fit: cover; object-position: center; }
+        .ap-gallery-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            color: #38695b;
+            text-decoration: underline;
         }
-
-        .ap-gallery-thumbs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 6px;
-            height: 100%;
-        }
-
-        .ap-gallery-thumb {
-            overflow: hidden;
-            min-height: 0;
-        }
-
-        .ap-gallery-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            object-position: center center;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .ap-gallery-thumb:hover img {
-            transform: scale(1.05);
+        @media (max-width: 600px) {
+            .ap-photo-grid { grid-template-columns: 1fr; }
+            .ap-photo-grid img:first-child { grid-column: 1; }
         }
 
         .ap-infoband { border-top: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; margin: 2.5rem 0; }
@@ -132,6 +101,44 @@
         .ap-related-body h3 { font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 400; margin: 0 0 0.2rem; color: #1a1a1a; }
         .ap-related-body .ap-rel-loc { font-size: 0.78rem; font-weight: 600; color: #38695b; margin: 0 0 0.4rem; letter-spacing: 0.02em; text-transform: uppercase; }
         .ap-related-body .ap-rel-desc { font-size: 0.82rem; color: #999; margin: 0; line-height: 1.5; }
+
+        /* ── Hero ── */
+        body.has-hero main { padding-top: 0 !important; }
+        body.has-hero header { background-color: transparent; position: fixed; box-shadow: none; }
+
+        .th-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .th-hero-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .th-hero-content {
+            z-index: 1;
+            padding: 1rem;
+        }
+
+        .th-hero-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+            letter-spacing: 0.01em;
+            opacity: 1;
+        }
 
         .nav-logo-link { width: auto; display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img-wrap { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
@@ -186,7 +193,7 @@
         }
     </style>
 </head>
-<body>
+<body class="has-hero">
     <header>
         <a href="index.html" class="nav-logo-link">
             <div class="nav-logo-img-wrap">
@@ -224,35 +231,14 @@
         </nav>
     </header>
 
-    <main style="padding-top: 5rem;">
+    <main>
 
-        <section class="ap-title">
-            <div class="ap-wrap">
-                <h1 data-localize-key="tiny-house.heroTitle">Tiny House</h1>
+        <section class="th-hero">
+            <img src="images/tiny1.jpg" alt="Tiny House" class="th-hero-img">
+            <div class="th-hero-content">
+                <h1 data-localize-key="tiny-house.heroTitle">Dreamy tiny home nestled in the Italian hills</h1>
             </div>
         </section>
-
-        <div class="ap-wrap">
-            <div class="ap-gallery">
-                <div class="ap-gallery-main">
-                    <a href="tiny-house-gallery.html"><img src="images/tiny1.jpg" alt="Tiny House"></a>
-                </div>
-                <div class="ap-gallery-thumbs">
-                    <div class="ap-gallery-thumb">
-                        <a href="tiny-house-gallery.html"><img src="images/tiny2.jpg" alt="Tiny House interior"></a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="tiny-house-gallery.html"><img src="images/casette.jpg" alt="Tiny Houses"></a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="tiny-house-gallery.html"><img src="images/tinylibreria.jpg" alt="Tiny House library"></a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="tiny-house-gallery.html"><img src="images/tinycafe.jpg" alt="Tiny House cafe"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <div class="ap-infoband">
             <div class="ap-infoband-inner">
@@ -303,6 +289,19 @@
                 <p>A perfect base to explore the Bologna hills or the wider Emilia Romagna region — around 25 minutes to Bologna city centre, and close to hiking and cycling routes through the countryside.</p>
             </div>
         </section>
+
+        <div class="ap-wrap" style="padding-bottom: 3rem;">
+            <div class="ap-photo-grid">
+                <img src="images/tiny1.jpg" alt="Tiny House">
+                <img src="images/tiny2.jpg" alt="Tiny House interior" class="portrait">
+                <img src="images/vasca.jpg" alt="Tiny House bath" class="fill">
+                <img src="images/tinylibreria.jpg" alt="Tiny House library" class="fill">
+                <img src="images/tinycucina.jpg" alt="Tiny House kitchen" class="fill">
+                <img src="images/tinybench.jpg" alt="Tiny House bench" class="portrait">
+                <img src="images/tinycafe.jpg" alt="Tiny House cafe" class="fill">
+            </div>
+            <a href="tiny-house-gallery.html" class="ap-gallery-link">View all photos →</a>
+        </div>
 
         <hr class="ap-sep">
 
@@ -401,5 +400,18 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+        const header = document.querySelector('header');
+        const hero = document.querySelector('.th-hero');
+        if (header && hero) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > hero.offsetHeight - header.offsetHeight) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        }
+    </script>
 </body>
 </html>
