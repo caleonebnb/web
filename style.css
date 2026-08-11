@@ -22,7 +22,7 @@ body.home-page main {
 
 /* Padding for main content on non-home pages */
 body:not(.home-page) main {
-    padding-top: 5rem; /* Adjust based on header height */
+    padding-top: 0;
 }
 
 /* Styles for header on non-home pages */

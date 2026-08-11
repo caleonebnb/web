@@ -11,14 +11,17 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Azienda Agricola</title>
+    <title>Prodotti Agricoli — Ca' Leone</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { font-family: 'Overpass', sans-serif; background: #fff; color: #2c2c2c; }
+        * { box-sizing: border-box; }
+        body { font-family: 'Overpass', sans-serif; background: #fff; color: #2c2c2c; margin: 0; }
+
+        /* ── Nav ── */
         .nav-logo-link { width: auto; display: flex; align-items: center; text-decoration: none; }
         .nav-logo-img-wrap { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
         .nav-logo-img-wrap .nav-logo, .nav-logo-img-wrap .nav-logo-hover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
@@ -38,9 +41,88 @@
         .nav-dropdown:hover .nav-dropdown-menu { display: block; }
         .nav-dropdown-item { display: block; padding: 0.6rem 1.2rem; color: #333; text-decoration: none; font-weight: bold; font-size: 0.88em; transition: background 0.15s ease; white-space: nowrap; }
         .nav-dropdown-item:hover { background: #f7f7f5; text-decoration: underline; color: #333; }
-        .footer-lang a { color: #333; border-color: rgba(0,0,0,0.3); }
-        .footer-lang a:hover { background: rgba(0,0,0,0.08); }
+        .footer-lang { margin-top: 0.8rem; display: flex; justify-content: center; gap: 0.4rem; }
+        .footer-lang a { color: white; text-decoration: none; padding: 0.25rem 0.65rem; border: 1px solid rgba(255,255,255,0.5); border-radius: 4px; font-size: 0.82em; transition: background 0.2s ease; }
+        .footer-lang a:hover { background: rgba(255,255,255,0.25); }
+
+        /* ── Page intro ── */
+        .prod-intro {
+            text-align: center;
+            padding: 3.5rem 1.5rem 3.5rem;
+            border-bottom: 1px solid #e8e4de;
+            max-width: 780px;
+            margin: 0 auto;
+        }
+        .prod-intro h1 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 200;
+            color: #1a1a1a;
+            margin: 0 0 1.5rem;
+            letter-spacing: 0.03em;
+        }
+        .prod-intro p {
+            font-size: 0.95rem;
+            color: #666;
+            margin: 0 0 1rem;
+            line-height: 1.85;
+        }
+        .prod-intro p:last-child { margin-bottom: 0; }
+
+        /* ── Each category section ── */
+        .prod-section {
+            border-bottom: 1px solid #e8e4de;
+        }
+
+        /* ── Hero panel ── */
+        .prod-hero {
+            position: relative;
+            height: 88vh;
+            overflow: hidden;
+        }
+
+        .prod-hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .prod-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.08) 0%, rgba(0,0,0,0.45) 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+
+        .prod-hero-eyebrow {
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .prod-hero-title {
+            font-family: 'Raleway', sans-serif;
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 200;
+            color: #fff;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            margin: 0;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        /* ── Mobile ── */
         @media (max-width: 768px) {
+            .prod-hero { height: 70vh; }
             .nav-dropdown { flex-direction: column; }
             .nav-dropdown-menu { position: static; display: block; box-shadow: none; border: none; background: transparent; padding: 0; }
             .nav-dropdown-trigger { color: white; font-size: 1.5em; margin: 1rem 0 0.3rem; }
@@ -87,21 +169,90 @@
         </nav>
     </header>
 
-    <main id="content">
-        <h1 id="content-title"></h1>
-        <p id="content-body"></p>
-        <img src="images/cavolonero.jpg" alt="Black cabbage from the farm" class="content-image">
-        <img src="images/cavolonero2.jpg" alt="More black cabbage" class="content-image">
+    <main>
+
+        <div class="prod-intro">
+            <h1>How We Grow</h1>
+            <p>Our work is guided by one simple goal: to leave this land richer, wilder, and more alive than we found it.</p>
+            <p>Our philosophy is simple: zero synthetic pesticides, zero synthetic fertilizers, and complete respect for the ecosystem. We work closely with the soil's natural cycles, guiding our planting, pruning, and harvesting by the rhythms of the moon and stars.</p>
+            <p>We view our farm as a single living organism, constantly working toward becoming a fully self-sustaining ecosystem. We build long-term fertility through composting, cover crops, and a deep respect for the life beneath our feet—complemented by home-made herbal infusions of wild nettle, chamomile, and horsetail to naturally strengthen our vines.</p>
+            <p>Biodiversity is never an afterthought here: our wild hedgerows, mixed plantings, insects, and birds are vital to how this farm thrives.</p>
+        </div>
+
+        <!-- ══ 1. VINEYARD ══ -->
+        <section class="prod-section" id="vineyard">
+            <div class="prod-hero">
+                <img src="images/vigna.jpg" alt="Vineyard at Ca' Leone">
+                <div class="prod-hero-overlay">
+                    <span class="prod-hero-eyebrow">Ca' Leone</span>
+                    <h2 class="prod-hero-title">Vineyard</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ 2. OLIVE GROVE ══ -->
+        <section class="prod-section" id="olive-grove">
+            <div class="prod-hero">
+                <img src="images/olive2.jpg" alt="Olive grove at Ca' Leone">
+                <div class="prod-hero-overlay">
+                    <span class="prod-hero-eyebrow">Ca' Leone</span>
+                    <h2 class="prod-hero-title">Olive Grove</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ 3. SUMMER VEGETABLE GARDEN ══ -->
+        <section class="prod-section" id="summer-veg">
+            <div class="prod-hero">
+                <img src="images/tomato.jpg" alt="Summer vegetable garden at Ca' Leone">
+                <div class="prod-hero-overlay">
+                    <span class="prod-hero-eyebrow">Ca' Leone</span>
+                    <h2 class="prod-hero-title">Summer Vegetable Garden</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ 4. WINTER VEGETABLES ══ -->
+        <section class="prod-section" id="winter-veg">
+            <div class="prod-hero">
+                <img src="images/cavolonero.jpg" alt="Winter vegetables at Ca' Leone">
+                <div class="prod-hero-overlay">
+                    <span class="prod-hero-eyebrow">Ca' Leone</span>
+                    <h2 class="prod-hero-title">Winter Vegetables</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ 5. FRUIT ══ -->
+        <section class="prod-section" id="fruit">
+            <div class="prod-hero">
+                <img src="images/melograni.jpg" alt="Fruit at Ca' Leone">
+                <div class="prod-hero-overlay">
+                    <span class="prod-hero-eyebrow">Ca' Leone</span>
+                    <h2 class="prod-hero-title">Fruit</h2>
+                </div>
+            </div>
+        </section>
+
+        <!-- ══ 6. BLACKBERRIES ══ -->
+        <section class="prod-section" id="blackberries">
+            <div class="prod-hero">
+                <img src="images/more.JPG" alt="Blackberries at Ca' Leone">
+                <div class="prod-hero-overlay">
+                    <span class="prod-hero-eyebrow">Ca' Leone</span>
+                    <h2 class="prod-hero-title">Blackberries</h2>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
         <div style="display: inline-flex; gap: 3rem; align-items: center; text-align: left;">
-            <!-- Left column: logos -->
             <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
                 <img src="images/logo-nero.png" alt="Ca' Leone" style="height: 75px;">
                 <img src="images/agriturismo-italia.jpg" alt="Agriturismo Italia" style="height: 75px;">
             </div>
-            <!-- Right column: text -->
             <div>
                 <p><b>Azienda Agricola Ca' Leone</b></p>
                 <p>Via della Quercia 15, Ozzano dell'Emilia (BO)</p>
