@@ -249,144 +249,8 @@
             background-color: #2c5248;
         }
 
-        /* ── Logo + brand text ── */
-        .nav-logo-link {
-            width: auto;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-        }
 
-        .nav-logo-img-wrap {
-            position: relative;
-            width: 50px;
-            height: 50px;
-            flex-shrink: 0;
-        }
-
-        .nav-logo-img-wrap .nav-logo,
-        .nav-logo-img-wrap .nav-logo-hover {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .nav-brand-text {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            margin-left: 0.15rem;
-            line-height: 1.2;
-        }
-
-        .nav-brand-name {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #1a1a1a;
-            letter-spacing: 0.02em;
-        }
-
-        .nav-brand-sub {
-            font-family: 'Raleway', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 400;
-            color: rgba(0,0,0,0.6);
-            letter-spacing: 0.03em;
-        }
-
-        /* ── Right-align nav ── */
-        header nav.nav-links {
-            margin-left: auto;
-            margin-right: 0;
-        }
-
-        /* ── Nav: underline only, no colour ── */
-        nav a, nav.nav-links a,
-        nav a:hover, nav.nav-links a:hover,
-        nav a.active, nav.nav-links a.active {
-            text-decoration: none;
-        }
-
-        nav a:hover, nav.nav-links a:hover,
-        nav a.active, nav.nav-links a.active {
-            text-decoration: underline;
-            color: #1a1a1a;
-        }
-
-        /* ── Dropdown menus ── */
-        .nav-dropdown {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .nav-dropdown-trigger {
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .nav-dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(0, 0, 0, 0.3);
-            border: none;
-            box-shadow: none;
-            border-radius: 8px;
-            min-width: 170px;
-            z-index: 200;
-            padding: 0.4rem 0;
-            overflow: hidden;
-        }
-
-        .nav-dropdown:hover .nav-dropdown-menu {
-            display: block;
-        }
-
-        .nav-dropdown-item {
-            display: block;
-            padding: 0.4rem 1.2rem;
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.88em;
-            white-space: nowrap;
-        }
-
-        .nav-dropdown-item:hover {
-            background: transparent;
-            text-decoration: underline;
-            color: white;
-        }
-
-        /* ── Footer language selector ── */
-        .footer-lang {
-            margin-top: 0.8rem;
-            display: flex;
-            justify-content: center;
-            gap: 0.4rem;
-        }
-
-        .footer-lang a {
-            color: #333333;
-            text-decoration: none;
-            padding: 0.25rem 0.65rem;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 0.82em;
-            transition: background 0.2s ease;
-        }
-
-        .footer-lang a:hover {
-            background: rgba(0,0,0,0.07);
-        }
-
-        /* ── Host section ── */
+                /* ── Host section ── */
         .host-section {
             padding: 4rem 2rem;
             text-align: center;
@@ -510,31 +374,6 @@
 
         /* ── Mobile dropdowns ── */
         @media (max-width: 768px) {
-            .nav-dropdown { flex-direction: column; }
-            .nav-dropdown-menu {
-                position: static;
-                display: block;
-                box-shadow: none;
-                border: none;
-                background: transparent;
-                padding: 0;
-            }
-            .nav-dropdown-trigger {
-                color: white;
-                font-size: 1.5em;
-                margin: 1rem 0 0.3rem;
-            }
-            .nav-dropdown-item {
-                color: white;
-                font-size: 1.2em;
-                text-align: center;
-                padding: 0.4rem 0;
-                background: transparent;
-            }
-            .nav-dropdown-item:hover {
-                background: transparent;
-                color: white;
-            }
         }
     </style>
 </head>
@@ -556,7 +395,6 @@
             <span class="bar"></span>
         </button>
         <nav class="nav-links" id="nav-links">
-            <button class="nav-close" id="nav-close">&times;</button>
             <a href="index.html" class="nav-mobile-home"><img src="images/logo.png" alt="Home"></a>
             <div class="nav-dropdown">
                 <a class="nav-link nav-dropdown-trigger" href="apartment.html">Accommodation</a>

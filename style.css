@@ -52,13 +52,12 @@ header.scrolled {
     background-color: rgba(0, 0, 0, 0.3); /* 30% transparent black */
 }
 
-body:not(.home-page) nav a {
-    color: #333333;
-}
-
-body:not(.home-page) nav a:hover {
-    color: #E45C4F;
-}
+body:not(.home-page) nav a,
+body:not(.home-page) nav a:hover,
+body:not(.home-page) nav a:active,
+body:not(.home-page) nav a.active { color: #333; text-decoration: none; }
+body:not(.home-page) nav a:hover,
+body:not(.home-page) nav a.active { text-decoration: underline; }
 
 nav {
     display: flex;
@@ -89,14 +88,20 @@ nav a:hover, nav a.active {
 .nav-logo-link {
     display: flex;
     align-items: center;
-    position: relative; /* For absolute positioning of child images */
-    width: 150px; /* Set a fixed width for the logo container */
-    height: 50px; /* Set a fixed height for the logo container */
+    width: auto;
+    text-decoration: none;
 }
 
 .nav-logo-link:hover {
     cursor: pointer;
 }
+
+.nav-logo-img-wrap { position: relative; width: 50px; height: 50px; flex-shrink: 0; }
+.nav-logo-img-wrap .nav-logo,
+.nav-logo-img-wrap .nav-logo-hover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: contain; }
+.nav-brand-text { display: flex; flex-direction: column; justify-content: center; margin-left: 0.15rem; line-height: 1.2; }
+.nav-brand-name { font-family: 'Raleway', sans-serif; font-size: 1rem; font-weight: 700; color: #1a1a1a; letter-spacing: 0.02em; }
+.nav-brand-sub { font-family: 'Raleway', sans-serif; font-size: 0.72rem; font-weight: 400; color: #777; letter-spacing: 0.03em; }
 
 .nav-logo, .nav-logo-hover {
     position: absolute;
@@ -164,6 +169,22 @@ nav.nav-links a:hover, nav.nav-links a.active {
     color: #61B5D8;
 }
 
+header nav.nav-links { margin-left: auto; margin-right: 0; }
+
+/* ── Dropdown nav (desktop) ── */
+.nav-dropdown { position: relative; display: inline-flex; align-items: center; }
+.nav-dropdown-trigger { cursor: pointer; user-select: none; }
+.nav-dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background: #fff; border: 1px solid #e4e4e4; border-radius: 10px; box-shadow: 0 4px 20px rgba(0,0,0,0.1); min-width: 170px; z-index: 200; padding: 0.4rem 0; overflow: hidden; }
+.nav-dropdown:hover .nav-dropdown-menu { display: block; }
+.nav-dropdown-item { display: block; padding: 0.6rem 1.2rem; color: #333; text-decoration: none; font-weight: bold; font-size: 0.88em; transition: background 0.15s ease; white-space: nowrap; }
+.nav-dropdown-item:hover { background: #f7f7f5; text-decoration: underline; color: #333; }
+.nav-dropdown-item.active { text-decoration: underline; color: #333; }
+
+/* ── Footer language selector ── */
+.footer-lang { margin-top: 0.8rem; display: flex; justify-content: center; gap: 0.4rem; }
+.footer-lang a { color: #333; text-decoration: none; padding: 0.25rem 0.65rem; border: 1px solid rgba(0,0,0,0.3); border-radius: 4px; font-size: 0.82em; transition: background 0.2s ease; }
+.footer-lang a:hover { background: rgba(0,0,0,0.08); }
+
 body:not(.home-page) .language-selector a {
     color: #333333;
     background-color: transparent;
@@ -204,15 +225,33 @@ main {
     display: none;
 }
 
-/* Mobile close button — hidden on desktop */
-.nav-close {
-    display: none;
-}
-
 @media (max-width: 768px) {
     /* Mobile specific styles */
     .hamburger-menu {
-        display: block; /* Show hamburger on mobile */
+        display: block;
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        z-index: 1000;
+    }
+
+    /* Hamburger transforms to X when menu is open */
+    .hamburger-menu.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger-menu.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger-menu.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    /* Bars turn white when over the dark overlay */
+    .hamburger-menu.open .bar {
+        background-color: white;
+    }
+
+    nav.nav-links {
+        z-index: 999;
     }
 
     .nav-mobile-home {
@@ -223,25 +262,29 @@ main {
         transform: translateX(-50%);
     }
     .nav-mobile-home img {
-        height: 18px;
+        height: 72px;
         width: auto;
     }
 
-    .nav-close {
-        display: block;
-        position: absolute;
-        top: 1.2rem;
-        right: 1.5rem;
-        background: none;
-        border: none;
-        color: rgba(255, 255, 255, 0.35);
-        font-size: 1.8rem;
-        cursor: pointer;
-        line-height: 1;
-        z-index: 100;
-        padding: 0;
-        -webkit-appearance: none;
-        appearance: none;
+    /* ── Mobile dropdown layout ── */
+    .nav-dropdown { flex-direction: column; }
+    .nav-dropdown-menu { position: static; display: block; box-shadow: none; border: none; background: transparent; padding: 0; }
+    .nav-dropdown-trigger { color: white; font-size: 1.5em; margin: 1rem 0 0.3rem; }
+
+    /* Higher specificity (0,3,2) beats body:not(.home-page) nav.nav-links a (0,2,3) */
+    body:not(.home-page) nav.nav-links .nav-dropdown-item,
+    .home-page nav.nav-links .nav-dropdown-item {
+        color: #777 !important;
+        font-size: 1rem !important;
+        margin: 0.3rem 0 !important;
+        padding: 0.3rem 0 !important;
+        background: transparent !important;
+        text-align: center !important;
+    }
+    body:not(.home-page) nav.nav-links .nav-dropdown-item:hover,
+    .home-page nav.nav-links .nav-dropdown-item:hover {
+        color: #9DDABD !important;
+        background: transparent !important;
     }
 
     nav.nav-links {
