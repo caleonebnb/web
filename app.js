@@ -517,8 +517,16 @@ const navLinks = document.getElementById('nav-links');
 if (hamburgerMenu && navLinks) {
     hamburgerMenu.addEventListener('click', () => {
         navLinks.classList.toggle('open');
-        hamburgerMenu.classList.toggle('open'); // Optional: for animating hamburger icon
+        hamburgerMenu.classList.toggle('open');
     });
+
+    const navClose = document.getElementById('nav-close');
+    if (navClose) {
+        navClose.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            hamburgerMenu.classList.remove('open');
+        });
+    }
 
     // Close menu when a link is clicked (for single-page navigation)
     navLinks.querySelectorAll('a').forEach(link => {

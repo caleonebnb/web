@@ -204,6 +204,11 @@ main {
     display: none;
 }
 
+/* Mobile close button — hidden on desktop */
+.nav-close {
+    display: none;
+}
+
 @media (max-width: 768px) {
     /* Mobile specific styles */
     .hamburger-menu {
@@ -218,8 +223,22 @@ main {
         transform: translateX(-50%);
     }
     .nav-mobile-home img {
-        height: 35px;
+        height: 18px;
         width: auto;
+    }
+
+    .nav-close {
+        display: block;
+        position: absolute;
+        top: 1.2rem;
+        right: 1.5rem;
+        background: none;
+        border: none;
+        color: #555;
+        font-size: 2rem;
+        cursor: pointer;
+        line-height: 1;
+        z-index: 100;
     }
 
     nav.nav-links {
