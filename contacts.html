@@ -11,179 +11,15 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-localize-key="contacts.title">Azienda Agricola - Contacts</title>
+    <title>Azienda Agricola - Contacts</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        body { font-family: 'Overpass', sans-serif; background: #fff; color: #2c2c2c; }
-
-        .ct-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-
-        /* ── Page title ── */
-        .ct-title {
-            padding: 3rem 0 2.5rem;
-            text-align: center;
-        }
-        .ct-title h1 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 2.6rem;
-            font-weight: 300;
-            color: #1a1a1a;
-            margin: 0 0 0.75rem;
-            letter-spacing: 0.02em;
-        }
-        .ct-title p {
-            font-size: 1rem;
-            color: #777;
-            margin: 0;
-        }
-
-        /* ── Main contact layout ── */
-        .ct-main {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: start;
-            padding: 2rem 0 4rem;
-            border-top: 1px solid #e4e4e4;
-        }
-
-        /* ── Contact details ── */
-        .ct-details h2 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin: 0 0 1.5rem;
-        }
-
-        .ct-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .ct-item-icon {
-            font-size: 1rem;
-            color: #2c2c2c;
-            width: 1.2rem;
-            text-align: center;
-            flex-shrink: 0;
-            margin-top: 0.15rem;
-        }
-
-        .ct-item-text {
-            font-size: 0.92rem;
-            line-height: 1.7;
-            color: #555;
-        }
-
-        .ct-item-text a {
-            color: #555;
-            text-decoration: none;
-        }
-
-        .ct-item-text a.ct-book-btn {
-            color: white;
-        }
-
-        .ct-item-text a:hover {
-            text-decoration: underline;
-        }
-
-        .ct-item-label {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: #aaa;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            display: block;
-            margin-bottom: 0.2rem;
-        }
-
-        /* ── Airbnb button ── */
-        .ct-book-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.6rem;
-            background-color: #FF5A5F;
-            color: white;
-            text-decoration: none;
-            padding: 0.85rem 1.8rem;
-            border-radius: 10px;
-            font-family: 'Raleway', sans-serif;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background 0.2s ease, transform 0.2s ease;
-        }
-        .ct-book-btn:hover {
-            background-color: #e04e53;
-            transform: translateY(-1px);
-            color: white;
-        }
-        .ct-book-btn i { font-size: 1.1rem; }
-
-        /* ── Socials ── */
-        .ct-socials {
-            margin-top: 2.5rem;
-            padding-top: 2rem;
-            border-top: 1px solid #e4e4e4;
-        }
-
-        .ct-socials h2 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin: 0 0 1.2rem;
-        }
-
-        .ct-social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .ct-social-link {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            text-decoration: none;
-            color: #2c2c2c;
-            font-size: 0.88rem;
-            font-weight: 600;
-            padding: 0.55rem 1.1rem;
-            border: 1px solid #e4e4e4;
-            border-radius: 8px;
-            transition: background 0.2s ease, border-color 0.2s ease;
-        }
-
-        .ct-social-link:hover {
-            background: #f7f7f5;
-            border-color: #ccc;
-        }
-
-        .ct-social-link i {
-            font-size: 1rem;
-        }
-
-        /* ── Image ── */
-        .ct-image {
-            border-radius: 14px;
-            overflow: hidden;
-            position: sticky;
-            top: 6rem;
-        }
-
-        .ct-image img {
-            width: 100%;
-            height: 500px;
-            object-fit: cover;
-            display: block;
-        }
+        * { box-sizing: border-box; }
+        body { font-family: 'Overpass', sans-serif; background: #fff; color: #2c2c2c; margin: 0; }
 
         /* ── Nav shared styles ── */
         .nav-logo-link { width: auto; display: flex; align-items: center; text-decoration: none; }
@@ -209,16 +45,209 @@
         .footer-lang a { color: white; text-decoration: none; padding: 0.25rem 0.65rem; border: 1px solid rgba(255,255,255,0.5); border-radius: 4px; font-size: 0.82em; transition: background 0.2s ease; }
         .footer-lang a:hover { background: rgba(255,255,255,0.25); }
 
+        /* ── Split layout ── */
+        .split-layout {
+            display: flex;
+            align-items: stretch;
+        }
+
+        /* ── Left: full-height photo ── */
+        .split-left {
+            width: 48%;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .split-left img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* ── Right: scrollable content ── */
+        .split-right {
+            flex: 1;
+            background: #faf8f4;
+            padding: 5rem 4rem 4rem 4.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .split-right-inner {
+            max-width: 480px;
+        }
+
+        /* ── Heading ── */
+        .ct2-heading {
+            font-family: 'Raleway', sans-serif;
+            font-size: 3rem;
+            font-weight: 200;
+            color: #1a1a1a;
+            line-height: 1.15;
+            margin: 0 0 1.25rem;
+            padding-top: 0;
+        }
+
+        .ct2-intro {
+            font-size: 0.95rem;
+            color: #777;
+            line-height: 1.75;
+            margin: 0 0 3rem;
+        }
+
+        /* ── Divider ── */
+        .ct2-divider {
+            width: 40px;
+            height: 1px;
+            background: #c8b89a;
+            margin-bottom: 3rem;
+        }
+
+        /* ── Contact items ── */
+        .ct2-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.25rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .ct2-item-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background: #ede9e3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            color: #a0896a;
+            font-size: 0.9rem;
+        }
+
+        .ct2-item-body {
+            padding-top: 0.3rem;
+        }
+
+        .ct2-item-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .ct2-item-value {
+            font-size: 0.95rem;
+            color: #3a3a3a;
+            line-height: 1.65;
+        }
+
+        .ct2-item-value a {
+            color: #3a3a3a;
+            text-decoration: none;
+        }
+
+        .ct2-item-value a:hover {
+            text-decoration: underline;
+        }
+
+        /* ── Airbnb buttons ── */
+        .ct2-book-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 3rem;
+        }
+
+        .ct2-book-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.65rem;
+            background: #FF5A5F;
+            color: #fff;
+            text-decoration: none;
+            padding: 0.9rem 1.6rem;
+            border-radius: 10px;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: background 0.2s ease, transform 0.15s ease;
+            width: fit-content;
+        }
+
+        .ct2-book-btn:hover {
+            background: #e04e53;
+            transform: translateY(-1px);
+            color: #fff;
+        }
+
+        .ct2-book-btn i { font-size: 1.05rem; }
+
+        /* ── Socials ── */
+        .ct2-socials-label {
+            font-size: 0.7rem;
+            font-weight: 600;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+        }
+
+        .ct2-social-links {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .ct2-social-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            color: #3a3a3a;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 0.55rem 1.1rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: #fff;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .ct2-social-link:hover {
+            border-color: #a0896a;
+            background: #faf8f4;
+        }
+
+        /* ── Footer lang ── */
+        .footer-lang { margin-top: 0.8rem; display: flex; justify-content: flex-start; gap: 0.4rem; }
+
+        /* ── Mobile ── */
         @media (max-width: 768px) {
+            .split-layout {
+                flex-direction: column;
+            }
+            .split-left {
+                width: 100%;
+                height: 55vw;
+                min-height: 260px;
+                position: relative;
+                top: 0;
+            }
+            .split-right {
+                padding: 3.5rem 1.75rem 4rem;
+            }
+            .ct2-heading {
+                font-size: 2.2rem;
+            }
             .nav-dropdown { flex-direction: column; }
             .nav-dropdown-menu { position: static; display: block; box-shadow: none; border: none; background: transparent; padding: 0; }
             .nav-dropdown-trigger { color: white; font-size: 1.5em; margin: 1rem 0 0.3rem; }
             .nav-dropdown-item { color: white; font-size: 1.2em; text-align: center; padding: 0.4rem 0; background: transparent; }
             .nav-dropdown-item:hover { background: transparent; color: #9DDABD; }
-            .ct-main { grid-template-columns: 1fr; gap: 2.5rem; }
-            .ct-image { position: static; }
-            .ct-image img { height: 300px; }
-            .ct-title h1 { font-size: 2rem; }
         }
     </style>
 </head>
@@ -255,100 +284,97 @@
                     <a href="products.html" class="nav-dropdown-item">Prodotti Agricoli</a>
                 </div>
             </div>
-            <a href="activities.html" class="nav-link" data-localize-key="activities.nav">Things To Do</a>
-            <a href="contacts.html" class="nav-link active" data-localize-key="contacts.nav">Contacts</a>
+            <a href="activities.html" class="nav-link">Things To Do</a>
+            <a href="contacts.html" class="nav-link active">Contacts</a>
         </nav>
     </header>
 
     <main>
+        <div class="split-layout">
 
-        <!-- Title -->
-        <div class="ct-wrap">
-            <div class="ct-title">
-                <h1>Contact Us</h1>
-                <p>We'd love to hear from you. Get in touch and we'll get back to you as soon as we can.</p>
+            <!-- Left: full-height photo -->
+            <div class="split-left">
+                <img src="images/vigna.jpg" alt="Ca' Leone vineyard">
             </div>
-        </div>
 
-        <!-- Main content -->
-        <div class="ct-wrap">
-            <div class="ct-main">
+            <!-- Right: contact info -->
+            <div class="split-right">
+                <div class="split-right-inner">
 
-                <!-- Left: contact details -->
-                <div class="ct-details">
-                    <h2>Get in touch</h2>
+                    <h1 class="ct2-heading">Contact Us</h1>
+                    <p class="ct2-intro">We'd love to hear from you. Get in touch and we'll get back to you as soon as we can.</p>
 
-                    <div class="ct-item">
-                        <i class="ct-item-icon fa-solid fa-location-dot"></i>
-                        <div class="ct-item-text">
-                            <span class="ct-item-label">Address</span>
-                            Azienda Agricola Ca' Leone<br>
-                            Via della Quercia 15<br>
-                            Ozzano dell'Emilia (BO)<br>
-                            Italy
+                    <div class="ct2-divider"></div>
+
+                    <!-- Address -->
+                    <div class="ct2-item">
+                        <div class="ct2-item-icon">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div class="ct2-item-body">
+                            <span class="ct2-item-label">Address</span>
+                            <div class="ct2-item-value">
+                                Azienda Agricola Ca' Leone<br>
+                                Via della Quercia 15<br>
+                                Ozzano dell'Emilia (BO), Italy
+                            </div>
                         </div>
                     </div>
 
-                    <div class="ct-item">
-                        <i class="ct-item-icon fa-solid fa-envelope"></i>
-                        <div class="ct-item-text">
-                            <span class="ct-item-label">Email</span>
-                            <a href="mailto:lacollinabnb@gmail.com">lacollinabnb@gmail.com</a>
+                    <!-- Email -->
+                    <div class="ct2-item">
+                        <div class="ct2-item-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <div class="ct2-item-body">
+                            <span class="ct2-item-label">Email</span>
+                            <div class="ct2-item-value">
+                                <a href="mailto:lacollinabnb@gmail.com">lacollinabnb@gmail.com</a>
+                            </div>
                         </div>
                     </div>
 
-                    <div class="ct-item">
-                        <div class="ct-item-text" style="display: flex; flex-direction: column; gap: 0.75rem;">
-                            <a href="https://www.airbnb.com.au/h/tinyhomebologna" target="_blank" rel="noopener" class="ct-book-btn">
-                                <i class="fa-brands fa-airbnb"></i>
-                                Book the Tiny House on Airbnb
-                            </a>
-                            <a href="https://www.airbnb.com.au/h/700-year-old-barn-bologna" target="_blank" rel="noopener" class="ct-book-btn">
-                                <i class="fa-brands fa-airbnb"></i>
-                                Book the Barn on Airbnb
-                            </a>
-                        </div>
+                    <!-- Book on Airbnb -->
+                    <div class="ct2-book-wrap">
+                        <a href="https://www.airbnb.com.au/h/tinyhomebologna" target="_blank" rel="noopener" class="ct2-book-btn">
+                            <i class="fa-brands fa-airbnb"></i>
+                            Book the Tiny House on Airbnb
+                        </a>
+                        <a href="https://www.airbnb.com.au/h/700-year-old-barn-bologna" target="_blank" rel="noopener" class="ct2-book-btn">
+                            <i class="fa-brands fa-airbnb"></i>
+                            Book the Barn on Airbnb
+                        </a>
                     </div>
 
                     <!-- Socials -->
-                    <div class="ct-socials">
-                        <h2>Follow us</h2>
-                        <div class="ct-social-links">
-                            <a href="#" class="ct-social-link">
-                                <i class="fa-brands fa-instagram"></i>
-                                Instagram
-                            </a>
-                            <a href="#" class="ct-social-link">
-                                <i class="fa-brands fa-facebook"></i>
-                                Facebook
-                            </a>
-                            <a href="#" class="ct-social-link">
-                                <i class="fa-brands fa-airbnb"></i>
-                                Airbnb
-                            </a>
-                        </div>
+                    <p class="ct2-socials-label">Follow us</p>
+                    <div class="ct2-social-links">
+                        <a href="#" class="ct2-social-link">
+                            <i class="fa-brands fa-instagram"></i>
+                            Instagram
+                        </a>
+                        <a href="#" class="ct2-social-link">
+                            <i class="fa-brands fa-facebook"></i>
+                            Facebook
+                        </a>
+                        <a href="#" class="ct2-social-link">
+                            <i class="fa-brands fa-airbnb"></i>
+                            Airbnb
+                        </a>
                     </div>
-                </div>
 
-                <!-- Right: image -->
-                <div class="ct-image">
-                    <img src="images/vigna.jpg" alt="Ca' Leone vineyard">
                 </div>
-
             </div>
+
         </div>
-
-
     </main>
 
     <footer>
         <div style="display: inline-flex; gap: 3rem; align-items: center; text-align: left;">
-            <!-- Left column: logos -->
             <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
                 <img src="images/logo-nero.png" alt="Ca' Leone" style="height: 75px;">
                 <img src="images/agriturismo-italia.jpg" alt="Agriturismo Italia" style="height: 75px;">
             </div>
-            <!-- Right column: text -->
             <div>
                 <p><b>Azienda Agricola Ca' Leone</b></p>
                 <p>Via della Quercia 15, Ozzano dell'Emilia (BO)</p>
