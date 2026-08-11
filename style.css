@@ -199,10 +199,27 @@ main {
     color: #61B5D8;
 }
 
+/* Mobile home logo — hidden on desktop */
+.nav-mobile-home {
+    display: none;
+}
+
 @media (max-width: 768px) {
     /* Mobile specific styles */
     .hamburger-menu {
         display: block; /* Show hamburger on mobile */
+    }
+
+    .nav-mobile-home {
+        display: block;
+        position: absolute;
+        top: 1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .nav-mobile-home img {
+        height: 50px;
+        width: auto;
     }
 
     nav.nav-links {
