@@ -234,11 +234,14 @@ main {
         right: 1.5rem;
         background: none;
         border: none;
-        color: #555;
-        font-size: 2rem;
+        color: rgba(255, 255, 255, 0.35);
+        font-size: 1.8rem;
         cursor: pointer;
         line-height: 1;
         z-index: 100;
+        padding: 0;
+        -webkit-appearance: none;
+        appearance: none;
     }
 
     nav.nav-links {
