@@ -445,7 +445,7 @@ const content = {
             heading: "Come Coltiviamo",
             intro1: "Il nostro lavoro è guidato da un obiettivo semplice: lasciare questa terra più ricca, più selvaggia e più viva di come l'abbiamo trovata.",
             intro2: "La nostra filosofia è semplice: zero pesticidi di sintesi, zero fertilizzanti di sintesi e un profondo rispetto per l'ecosistema. Lavoriamo a stretto contatto con i cicli naturali del suolo, guidando la semina, la potatura e la raccolta secondo i ritmi della luna e delle stelle.",
-            intro3: "Consideriamo la nostra azienda agricola come un unico organismo vivente, in costante cammino per diventare un ecosistema del tutto autosufficiente. Costruiamo la fertilità a lungo termine attraverso il compostaggio, le colture di copertura e un profondo rispetto per la vita sotto i nostri piedi.",
+            intro3: "Consideriamo la nostra azienda agricola come un unico organismo vivente, in costante cammino per diventare un ecosistema del tutto autosufficiente. Costruiamo la fertilità a lungo termine attraverso il compostaggio, i sovesci e un profondo rispetto per la vita sotto i nostri piedi.",
             intro4: "La biodiversità qui non è mai un pensiero secondario: le nostre siepi selvatiche, le colture miste, gli insetti e gli uccelli sono fondamentali per la linfa e la vitalità di questa terra.",
             vineyard: "Vigneto",
             oliveGrove: "Uliveto",
@@ -466,9 +466,24 @@ function getPageId() {
     return page;
 }
 
-function renderContent() {
+function getLang() {
     const urlParams = new URLSearchParams(window.location.search);
-    const lang = urlParams.get('lang') || 'en';
+    const urlLang = urlParams.get('lang');
+    if (urlLang === 'en' || urlLang === 'it') {
+        // Explicit selection — persist it
+        localStorage.setItem('caLeone_lang', urlLang);
+        return urlLang;
+    }
+    // Use saved preference
+    const saved = localStorage.getItem('caLeone_lang');
+    if (saved) return saved;
+    // Auto-detect from browser language
+    const browser = (navigator.language || '').toLowerCase();
+    return browser.startsWith('it') ? 'it' : 'en';
+}
+
+function renderContent() {
+    const lang = getLang();
     const pageId = getPageId();
 
     // Update document title
