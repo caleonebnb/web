@@ -201,7 +201,30 @@ const content = {
         contacts: {
             nav: "Contacts",
             title: "Azienda Agricola - Contacts",
-            content: "You can find us at: 123 Farm Road, Countryside. Email: info@farm.com, Phone: +123456789"
+            content: "You can find us at: 123 Farm Road, Countryside. Email: info@farm.com, Phone: +123456789",
+            heading: "Contact Us",
+            intro: "We'd love to hear from you. Get in touch and we'll get back to you as soon as we can.",
+            addressLabel: "Address",
+            emailLabel: "Email",
+            bookTinyHouse: "Book the Tiny House on Airbnb",
+            bookBarn: "Book the Barn on Airbnb",
+            followUs: "Follow us"
+        },
+        products: {
+            nav: "Prodotti Agricoli",
+            title: "Azienda Agricola - Agricultural Products",
+            content: "We produce organic olive oil, wine, honey, and fresh vegetables. All available for our guests to purchase.",
+            heading: "How We Grow",
+            intro1: "Our work is guided by one simple goal: to leave this land richer, wilder, and more alive than we found it.",
+            intro2: "Our philosophy is simple: zero synthetic pesticides, zero synthetic fertilizers, and complete respect for the ecosystem. We work closely with the soil's natural cycles, guiding our planting, pruning, and harvesting by the rhythms of the moon and stars.",
+            intro3: "We view our farm as a single living organism, constantly working toward becoming a fully self-sustaining ecosystem. We build long-term fertility through composting, cover crops, and a deep respect for the life beneath our feet—complemented by home-made herbal infusions of wild nettle, chamomile, and horsetail to naturally strengthen our vines.",
+            intro4: "Biodiversity is never an afterthought here: our wild hedgerows, mixed plantings, insects, and birds are vital to how this farm thrives.",
+            vineyard: "Vineyard",
+            oliveGrove: "Olive Grove",
+            summerVeg: "Summer Vegetable Garden",
+            winterVeg: "Winter Vegetables",
+            fruit: "Fruit",
+            blackberries: "Blackberries"
         }
     },
     it: {
@@ -406,7 +429,30 @@ const content = {
         contacts: {
             nav: "Contatti",
             title: "Azienda Agricola - Contatti",
-            content: "Ci puoi trovare a: Via della Fattoria 123, Campagna. Email: info@fattoria.com, Telefono: +123456789"
+            content: "Ci puoi trovare a: Via della Fattoria 123, Campagna. Email: info@fattoria.com, Telefono: +123456789",
+            heading: "Contattaci",
+            intro: "Siamo felici di sentirti. Scrivici e ti risponderemo il prima possibile.",
+            addressLabel: "Indirizzo",
+            emailLabel: "Email",
+            bookTinyHouse: "Prenota la Tiny House su Airbnb",
+            bookBarn: "Prenota il Fienile su Airbnb",
+            followUs: "Seguici"
+        },
+        products: {
+            nav: "Prodotti Agricoli",
+            title: "Azienda Agricola - Prodotti Agricoli",
+            content: "Produciamo olio d'oliva biologico, vino, miele e verdure fresche. Tutti disponibili per l'acquisto da parte dei nostri ospiti.",
+            heading: "Come Coltiviamo",
+            intro1: "Il nostro lavoro è guidato da un unico obiettivo: lasciare questa terra più ricca, più selvaggia e più viva di come l'abbiamo trovata.",
+            intro2: "La nostra filosofia è semplice: zero pesticidi sintetici, zero fertilizzanti sintetici e rispetto totale per l'ecosistema. Lavoriamo in sintonia con i cicli naturali del suolo, guidando la semina, la potatura e il raccolto seguendo i ritmi della luna e delle stelle.",
+            intro3: "Vediamo la nostra azienda come un unico organismo vivente, in costante evoluzione verso un ecosistema pienamente autosufficiente. Costruiamo la fertilità a lungo termine attraverso il compostaggio, le colture di copertura e un profondo rispetto per la vita nel sottosuolo—completati da infusi artigianali di ortica selvatica, camomilla ed equiseto per rafforzare naturalmente le nostre viti.",
+            intro4: "La biodiversità non è mai un ripensamento qui: le nostre siepi selvatiche, le coltivazioni miste, gli insetti e gli uccelli sono elementi essenziali per come questa fattoria prospera.",
+            vineyard: "Vigneto",
+            oliveGrove: "Uliveto",
+            summerVeg: "Orto Estivo",
+            winterVeg: "Ortaggi Invernali",
+            fruit: "Frutta",
+            blackberries: "More"
         }
     }
 };
