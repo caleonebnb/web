@@ -215,8 +215,8 @@ const content = {
             title: "Azienda Agricola - Agricultural Products",
             content: "We produce organic olive oil, wine, honey, and fresh vegetables. All available for our guests to purchase.",
             heading: "How We Grow",
-            intro1: "Our work is guided by one simple goal: to leave this land richer, wilder, and more alive than we found it.",
-            intro2: "Our philosophy is simple: zero synthetic pesticides, zero synthetic fertilizers, and complete respect for the ecosystem. We work closely with the soil's natural cycles, guiding our planting, pruning, and harvesting by the rhythms of the moon and stars.",
+            intro1: "We strive to leave this land richer, wilder, and more alive than we found it.",
+            intro2: "Our philosophy is shaped by our study and exploration of biodynamic techniques: zero synthetic pesticides, zero synthetic fertilizers, and complete respect for the ecosystem. We work closely with the soil's natural cycles, guiding our planting, pruning, and harvesting by the rhythms of the moon and stars.",
             intro3: "We view our farm as a single living organism, constantly working toward becoming a fully self-sustaining ecosystem. We build long-term fertility through composting, cover crops, and a deep respect for the life beneath our feet.",
             intro4: "Biodiversity is never an afterthought here: our wild hedgerows, mixed plantings, insects, and birds are vital to how this farm thrives.",
             vineyard: "Vineyard",
@@ -416,11 +416,6 @@ const content = {
             title: "Azienda Agricola - La Nostra Filosofia",
             content: "Crediamo nell'agricoltura sostenibile e nel rispetto della natura. Il nostro obiettivo è vivere in armonia con l'ambiente."
         },
-        products: {
-            nav: "Prodotti Agricoli",
-            title: "Azienda Agricola - Prodotti Agricoli",
-            content: "Produciamo olio d'oliva biologico, vino, miele e verdure fresche. Tutti disponibili per l'acquisto da parte dei nostri ospiti."
-        },
         activities: {
             nav: "Cose da Fare",
             title: "Azienda Agricola - Cose da Fare",
@@ -443,8 +438,8 @@ const content = {
             title: "Azienda Agricola - Prodotti Agricoli",
             content: "Produciamo olio d'oliva biologico, vino, miele e verdure fresche. Tutti disponibili per l'acquisto da parte dei nostri ospiti.",
             heading: "Come Coltiviamo",
-            intro1: "Il nostro lavoro è guidato da un obiettivo semplice: lasciare questa terra più ricca, più selvaggia e più viva di come l'abbiamo trovata.",
-            intro2: "La nostra filosofia è semplice: zero pesticidi di sintesi, zero fertilizzanti di sintesi e un profondo rispetto per l'ecosistema. Lavoriamo a stretto contatto con i cicli naturali del suolo, guidando la semina, la potatura e la raccolta secondo i ritmi della luna e delle stelle.",
+            intro1: "Ci impegniamo a lasciare questa terra più ricca, più selvaggia e più viva di come l'abbiamo trovata.",
+            intro2: "La nostra filosofia si sviluppa attraverso lo studio e l'esplorazione delle tecniche biodinamiche: zero pesticidi di sintesi, zero fertilizzanti chimici e un totale rispetto per l'ecosistema. Lavoriamo a stretto contatto con i cicli naturali del suolo, guidando la semina, la potatura e il raccolto secondo i ritmi della luna e delle stelle.",
             intro3: "Consideriamo la nostra azienda agricola come un unico organismo vivente, in costante cammino per diventare un ecosistema del tutto autosufficiente. Costruiamo la fertilità a lungo termine attraverso il compostaggio, i sovesci e un profondo rispetto per la vita sotto i nostri piedi.",
             intro4: "La biodiversità qui non è mai un pensiero secondario: le nostre siepi selvatiche, le colture miste, gli insetti e gli uccelli sono fondamentali per la linfa e la vitalità di questa terra.",
             vineyard: "Vigneto",
