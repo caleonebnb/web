@@ -69,7 +69,7 @@ const content = {
             comfortSafety: "Comfort & Safety",
             territory: "Guide to explore the area (sent before arrival)",
             parkingService: "Private parking on site",
-            otherAccommodationsTitle: "Other Accommodations",
+            otherAccommodationsTitle: "Other Accommodation",
             relatedLocation: "Ozzano dell'Emilia · Bologna"
         },
         'tiny-house': {
@@ -106,7 +106,7 @@ const content = {
             amenityBBQ: "BBQ Area",
             amenityBBQSub: "Shared outdoor BBQ available",
             servicesTitle: "Local Support",
-            otherAccommodationsTitle: "Other Accommodations",
+            otherAccommodationsTitle: "Other Accommodation",
             relatedLocation: "Ozzano dell'Emilia · Bologna"
         },
         roulotte: {
@@ -143,7 +143,7 @@ const content = {
             amenityBBQ: "BBQ Area",
             amenityBBQSub: "Shared outdoor BBQ available",
             servicesTitle: "Local Support",
-            otherAccommodationsTitle: "Other Accommodations",
+            otherAccommodationsTitle: "Other Accommodation",
             relatedLocation: "Ozzano dell'Emilia · Bologna"
         },
         piazzola: {
@@ -180,7 +180,7 @@ const content = {
             amenityPets: "Pets Welcome",
             amenityPetsSub: "Dogs welcome on leads",
             servicesTitle: "Local Support",
-            otherAccommodationsTitle: "Other Accommodations",
+            otherAccommodationsTitle: "Other Accommodation",
             relatedLocation: "Ozzano dell'Emilia · Bologna"
         },
         philosophy: {

@@ -14,378 +14,96 @@
     <title>Azienda Agricola</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ── Base overrides for apartment page ── */
-        body {
-            font-family: 'Overpass', sans-serif;
-            background: #fff;
-            color: #2c2c2c;
-        }
+        body { font-family: 'Overpass', sans-serif; background: #fff; color: #2c2c2c; }
 
-        .ap-wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
-        }
+        .ap-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
 
-        /* ── Title ── */
-        .ap-title {
-            padding: 0 0 1.5rem;
-        }
+        /* ── Hero ── */
+        body.has-hero main { padding-top: 0 !important; }
+        body.has-hero header { background-color: rgba(0,0,0,0.3); position: fixed; box-shadow: none; }
 
-        .ap-title h1 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 2.4rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin: 0 0 0.3rem;
-            line-height: 1;
-        }
-
-        .ap-title .ap-location {
-            font-size: 0.88rem;
-            color: #888;
-            margin: 0;
-            letter-spacing: 0.04em;
-        }
-
-        .ap-title .ap-location span {
-            margin: 0 0.4rem;
-            color: #ccc;
-        }
-
-        /* ── Gallery ── */
-        .ap-gallery {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 6px;
-            height: 540px;
-            border-radius: 14px;
-            overflow: hidden;
-        }
-
-        .ap-gallery-main {
-            overflow: hidden;
-        }
-
-        .ap-gallery-main a,
-        .ap-gallery-thumb a {
-            display: block;
+        .ap-hero {
+            position: relative;
             width: 100%;
-            height: 100%;
-        }
-
-        .ap-gallery-main img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .ap-gallery-main:hover img {
-            transform: scale(1.03);
-        }
-
-        .ap-gallery-thumbs {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 6px;
-            height: 100%;
-        }
-
-        .ap-gallery-thumb {
+            height: 100vh;
             overflow: hidden;
-            min-height: 0;
-        }
-
-        .ap-gallery-thumb img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.4s ease;
-        }
-
-        .ap-gallery-thumb:hover img {
-            transform: scale(1.05);
-        }
-
-        /* ── Info band ── */
-        .ap-infoband {
-            border-top: 1px solid #e4e4e4;
-            border-bottom: 1px solid #e4e4e4;
-            margin: 2.5rem 0;
-        }
-
-        .ap-infoband-inner {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 1.5rem;
             display: flex;
-        }
-
-        .ap-infoband-item {
-            flex: 1;
-            display: flex;
+            justify-content: center;
             align-items: center;
-            gap: 0.8rem;
-            padding: 1.25rem 1.5rem;
-            border-right: 1px solid #e4e4e4;
-        }
-
-        .ap-infoband-item:first-child {
-            padding-left: 0;
-        }
-
-        .ap-infoband-item:last-child {
-            border-right: none;
-        }
-
-        .ap-infoband-icon {
-            font-size: 1.1rem;
-            flex-shrink: 0;
-            color: #2c2c2c;
-            width: 1.4rem;
             text-align: center;
         }
 
-        .ap-infoband-text p {
-            margin: 0;
-            line-height: 1.3;
+        .ap-hero-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
         }
 
-        .ap-infoband-text .ap-ib-label {
-            font-size: 0.83rem;
-            font-weight: 600;
-            color: #2c2c2c;
-        }
-
-        .ap-infoband-text .ap-ib-sub {
-            font-size: 0.76rem;
-            color: #999;
-            margin-top: 0.1rem;
-        }
-
-        /* ── Description ── */
-        .ap-description {
-            padding-bottom: 3rem;
-        }
-
-        .ap-description h2 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin: 0 0 1rem;
-        }
-
-        .ap-description p {
-            font-size: 0.95rem;
-            line-height: 1.95;
-            color: #555;
-            max-width: 750px;
-            margin: 0;
-        }
-
-        /* ── Section divider ── */
-        .ap-sep {
-            border: none;
-            border-top: 1px solid #e4e4e4;
-            margin: 0;
-        }
-
-        /* ── Amenities ── */
-        .ap-amenities {
-            padding: 3rem 0;
-            background-color: #9DDABD;
-        }
-
-        .ap-amenities h2 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin: 0 0 1.5rem;
-        }
-
-        .ap-amenities-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            columns: 2;
-            column-gap: 3rem;
-        }
-
-        .ap-amenities-list li {
-            font-family: 'Overpass', sans-serif;
-            font-size: 0.95rem;
-            color: #2c2c2c;
-            padding: 0.45rem 0;
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-        }
-
-        .ap-amenities-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-
-        .ap-amenity-card {
-            border: 1px solid rgba(255,255,255,0.4);
-            border-radius: 12px;
-            padding: 1.4rem 1.1rem;
-            background-color: rgba(255,255,255,0.55);
-        }
-
-        .ap-amenity-card .ap-amenity-icon {
-            font-size: 1.7rem;
-            display: block;
-            margin-bottom: 0.8rem;
-        }
-
-        .ap-amenity-card h3 {
-            font-family: 'Overpass', sans-serif;
-            font-size: 0.83rem;
-            font-weight: 600;
-            margin: 0 0 0.35rem;
-            color: #2c2c2c;
-        }
-
-        .ap-amenity-card p {
-            font-size: 0.76rem;
-            color: #999;
-            margin: 0;
-            line-height: 1.55;
-        }
-
-        /* ── Services ── */
-        .ap-services {
-            position: relative;
-            background: url('images/vigna.jpg') center/cover no-repeat;
-        }
-
-        .ap-services::after {
+        .ap-hero::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-        }
-
-        .ap-services .ap-wrap {
-            position: relative;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.5) 100%);
             z-index: 1;
-            padding-top: 3rem;
-            padding-bottom: 3rem;
         }
 
-        .ap-services h2 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 400;
+        .ap-hero-content {
+            z-index: 2;
+            padding: 1rem;
+        }
+
+        .ap-hero-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
             color: white;
-            margin: 0 0 2rem;
+            margin: 0;
+            letter-spacing: 0.01em;
         }
 
-        .ap-services-inner {
+        /* ── Description ── */
+        .ap-description { padding: 3rem 0; }
+        .ap-description h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 1rem; }
+        .ap-description p { font-size: 0.95rem; line-height: 1.95; color: #555; max-width: 750px; margin: 0 0 1rem; }
+
+        /* ── Photo grid ── */
+        .ap-photo-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
+            gap: 8px;
         }
+        .ap-photo-grid img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+        }
+        .ap-gallery-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            color: #38695b;
+            text-decoration: underline;
+        }
+        .ap-photo-grid img.ap-photo-hidden { display: none; }
+        .ap-load-more { display: block; margin: 1.5rem auto 0; font-family: 'Raleway', sans-serif; font-size: 0.85rem; color: #38695b; background: none; border: none; cursor: pointer; padding: 0; text-decoration: none; text-align: center; }
 
-        .ap-services-row {
-            display: flex;
-            flex-direction: column;
-            gap: 0.3rem;
-        }
-
-        .ap-service-card {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            border-radius: 0;
-            padding: 0.45rem 0;
-        }
-
-        .ap-services-right p {
-            color: white;
-            line-height: 1.8;
-            margin: 0 0 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .ap-services-right ul,
-        .ap-services-left ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .ap-services-right ul li,
-        .ap-services-left ul li {
-            color: white;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid rgba(255,255,255,0.15);
-            font-size: 0.9rem;
-        }
-
-        .ap-services-right ul li:last-child,
-        .ap-services-left ul li:last-child {
-            border-bottom: none;
-        }
-
-        .ap-services-right ul li::before,
-        .ap-services-left ul li::before {
-            content: '→ ';
-            color: white;
-        }
-
-        .ap-service-card .ap-svc-icon {
-            font-size: 0.9rem;
-            flex-shrink: 0;
-            opacity: 0.6;
-        }
-
-        .ap-service-card p {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.65);
-            margin: 0;
-            line-height: 1.4;
-        }
+        /* ── Sep ── */
+        .ap-sep { border: none; border-top: 1px solid #e4e4e4; margin: 0; }
 
         /* ── Booking ── */
-        .ap-booking {
-            padding: 3rem 0;
-        }
-
-        .ap-booking h2 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin: 0 0 0.5rem;
-        }
-
-        .ap-booking-sub {
-            font-size: 0.92rem;
-            color: #888;
-            margin: 0 0 2rem;
-        }
-
-        .ap-booking-inner {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
+        .ap-booking { padding: 3rem 0; }
+        .ap-booking h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 0.5rem; }
+        .ap-booking-sub { font-size: 0.92rem; color: #888; margin: 0 0 2rem; }
+        .ap-booking-inner { display: flex; align-items: center; gap: 2rem; }
         .ap-book-btn {
             display: inline-flex;
             align-items: center;
@@ -401,143 +119,38 @@
             transition: background 0.2s ease, transform 0.2s ease;
             white-space: nowrap;
         }
-
-        .ap-book-btn:hover {
-            background-color: #e04e53;
-            transform: translateY(-1px);
-        }
-
-        .ap-book-btn svg {
-            width: 20px;
-            height: 20px;
-            fill: white;
-            flex-shrink: 0;
-        }
-
-        @media (max-width: 680px) {
-            .ap-book-btn { width: 100%; justify-content: center; }
-        }
+        .ap-book-btn:hover { background-color: #e04e53; transform: translateY(-1px); }
+        .ap-book-btn svg { width: 20px; height: 20px; fill: white; flex-shrink: 0; }
 
         /* ── Related ── */
-        .ap-related {
-            padding: 3rem 0 4rem;
-        }
-
-        .ap-related h2 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            color: #1a1a1a;
-            margin: 0 0 2rem;
-        }
-
-        .ap-related-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .ap-related-card {
-            border-radius: 14px;
-            overflow: hidden;
-            border: 1px solid #e4e4e4;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-            transition: box-shadow 0.25s ease, transform 0.25s ease;
-        }
-
-        .ap-related-card:hover {
-            box-shadow: 0 6px 24px rgba(0,0,0,0.1);
-            transform: translateY(-2px);
-        }
-
-        .ap-related-card img {
-            width: 100%;
-            height: 210px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .ap-related-body {
-            padding: 1.1rem 1.2rem 1.4rem;
-        }
-
-        .ap-related-body h3 {
-            font-family: 'Raleway', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 400;
-            margin: 0 0 0.2rem;
-            color: #1a1a1a;
-        }
-
-        .ap-related-body .ap-rel-loc {
-            font-size: 0.78rem;
-            font-weight: 600;
-            color: #38695b;
-            margin: 0 0 0.4rem;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-        }
-
-        .ap-related-body .ap-rel-desc {
-            font-size: 0.82rem;
-            color: #999;
-            margin: 0;
-            line-height: 1.5;
-        }
-
+        .ap-related { padding: 3rem 0 4rem; background-color: #f5f5f3; }
+        .ap-related h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 2rem; }
+        .ap-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+        .ap-related-card { border-radius: 14px; overflow: hidden; border: 1px solid #e4e4e4; text-decoration: none; color: inherit; display: block; transition: box-shadow 0.25s ease, transform 0.25s ease; }
+        .ap-related-card:hover { box-shadow: 0 6px 24px rgba(0,0,0,0.1); transform: translateY(-2px); }
+        .ap-related-card img { width: 100%; height: 210px; object-fit: cover; display: block; }
+        .ap-related-body { padding: 1.1rem 1.2rem 1.4rem; }
+        .ap-related-body h3 { font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 400; margin: 0 0 0.2rem; color: #1a1a1a; }
+        .ap-related-body .ap-rel-desc { font-size: 0.82rem; color: #999; margin: 0; line-height: 1.5; }
 
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            .ap-amenities-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .ap-related-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .ap-related-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
-
         @media (max-width: 680px) {
-            .ap-title h1 {
-                font-size: 2.6rem;
-            }
-            .ap-gallery {
-                grid-template-columns: 1fr;
-                height: auto;
-            }
-            .ap-gallery-main {
-                height: 280px;
-            }
-            .ap-gallery-thumbs {
-                height: 160px;
-            }
-            .ap-infoband-inner {
-                flex-direction: column;
-            }
-            .ap-infoband-item {
-                border-right: none;
-                border-bottom: 1px solid #e4e4e4;
-                padding: 0.9rem 0;
-            }
-            .ap-infoband-item:last-child {
-                border-bottom: none;
-            }
-            .ap-amenities-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            .ap-related-grid {
-                grid-template-columns: 1fr;
-            }
+            .ap-hero-content h1 { font-size: 2.8rem; }
+            .ap-photo-grid { grid-template-columns: 1fr; }
+            .ap-photo-grid img { height: 240px; }
+            .ap-related-grid { grid-template-columns: 1fr; }
+            .ap-book-btn { width: 100%; justify-content: center; }
         }
     </style>
 </head>
-<body>
+<body class="has-hero">
     <header>
         <a href="index.html" class="nav-logo-link">
             <div class="nav-logo-img-wrap">
-                <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+                <img src="images/logo.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
                 <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
             </div>
             <div class="nav-brand-text">
@@ -573,94 +186,19 @@
         </nav>
     </header>
 
-    <main style="padding-top: 2rem;">
+    <main>
 
-        <!-- Title -->
-        <section class="ap-title">
-            <div class="ap-wrap">
-                <h1 data-localize-key="apartment.heroTitle">Appartamento</h1>
+        <section class="ap-hero">
+            <img src="https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg" alt="Apartment at Ca' Leone" class="ap-hero-img">
+            <div class="ap-hero-content">
+                <h1 data-localize-key="apartment.heroTitle">700 Year Old Restored Barn</h1>
             </div>
         </section>
 
-        <!-- Gallery -->
-        <div class="ap-wrap">
-            <div class="ap-gallery">
-                <div class="ap-gallery-main">
-                    <a href="apartment-gallery.html">
-                        <img src="https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg" alt="Appartamento">
-                    </a>
-                </div>
-                <div class="ap-gallery-thumbs">
-                    <div class="ap-gallery-thumb">
-                        <a href="apartment-gallery.html">
-                            <img src="https://a0.muscache.com/im/pictures/6c90cd19-8ac1-4301-a649-4f12f929ad2e.jpg" alt="Appartamento">
-                        </a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="apartment-gallery.html">
-                            <img src="https://a0.muscache.com/im/pictures/a4148259-3b5e-4ea3-a3c4-d5b932897200.jpg" alt="Appartamento">
-                        </a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="apartment-gallery.html">
-                            <img src="https://a0.muscache.com/im/pictures/b682b360-77b5-4813-896f-3412c5640799.jpg" alt="Appartamento">
-                        </a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="apartment-gallery.html">
-                            <img src="https://a0.muscache.com/im/pictures/629d394d-48a0-4bff-bbcb-6bcdcd548ef9.jpg" alt="Appartamento">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Info band -->
-        <div class="ap-infoband">
-            <div class="ap-infoband-inner">
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-leaf"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="apartment.infoTheme">Vita in campagna</p>
-                        <p class="ap-ib-sub" data-localize-key="apartment.keyFactsDistance">10 km da Bologna</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-person-shelter"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="apartment.sleeps">Sleeps 2–6</p>
-                        <p class="ap-ib-sub" data-localize-key="apartment.sleepsNote">Extra beds on request</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-square-parking"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="apartment.keyFactsParking">Parcheggio</p>
-                        <p class="ap-ib-sub" data-localize-key="apartment.parkingNote">Disponibile in loco</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-eye-slash"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="apartment.keyFactsPrivacy">Alta privacy</p>
-                        <p class="ap-ib-sub" data-localize-key="apartment.privacyNote">Zona riservata</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-wifi"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="apartment.amenityWifi">Wi-Fi</p>
-                        <p class="ap-ib-sub" data-localize-key="apartment.wifiNote">Connessione gratuita</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Description -->
         <section class="ap-description">
             <div class="ap-wrap">
-                <h2 data-localize-key="apartment.descriptionTitle">L'Appartamento</h2>
-                <p data-localize-key="apartment.description">Un bellissimo appartamento immerso nella campagna bolognese, con tutti i comfort per un soggiorno autentico e rigenerante. Ideale per famiglie o gruppi di amici che cercano tranquillità, natura e i sapori genuini dell'azienda agricola.</p>
+                <h2 data-localize-key="apartment.descriptionTitle">The Apartment</h2>
+                <p data-localize-key="apartment.description">A beautiful apartment nestled in the Bologna countryside, with all the comforts for an authentic and restorative stay. Ideal for families or groups of friends looking for tranquility, nature, and the genuine flavours of the farm.</p>
                 <p>The apartment is one half of an independent house surrounded by nature. The owners live next door.</p>
                 <p>On the ground floor you will find a large dining/lounge/kitchen area with fully equipped kitchen and dining area, a bathroom, a laundry and exclusive access to the surrounding garden with sunbeds, hammock and BBQ in summertime. On the second floor there are two large bedrooms, a spacious master bedroom with private bath and walk-in wardrobe, and a second double bedroom with bathroom on the ground floor.</p>
                 <p>If requested we can provide fold-out single beds (for the 5th and 6th person) in both of the bedrooms.</p>
@@ -669,61 +207,29 @@
             </div>
         </section>
 
-        <hr class="ap-sep">
-
-        <!-- Amenities -->
-        <section class="ap-amenities">
-            <div class="ap-wrap">
-                <h2>What's included</h2>
-                <ul class="ap-amenities-list">
-                    <li>Two bedrooms — sleeps up to 6</li>
-                    <li>Fully equipped kitchen</li>
-                    <li>Two bathrooms</li>
-                    <li>Basic cooking kit — oil, salt, coffee, tea</li>
-                    <li>Heating and ventilation</li>
-                    <li>Panoramic countryside views</li>
-                    <li>Bed linen, towels, toiletries</li>
-                    <li>Smoke detector, fire extinguisher, first aid kit</li>
-                    <li>Wi-Fi</li>
-                    <li>Private parking on site</li>
-                </ul>
+        <div class="ap-wrap" style="padding-bottom: 3rem;">
+            <div class="ap-photo-grid">
+                <img src="https://a0.muscache.com/im/pictures/6c90cd19-8ac1-4301-a649-4f12f929ad2e.jpg" alt="Apartment interior">
+                <img src="https://a0.muscache.com/im/pictures/a4148259-3b5e-4ea3-a3c4-d5b932897200.jpg" alt="Apartment detail">
+                <img src="https://a0.muscache.com/im/pictures/b682b360-77b5-4813-896f-3412c5640799.jpg" alt="Apartment bedroom">
+                <img src="https://a0.muscache.com/im/pictures/629d394d-48a0-4bff-bbcb-6bcdcd548ef9.jpg" alt="Apartment view">
+                <!-- Add more apartment photos here — replace src with actual images -->
+                <img src="images/vigna.jpg" alt="Vineyard" class="ap-photo-hidden">
+                <img src="images/bosco.jpg" alt="Surrounding woods" class="ap-photo-hidden">
+                <img src="images/drone2.JPG" alt="Farm from above" class="ap-photo-hidden">
+                <img src="images/bench2.jpg" alt="Outdoor area" class="ap-photo-hidden">
             </div>
-        </section>
+            <button class="ap-load-more">Load more photos</button>
+        </div>
 
         <hr class="ap-sep">
 
-        <!-- Services -->
-        <section class="ap-services">
-            <div class="ap-wrap">
-                <h2 data-localize-key="apartment.servicesTitle">Local Support</h2>
-                <div class="ap-services-inner">
-                    <div class="ap-services-right">
-                        <p>We are here to make your stay as comfortable and memorable as possible. As your hosts, we are always nearby and happy to share our knowledge of the local area — from hidden gems to the best places to eat, drink and explore.</p>
-                    </div>
-                    <div class="ap-services-left">
-                        <ul>
-                            <li>Restaurant and trattoria recommendations</li>
-                            <li>Local markets and farm shops</li>
-                            <li>Hiking and cycling routes</li>
-                            <li>Day trips to Bologna, Ravenna and beyond</li>
-                            <li>Wine tastings and agriturismo visits</li>
-                            <li>Train and transport connections</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <hr class="ap-sep">
-
-        <!-- Booking -->
         <section class="ap-booking">
             <div class="ap-wrap">
                 <h2>Check Availability</h2>
                 <p class="ap-booking-sub">See available dates and book directly on Airbnb.</p>
                 <div class="ap-booking-inner">
                     <a href="https://www.airbnb.com/rooms/35970510" target="_blank" rel="noopener" class="ap-book-btn">
-                        <!-- Airbnb logo icon -->
                         <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.5 17.5c-.4.9-1.3 1.5-2.3 1.5-1.4 0-2.5-.6-3.2-1.5-.7.9-1.8 1.5-3.2 1.5-1 0-1.9-.6-2.3-1.5-.5-1-.3-2.2.4-3.1L9.5 11l-2-2.7C6.9 7.5 7 6.3 7.5 5.5 8 4.6 8.9 4 9.9 4c.6 0 1.2.2 1.6.5.3.2.5.5.5.8s-.2.6-.5.8c-.3.2-.7.2-1 0-.1-.1-.3-.1-.6-.1-.4 0-.7.2-.9.6-.2.4-.2.9.1 1.3l2.4 3.2.6.8.6-.8 2.4-3.2c.3-.4.3-.9.1-1.3-.2-.4-.5-.6-.9-.6-.3 0-.5 0-.6.1-.3.2-.7.2-1 0-.3-.2-.5-.5-.5-.8s.2-.6.5-.8c.4-.3 1-.5 1.6-.5 1 0 1.9.6 2.4 1.5.5.8.6 2 0 2.8l-2 2.7 2.1 3.4c.7.9.9 2.1.4 3.1z"/></svg>
                         Book on Airbnb
                     </a>
@@ -733,30 +239,29 @@
 
         <hr class="ap-sep">
 
-        <!-- Related accommodations -->
         <section class="ap-related">
             <div class="ap-wrap">
-                <h2 data-localize-key="apartment.otherAccommodationsTitle">Altre Sistemazioni</h2>
+                <h2 data-localize-key="apartment.otherAccommodationsTitle">Other Accommodation</h2>
                 <div class="ap-related-grid">
                     <a href="tiny-house.html" class="ap-related-card">
                         <img src="images/casette.jpg" alt="Tiny House">
                         <div class="ap-related-body">
                             <h3 data-localize-key="home.tinyHouseTitle">Tiny House</h3>
-                            <p class="ap-rel-desc" data-localize-key="home.tinyHouseDescription">Un rifugio accogliente e romantico.</p>
+                            <p class="ap-rel-desc" data-localize-key="home.tinyHouseDescription">A cozy and romantic retreat.</p>
                         </div>
                     </a>
                     <a href="roulotte.html" class="ap-related-card">
                         <img src="images/drone2.JPG" alt="Roulotte">
                         <div class="ap-related-body">
                             <h3 data-localize-key="home.roulotteTitle">Roulotte</h3>
-                            <p class="ap-rel-desc" data-localize-key="home.roulotteDescription">Un'affascinante roulotte vintage.</p>
+                            <p class="ap-rel-desc" data-localize-key="home.roulotteDescription">A charming vintage caravan.</p>
                         </div>
                     </a>
                     <a href="piazzola.html" class="ap-related-card">
                         <img src="images/drone1.JPG" alt="Piazzola">
                         <div class="ap-related-body">
                             <h3 data-localize-key="home.piazzolaTitle">Piazzola</h3>
-                            <p class="ap-rel-desc" data-localize-key="home.piazzolaDescription">Ampia piazzola per tende e camper.</p>
+                            <p class="ap-rel-desc" data-localize-key="home.piazzolaDescription">A spacious pitch for tents and campers.</p>
                         </div>
                     </a>
                 </div>
@@ -767,12 +272,10 @@
 
     <footer>
         <div style="display: inline-flex; gap: 3rem; align-items: center; text-align: left;">
-            <!-- Left column: logos -->
             <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
                 <img src="images/logo-nero.png" alt="Ca' Leone" style="height: 75px;">
                 <img src="images/agriturismo-italia.jpg" alt="Agriturismo Italia" style="height: 75px;">
             </div>
-            <!-- Right column: text -->
             <div>
                 <p><b>Azienda Agricola Ca' Leone</b></p>
                 <p>Via della Quercia 15, Ozzano dell'Emilia (BO)</p>
@@ -786,5 +289,14 @@
     </footer>
 
     <script src="app.js"></script>
+    <script>
+        const btn = document.querySelector('.ap-load-more');
+        if (btn) {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ap-photo-hidden').forEach(el => el.classList.remove('ap-photo-hidden'));
+                btn.style.display = 'none';
+            });
+        }
+    </script>
 </body>
 </html>

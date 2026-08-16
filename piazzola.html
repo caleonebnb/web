@@ -14,7 +14,7 @@
     <title data-localize-key="piazzola.title">Azienda Agricola - Piazzola</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
@@ -22,57 +22,83 @@
 
         .ap-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
 
-        .ap-title { padding: 0 0 1.5rem; }
-        .ap-title h1 { font-family: 'Raleway', sans-serif; font-size: 2.4rem; font-weight: 400; color: #1a1a1a; margin: 0 0 0.3rem; line-height: 1; }
+        /* ── Hero ── */
+        body.has-hero main { padding-top: 0 !important; }
+        body.has-hero header { background-color: rgba(0,0,0,0.3); position: fixed; box-shadow: none; }
 
-        .ap-gallery { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; height: 540px; border-radius: 14px; overflow: hidden; }
-        .ap-gallery-main { overflow: hidden; }
-        .ap-gallery-main a, .ap-gallery-thumb a { display: block; width: 100%; height: 100%; }
-        .ap-gallery-main img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-        .ap-gallery-main:hover img { transform: scale(1.03); }
-        .ap-gallery-thumbs { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; height: 100%; }
-        .ap-gallery-thumb { overflow: hidden; min-height: 0; }
-        .ap-gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s ease; }
-        .ap-gallery-thumb:hover img { transform: scale(1.05); }
+        .ap-hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
 
-        .ap-infoband { border-top: 1px solid #e4e4e4; border-bottom: 1px solid #e4e4e4; margin: 2.5rem 0; }
-        .ap-infoband-inner { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; display: flex; }
-        .ap-infoband-item { flex: 1; display: flex; align-items: center; gap: 0.8rem; padding: 1.25rem 1.5rem; border-right: 1px solid #e4e4e4; }
-        .ap-infoband-item:first-child { padding-left: 0; }
-        .ap-infoband-item:last-child { border-right: none; }
-        .ap-infoband-icon { font-size: 1.1rem; flex-shrink: 0; color: #2c2c2c; width: 1.4rem; text-align: center; }
-        .ap-infoband-text p { margin: 0; line-height: 1.3; }
-        .ap-infoband-text .ap-ib-label { font-size: 0.83rem; font-weight: 600; color: #2c2c2c; }
-        .ap-infoband-text .ap-ib-sub { font-size: 0.76rem; color: #999; margin-top: 0.1rem; }
+        .ap-hero-img {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
 
-        .ap-description { padding-bottom: 3rem; }
+        .ap-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
+        }
+
+        .ap-hero-content {
+            z-index: 2;
+            padding: 1rem;
+        }
+
+        .ap-hero-content h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 4rem;
+            font-weight: 700;
+            color: white;
+            margin: 0;
+            letter-spacing: 0.01em;
+        }
+
+        /* ── Description ── */
+        .ap-description { padding: 3rem 0; }
         .ap-description h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 1rem; }
         .ap-description p { font-size: 0.95rem; line-height: 1.95; color: #555; max-width: 750px; margin: 0 0 1rem; }
 
+        /* ── Photo grid ── */
+        .ap-photo-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+        .ap-photo-grid img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            display: block;
+            border-radius: 4px;
+        }
+        .ap-gallery-link {
+            display: inline-block;
+            margin-top: 1rem;
+            font-family: 'Raleway', sans-serif;
+            font-size: 0.85rem;
+            color: #38695b;
+            text-decoration: underline;
+        }
+
+        /* ── Sep ── */
         .ap-sep { border: none; border-top: 1px solid #e4e4e4; margin: 0; }
 
-        .ap-amenities { padding: 3rem 0; background-color: #9DDABD; }
-        .ap-amenities h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 1.5rem; }
-        .ap-amenities-list { list-style: none; padding: 0; margin: 0; columns: 2; column-gap: 3rem; }
-        .ap-amenities-list li { font-family: 'Overpass', sans-serif; font-size: 0.95rem; color: #2c2c2c; padding: 0.45rem 0; border-bottom: 1px solid rgba(0,0,0,0.08); }
-        .ap-amenities-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
-        .ap-amenity-card { border: 1px solid rgba(255,255,255,0.4); border-radius: 12px; padding: 1.4rem 1.1rem; background-color: rgba(255,255,255,0.55); }
-        .ap-amenity-card .ap-amenity-icon { font-size: 1.7rem; display: block; margin-bottom: 0.8rem; }
-        .ap-amenity-card h3 { font-family: 'Overpass', sans-serif; font-size: 0.83rem; font-weight: 600; margin: 0 0 0.35rem; color: #2c2c2c; }
-        .ap-amenity-card p { font-size: 0.76rem; color: #999; margin: 0; line-height: 1.55; }
-
-        .ap-services { position: relative; background: url('images/drone1.JPG') center/cover no-repeat; }
-        .ap-services::after { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
-        .ap-services .ap-wrap { position: relative; z-index: 1; padding-top: 3rem; padding-bottom: 3rem; }
-        .ap-services h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: white; margin: 0 0 2rem; }
-        .ap-services-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
-        .ap-services-right p { color: white; line-height: 1.8; margin: 0 0 1.5rem; font-size: 0.95rem; }
-        .ap-services-right ul, .ap-services-left ul { list-style: none; padding: 0; margin: 0; }
-        .ap-services-right ul li, .ap-services-left ul li { color: white; padding: 0.5rem 0; border-bottom: 1px solid rgba(255,255,255,0.15); font-size: 0.9rem; }
-        .ap-services-right ul li:last-child, .ap-services-left ul li:last-child { border-bottom: none; }
-        .ap-services-right ul li::before, .ap-services-left ul li::before { content: '→ '; color: white; }
-
-        .ap-related { padding: 3rem 0 4rem; }
+        /* ── Related ── */
+        .ap-related { padding: 3rem 0 4rem; background-color: #f5f5f3; }
         .ap-related h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 2rem; }
         .ap-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .ap-related-card { border-radius: 14px; overflow: hidden; border: 1px solid #e4e4e4; text-decoration: none; color: inherit; display: block; transition: box-shadow 0.25s ease, transform 0.25s ease; }
@@ -80,42 +106,25 @@
         .ap-related-card img { width: 100%; height: 210px; object-fit: cover; display: block; }
         .ap-related-body { padding: 1.1rem 1.2rem 1.4rem; }
         .ap-related-body h3 { font-family: 'Raleway', sans-serif; font-size: 1.5rem; font-weight: 400; margin: 0 0 0.2rem; color: #1a1a1a; }
-        .ap-related-body .ap-rel-loc { font-size: 0.78rem; font-weight: 600; color: #38695b; margin: 0 0 0.4rem; letter-spacing: 0.02em; text-transform: uppercase; }
         .ap-related-body .ap-rel-desc { font-size: 0.82rem; color: #999; margin: 0; line-height: 1.5; }
 
-
-        
-
-
-
-
+        /* ── Responsive ── */
         @media (max-width: 900px) {
-            .ap-amenities-grid { grid-template-columns: repeat(2, 1fr); }
             .ap-related-grid { grid-template-columns: repeat(2, 1fr); }
         }
-        @media (max-width: 768px) {
-
-
-        }
         @media (max-width: 680px) {
-            .ap-title h1 { font-size: 2rem; }
-            .ap-gallery { grid-template-columns: 1fr; height: auto; }
-            .ap-gallery-main { height: 280px; }
-            .ap-gallery-thumbs { height: 160px; }
-            .ap-infoband-inner { flex-direction: column; }
-            .ap-infoband-item { border-right: none; border-bottom: 1px solid #e4e4e4; padding: 0.9rem 0; }
-            .ap-infoband-item:last-child { border-bottom: none; }
-            .ap-amenities-grid { grid-template-columns: repeat(2, 1fr); }
+            .ap-hero-content h1 { font-size: 2.8rem; }
+            .ap-photo-grid { grid-template-columns: 1fr; }
+            .ap-photo-grid img { height: 240px; }
             .ap-related-grid { grid-template-columns: 1fr; }
-            .ap-services-inner { grid-template-columns: 1fr; }
         }
     </style>
 </head>
-<body>
+<body class="has-hero">
     <header>
         <a href="index.html" class="nav-logo-link">
             <div class="nav-logo-img-wrap">
-                <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+                <img src="images/logo.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
                 <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
             </div>
             <div class="nav-brand-text">
@@ -151,75 +160,14 @@
         </nav>
     </header>
 
-    <main style="padding-top: 2rem;">
+    <main>
 
-        <section class="ap-title">
-            <div class="ap-wrap">
+        <section class="ap-hero">
+            <img src="images/drone1.JPG" alt="Agricamping at Ca' Leone" class="ap-hero-img">
+            <div class="ap-hero-content">
                 <h1 data-localize-key="piazzola.heroTitle">Agricamping Pitch</h1>
             </div>
         </section>
-
-        <div class="ap-wrap">
-            <div class="ap-gallery">
-                <div class="ap-gallery-main">
-                    <a href="piazzola-gallery.html"><img src="images/orto.JPG" alt="Piazzola"></a>
-                </div>
-                <div class="ap-gallery-thumbs">
-                    <div class="ap-gallery-thumb">
-                        <a href="piazzola-gallery.html"><img src="images/drone1.JPG" alt="Aerial view"></a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="piazzola-gallery.html"><img src="images/bosco.jpg" alt="Surrounding woods"></a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="piazzola-gallery.html"><img src="images/vigna.jpg" alt="Vineyard"></a>
-                    </div>
-                    <div class="ap-gallery-thumb">
-                        <a href="piazzola-gallery.html"><img src="images/drone3.JPG" alt="Countryside"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="ap-infoband">
-            <div class="ap-infoband-inner">
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-leaf"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="piazzola.infoTheme">Country life</p>
-                        <p class="ap-ib-sub" data-localize-key="piazzola.keyFactsDistance">10 km from Bologna</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-campground"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="piazzola.pitchType">Tents &amp; Campers</p>
-                        <p class="ap-ib-sub" data-localize-key="piazzola.pitchNote">Spacious grassy pitch</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-square-parking"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="piazzola.keyFactsParking">Parking</p>
-                        <p class="ap-ib-sub" data-localize-key="piazzola.parkingNote">Available on site</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-eye-slash"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="piazzola.keyFactsPrivacy">High privacy</p>
-                        <p class="ap-ib-sub" data-localize-key="piazzola.privacyNote">Quiet farm setting</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-wifi"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="piazzola.amenityWifi">Wi-Fi</p>
-                        <p class="ap-ib-sub" data-localize-key="piazzola.wifiNote">Free connection</p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <section class="ap-description">
             <div class="ap-wrap">
@@ -231,59 +179,24 @@
             </div>
         </section>
 
-        <hr class="ap-sep">
-
-        <section class="ap-amenities">
-            <div class="ap-wrap">
-                <h2>What's included</h2>
-                <ul class="ap-amenities-list">
-                    <li>Grassy pitch for tents, campers and caravans</li>
-                    <li>Shared showers and toilets on site</li>
-                    <li>Electric hook-up (on request)</li>
-                    <li>Fresh water point on site</li>
-                    <li>Shared outdoor BBQ</li>
-                    <li>Views of open countryside and hills</li>
-                    <li>Waste disposal and recycling</li>
-                    <li>Dogs welcome on leads</li>
-                    <li>Wi-Fi</li>
-                    <li>Private parking on site</li>
-                </ul>
+        <div class="ap-wrap" style="padding-bottom: 3rem;">
+            <div class="ap-photo-grid">
+                <img src="images/orto.JPG" alt="Farm garden">
+                <img src="images/bosco.jpg" alt="Surrounding woods">
+                <img src="images/vigna.jpg" alt="Vineyard">
+                <img src="images/drone3.JPG" alt="Countryside view">
             </div>
-        </section>
-
-        <hr class="ap-sep">
-
-        <section class="ap-services">
-            <div class="ap-wrap">
-                <h2 data-localize-key="piazzola.servicesTitle">Local Support</h2>
-                <div class="ap-services-inner">
-                    <div class="ap-services-right">
-                        <p>We are here to make your stay as comfortable and memorable as possible. As your hosts, we are always nearby and happy to share our knowledge of the local area — from hidden gems to the best places to eat, drink and explore.</p>
-                    </div>
-                    <div class="ap-services-left">
-                        <ul>
-                            <li>Restaurant and trattoria recommendations</li>
-                            <li>Local markets and farm shops</li>
-                            <li>Hiking and cycling routes</li>
-                            <li>Day trips to Bologna, Ravenna and beyond</li>
-                            <li>Wine tastings and agriturismo visits</li>
-                            <li>Train and transport connections</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
 
         <hr class="ap-sep">
 
         <section class="ap-related">
             <div class="ap-wrap">
-                <h2 data-localize-key="piazzola.otherAccommodationsTitle">Other Accommodations</h2>
+                <h2 data-localize-key="piazzola.otherAccommodationsTitle">Other Accommodation</h2>
                 <div class="ap-related-grid">
                     <a href="apartment.html" class="ap-related-card">
-                        <img src="images/cucina.jpg" alt="Apartment">
+                        <img src="https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg" alt="Apartment">
                         <div class="ap-related-body">
-                            <p class="ap-rel-loc" data-localize-key="piazzola.relatedLocation">Ozzano dell'Emilia · Bologna</p>
                             <h3 data-localize-key="home.apartmentTitle">Apartment</h3>
                             <p class="ap-rel-desc" data-localize-key="home.apartmentDescription">A spacious and comfortable apartment.</p>
                         </div>
@@ -291,15 +204,13 @@
                     <a href="tiny-house.html" class="ap-related-card">
                         <img src="images/casette.jpg" alt="Tiny House">
                         <div class="ap-related-body">
-                            <p class="ap-rel-loc" data-localize-key="piazzola.relatedLocation">Ozzano dell'Emilia · Bologna</p>
                             <h3 data-localize-key="home.tinyHouseTitle">Tiny House</h3>
                             <p class="ap-rel-desc" data-localize-key="home.tinyHouseDescription">A cozy and romantic retreat.</p>
                         </div>
                     </a>
                     <a href="roulotte.html" class="ap-related-card">
-                        <img src="images/bench.jpg" alt="Roulotte">
+                        <img src="images/roulotte.jpg" alt="Roulotte">
                         <div class="ap-related-body">
-                            <p class="ap-rel-loc" data-localize-key="piazzola.relatedLocation">Ozzano dell'Emilia · Bologna</p>
                             <h3 data-localize-key="home.roulotteTitle">Roulotte</h3>
                             <p class="ap-rel-desc" data-localize-key="home.roulotteDescription">A charming vintage caravan.</p>
                         </div>
@@ -312,12 +223,10 @@
 
     <footer>
         <div style="display: inline-flex; gap: 3rem; align-items: center; text-align: left;">
-            <!-- Left column: logos -->
             <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
                 <img src="images/logo-nero.png" alt="Ca' Leone" style="height: 75px;">
                 <img src="images/agriturismo-italia.jpg" alt="Agriturismo Italia" style="height: 75px;">
             </div>
-            <!-- Right column: text -->
             <div>
                 <p><b>Azienda Agricola Ca' Leone</b></p>
                 <p>Via della Quercia 15, Ozzano dell'Emilia (BO)</p>

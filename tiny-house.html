@@ -49,6 +49,8 @@
             color: #38695b;
             text-decoration: underline;
         }
+        .ap-photo-grid img.ap-photo-hidden { display: none; }
+        .ap-load-more { display: block; margin: 1.5rem auto 0; font-family: 'Raleway', sans-serif; font-size: 0.85rem; color: #38695b; background: none; border: none; cursor: pointer; padding: 0; text-decoration: none; text-align: center; }
         @media (max-width: 600px) {
             .ap-photo-grid { grid-template-columns: 1fr; }
             .ap-photo-grid img:first-child { grid-column: 1; }
@@ -64,7 +66,7 @@
         .ap-infoband-text .ap-ib-label { font-size: 0.83rem; font-weight: 600; color: #2c2c2c; }
         .ap-infoband-text .ap-ib-sub { font-size: 0.76rem; color: #999; margin-top: 0.1rem; }
 
-        .ap-description { padding-bottom: 3rem; }
+        .ap-description { padding: 3rem 0; }
         .ap-description h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 1rem; }
         .ap-description p { font-size: 0.95rem; line-height: 1.95; color: #555; max-width: 750px; margin: 0 0 1rem; }
 
@@ -91,7 +93,7 @@
         .ap-services-right ul li:last-child, .ap-services-left ul li:last-child { border-bottom: none; }
         .ap-services-right ul li::before, .ap-services-left ul li::before { content: '→ '; color: white; }
 
-        .ap-related { padding: 3rem 0 4rem; }
+        .ap-related { padding: 3rem 0 4rem; background-color: #f5f5f3; }
         .ap-related h2 { font-family: 'Raleway', sans-serif; font-size: 2.2rem; font-weight: 400; color: #1a1a1a; margin: 0 0 2rem; }
         .ap-related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .ap-related-card { border-radius: 14px; overflow: hidden; border: 1px solid #e4e4e4; text-decoration: none; color: inherit; display: block; transition: box-shadow 0.25s ease, transform 0.25s ease; }
@@ -104,7 +106,7 @@
 
         /* ── Hero ── */
         body.has-hero main { padding-top: 0 !important; }
-        body.has-hero header { background-color: transparent; position: fixed; box-shadow: none; }
+        body.has-hero header { background-color: rgba(0,0,0,0.3); position: fixed; box-shadow: none; }
 
         .th-hero {
             position: relative;
@@ -122,11 +124,19 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             object-fit: cover;
-            z-index: -1;
+            z-index: 0;
+        }
+
+        .th-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.25) 40%, rgba(0,0,0,0.5) 100%);
+            z-index: 1;
         }
 
         .th-hero-content {
-            z-index: 1;
+            z-index: 2;
             padding: 1rem;
         }
 
@@ -172,7 +182,7 @@
     <header>
         <a href="index.html" class="nav-logo-link">
             <div class="nav-logo-img-wrap">
-                <img src="images/logo-nero.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
+                <img src="images/logo.png" alt="Azienda Agricola Logo" class="nav-logo nav-logo-default">
                 <img src="images/logo-red.png" alt="Azienda Agricola Logo Hover" class="nav-logo nav-logo-hover">
             </div>
             <div class="nav-brand-text">
@@ -217,46 +227,6 @@
             </div>
         </section>
 
-        <div class="ap-infoband">
-            <div class="ap-infoband-inner">
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-leaf"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="tiny-house.infoTheme">Country life</p>
-                        <p class="ap-ib-sub" data-localize-key="tiny-house.keyFactsDistance">10 km from Bologna</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-person-shelter"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="tiny-house.sleeps">Sleeps 2</p>
-                        <p class="ap-ib-sub" data-localize-key="tiny-house.sleepsNote">Ideal for couples</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-square-parking"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="tiny-house.keyFactsParking">Parking</p>
-                        <p class="ap-ib-sub" data-localize-key="tiny-house.parkingNote">Available on site</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-eye-slash"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="tiny-house.keyFactsPrivacy">High privacy</p>
-                        <p class="ap-ib-sub" data-localize-key="tiny-house.privacyNote">Private area</p>
-                    </div>
-                </div>
-                <div class="ap-infoband-item">
-                    <i class="ap-infoband-icon fa-solid fa-wifi"></i>
-                    <div class="ap-infoband-text">
-                        <p class="ap-ib-label" data-localize-key="tiny-house.amenityWifi">Wi-Fi</p>
-                        <p class="ap-ib-sub" data-localize-key="tiny-house.wifiNote">Free connection</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <section class="ap-description">
             <div class="ap-wrap">
                 <h2 data-localize-key="tiny-house.descriptionTitle">The Tiny House</h2>
@@ -273,61 +243,18 @@
                 <img src="images/tiny2.jpg" alt="Tiny House interior" class="portrait">
                 <img src="images/vasca.jpg" alt="Tiny House bath" class="fill">
                 <img src="images/tinylibreria.jpg" alt="Tiny House library" class="fill">
-                <img src="images/tinycucina.jpg" alt="Tiny House kitchen" class="fill">
-                <img src="images/tinybench.jpg" alt="Tiny House bench" class="portrait">
-                <img src="images/tinycafe.jpg" alt="Tiny House cafe" class="fill">
+                <img src="images/tinycucina.jpg" alt="Tiny House kitchen" class="fill ap-photo-hidden">
+                <img src="images/tinybench.jpg" alt="Tiny House bench" class="portrait ap-photo-hidden">
+                <img src="images/tinycafe.jpg" alt="Tiny House cafe" class="fill ap-photo-hidden">
             </div>
-            <a href="tiny-house-gallery.html" class="ap-gallery-link">View all photos →</a>
+            <button class="ap-load-more">Load more photos</button>
         </div>
-
-        <hr class="ap-sep">
-
-        <section class="ap-amenities">
-            <div class="ap-wrap">
-                <h2>What's included</h2>
-                <ul class="ap-amenities-list">
-                    <li>Double bed</li>
-                    <li>Kitchenette — hob, mini fridge, basic utensils</li>
-                    <li>Private bathroom with shower</li>
-                    <li>Private terrace with outdoor seating</li>
-                    <li>Heating</li>
-                    <li>Panoramic countryside views</li>
-                    <li>Bed linen, towels, toiletries</li>
-                    <li>Shared outdoor BBQ</li>
-                    <li>Wi-Fi</li>
-                    <li>Private parking on site</li>
-                </ul>
-            </div>
-        </section>
-
-        <hr class="ap-sep">
-
-        <section class="ap-services">
-            <div class="ap-wrap">
-                <h2 data-localize-key="tiny-house.servicesTitle">Local Support</h2>
-                <div class="ap-services-inner">
-                    <div class="ap-services-right">
-                        <p>We are here to make your stay as comfortable and memorable as possible. As your hosts, we are always nearby and happy to share our knowledge of the local area — from hidden gems to the best places to eat, drink and explore.</p>
-                    </div>
-                    <div class="ap-services-left">
-                        <ul>
-                            <li>Restaurant and trattoria recommendations</li>
-                            <li>Local markets and farm shops</li>
-                            <li>Hiking and cycling routes</li>
-                            <li>Day trips to Bologna, Ravenna and beyond</li>
-                            <li>Wine tastings and agriturismo visits</li>
-                            <li>Train and transport connections</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <hr class="ap-sep">
 
         <section class="ap-related">
             <div class="ap-wrap">
-                <h2 data-localize-key="tiny-house.otherAccommodationsTitle">Other Accommodations</h2>
+                <h2 data-localize-key="tiny-house.otherAccommodationsTitle">Other Accommodation</h2>
                 <div class="ap-related-grid">
                     <a href="apartment.html" class="ap-related-card">
                         <img src="https://a0.muscache.com/im/pictures/a1d3c3ce-4ae9-4f60-9192-2870915423ac.jpg" alt="Apartment">
@@ -378,15 +305,11 @@
 
     <script src="app.js"></script>
     <script>
-        const header = document.querySelector('header');
-        const hero = document.querySelector('.th-hero');
-        if (header && hero) {
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > hero.offsetHeight - header.offsetHeight) {
-                    header.classList.add('scrolled');
-                } else {
-                    header.classList.remove('scrolled');
-                }
+        const btn = document.querySelector('.ap-load-more');
+        if (btn) {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.ap-photo-hidden').forEach(el => el.classList.remove('ap-photo-hidden'));
+                btn.style.display = 'none';
             });
         }
     </script>

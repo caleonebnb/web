@@ -1,6 +1,7 @@
 html, body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden; /* Prevent horizontal scrollbars — on both html+body so window.scrollY works */
 }
 
 * {
@@ -12,8 +13,6 @@ body {
     margin: 0;
     background-color: #f4f4f4;
     color: #333;
-    overflow-x: hidden; /* Prevent horizontal scrollbars */
-    width: 100vw; /* Explicitly set body width to viewport width */
 }
 
 body.home-page main {
@@ -58,6 +57,20 @@ body:not(.home-page) nav a:active,
 body:not(.home-page) nav a.active { color: #333; text-decoration: none; }
 body:not(.home-page) nav a:hover,
 body:not(.home-page) nav a.active { text-decoration: underline; }
+
+/* ── Has-hero pages: light nav over dark hero overlay ── */
+body.has-hero nav.nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; }
+body.has-hero nav.nav-links a:hover,
+body.has-hero nav.nav-links a.active { color: white; text-decoration: underline; }
+body.has-hero .nav-brand-name { color: rgba(255,255,255,0.9); }
+body.has-hero .nav-brand-sub { color: rgba(255,255,255,0.65); }
+body.has-hero .hamburger-menu .bar { background-color: rgba(255,255,255,0.85); }
+body.has-hero nav.nav-links .nav-dropdown-item { color: #333; text-decoration: none; }
+body.has-hero nav.nav-links .nav-dropdown-item:hover,
+body.has-hero nav.nav-links .nav-dropdown-item.active { color: #333; text-decoration: underline; }
+
+/* ── Has-hero scrolled: dark header so white text stays readable ── */
+body.has-hero header.scrolled { background-color: rgba(20, 20, 20, 0.88); }
 
 nav {
     display: flex;

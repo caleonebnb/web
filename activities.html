@@ -20,6 +20,67 @@
     <style>
         body { font-family: 'Overpass', sans-serif; background: #fff; color: #2c2c2c; }
 
+        .act-wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+        .act-intro { padding: 3rem 0 2rem; }
+        .act-intro h1 { font-family: 'Raleway', sans-serif; font-size: 2.4rem; font-weight: 400; color: #1a1a1a; margin: 0 0 1rem; }
+        .act-intro p { font-size: 0.95rem; line-height: 1.95; color: #555; max-width: 750px; margin: 0 0 1rem; }
+
+        .act-sep { border: none; border-top: 1px solid #e4e4e4; margin: 0; }
+
+        .act-support {
+            position: relative;
+            background: url('images/bosco.jpg') center/cover no-repeat;
+        }
+        .act-support::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.52);
+        }
+        .act-support .act-wrap {
+            position: relative;
+            z-index: 1;
+            padding-top: 3.5rem;
+            padding-bottom: 3.5rem;
+        }
+        .act-support h2 {
+            font-family: 'Raleway', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 400;
+            color: white;
+            margin: 0 0 0.6rem;
+        }
+        .act-support .act-support-sub {
+            font-size: 0.95rem;
+            color: rgba(255,255,255,0.75);
+            line-height: 1.8;
+            max-width: 600px;
+            margin: 0 0 2rem;
+        }
+        .act-support-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0 3rem;
+        }
+        .act-support-grid ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .act-support-grid ul li {
+            color: white;
+            padding: 0.55rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.15);
+            font-size: 0.92rem;
+        }
+        .act-support-grid ul li:last-child { border-bottom: none; }
+        .act-support-grid ul li::before { content: '→ '; color: rgba(255,255,255,0.6); }
+
+        @media (max-width: 680px) {
+            .act-support-grid { grid-template-columns: 1fr; }
+        }
+
 
         
 
@@ -72,11 +133,36 @@
         </nav>
     </header>
 
-    <main id="content">
-        <h1 id="content-title"></h1>
-        <p id="content-body"></p>
-        <img src="images/bosco.jpg" alt="Forest near the farm" class="content-image">
-        <img src="images/vigna.jpg" alt="Vineyard on the farm" class="content-image">
+    <main>
+
+        <section class="act-intro">
+            <div class="act-wrap">
+                <h1 data-localize-key="activities.title">Things To Do</h1>
+                <p data-localize-key="activities.intro">Ca' Leone sits at the foot of the Apennine hills, between Bologna and the Romagna countryside — an ideal base for exploring on foot, by bike, or by car. Whether you're after nature, culture, food or simply doing nothing at all, there is plenty to discover nearby.</p>
+            </div>
+        </section>
+
+        <hr class="act-sep">
+
+        <section class="act-support">
+            <div class="act-wrap">
+                <h2 data-localize-key="activities.supportTitle">Your Hosts Are Here to Help</h2>
+                <p class="act-support-sub" data-localize-key="activities.supportIntro">We are always nearby and happy to share our knowledge of the local area — from hidden gems to the best places to eat, drink and explore.</p>
+                <div class="act-support-grid">
+                    <ul>
+                        <li data-localize-key="activities.support1">Restaurant and trattoria recommendations</li>
+                        <li data-localize-key="activities.support2">Local markets and farm shops</li>
+                        <li data-localize-key="activities.support3">Hiking and cycling routes</li>
+                    </ul>
+                    <ul>
+                        <li data-localize-key="activities.support4">Day trips to Bologna, Ravenna and beyond</li>
+                        <li data-localize-key="activities.support5">Wine tastings and agriturismo visits</li>
+                        <li data-localize-key="activities.support6">Train and transport connections</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <footer>
