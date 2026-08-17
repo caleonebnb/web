@@ -188,11 +188,6 @@ const content = {
             title: "Azienda Agricola - Our Philosophy",
             content: "We believe in sustainable agriculture and respecting nature. Our goal is to live in harmony with the environment."
         },
-        products: {
-            nav: "Prodotti Agricoli",
-            title: "Azienda Agricola - Agricultural Products",
-            content: "We produce organic olive oil, wine, honey, and fresh vegetables. All available for our guests to purchase."
-        },
         activities: {
             nav: "Things To Do",
             title: "Azienda Agricola - Things To Do",
@@ -225,6 +220,10 @@ const content = {
             winterVeg: "Winter Vegetables",
             fruit: "Fruit",
             blackberries: "Blackberries"
+        },
+        FEASR: {
+            nav: "FEASR",
+            title: "Ca' Leone - Rural Development Fund (FEASR)"
         }
     },
     it: {
@@ -448,6 +447,10 @@ const content = {
             winterVeg: "Ortaggi Invernali",
             fruit: "Frutta",
             blackberries: "More"
+        },
+        FEASR: {
+            nav: "FEASR",
+            title: "Ca' Leone - Sviluppo Rurale (FEASR)"
         }
     }
 };

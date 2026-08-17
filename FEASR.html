@@ -11,7 +11,8 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-localize-key="contacts.title">Azienda Agricola - Contacts</title>
+    <meta name="description" content="Dettagli sul contributo FEASR (Fondo Europeo Agricolo per lo Sviluppo Rurale) ricevuto da Azienda Agricola Ca' Leone nell'ambito del PSR Emilia-Romagna 2023-2027.">
+    <title data-localize-key="FEASR.title">Ca' Leone - FEASR</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@300;400;600&family=Raleway:wght@200;300;400;700&display=swap" rel="stylesheet">
@@ -41,14 +42,26 @@
             margin: 0;
         }
 
-        /* ── Main contact layout ── */
+        /* ── Main content layout ── */
         .ct-main {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: start;
-            padding: 2rem 0 4rem;
+            padding: 2rem 0 3rem;
             border-top: 1px solid #e4e4e4;
+        }
+
+        /* ── Funding logos (full width, below the columns) ── */
+        .ct-logos {
+            text-align: center;
+            padding: 0 0 3rem;
+        }
+
+        .ct-logos img {
+            width: 90%;
+            max-width: 900px;
+            height: auto;
         }
 
         /* ── Contact details ── */
@@ -116,10 +129,8 @@
 
         @media (max-width: 768px) {
 
-
             .ct-main { grid-template-columns: 1fr; gap: 2.5rem; }
-            .ct-image { position: static; }
-            .ct-image img { height: 300px; }
+            .ct-logos img { width: 100%; }
             .ct-title h1 { font-size: 2rem; }
         }
     </style>
@@ -179,49 +190,44 @@ INTERVENTI SRE01 --INSEDIAMENTO GIOVANI AGRICOLTORI-- Anno 2024. Approvato con D
         <div class="ct-wrap">
             <div class="ct-main">
 
-                <!-- Left: contact details -->
                 <div class="ct-details">
-                    <h2>Descrizione dell’ intervento</h2>
-
-                 
-                        <div class="ct-item-text">
-                            <span class="ct-item-label">Intervento</span>
-                            Per lo svolgimento e incremento dell’attività aziendale, in attuazione dell’intervento SRE01 –INSEDIAMENTO GIOVANI AGRICOLTORI– del Programma di Sviluppo Rurale 2023–2027.
-Gli investimenti sono stati realizzati presso il seguente allevamento:
-Ozzano dell'Emilia, via della Quercia 15 (BO) – Importo premio : € 60.000,00<br>
-La ditta individuale CA' LEONE DI COOK AMY LEIGH ha beneficiato, nell’anno 2026, di contributi da fondi europei (FEASR) per un importo complessivo di € 60.000,00<br>
-L’intervento ha previsto l’insediamento e avviamento della titolare giovane Cook Amy Leigh, attraverso la realizzazione dei seguenti investimenti:<br>
-                        </div>
-                    </div>
-
-                        <div class="ct-item-text">
-                            <span class="ct-item-label">Realizzazione di nuovo oliveto a vaso sesto 6x 6
-140 piante, 0.50.40 ha (foglio 86 part. 215, 217 Castel San Pietro)<br>
-
-<br>
-Macchine NON di precisione per gestione e distribuzione antiparassitari: atomizzatore portato con ugelli antideriva da 120 litri<br>
-<br>
-Altre Attrezzature: trincia<br>
-<br>
-Trattori specializzati con protezione arco/telaio (a costo standard) potenza 69 kw<br>
-<br>
-Altre Attrezzature: Erpice rotante<br>
-<br>
-Spese connesse a Sistemi qualità regolamentati - biologico</span>
-                           
-                        </div>
-                    </div>
+                    <h2>Descrizione dell'intervento</h2>
 
                     <div class="ct-item">
                         <div class="ct-item-text">
-                           
-                           
-                               
-                            </a>
-            <div style="display: block; clear: both; width: 100%; text-align: left; margin: 20px 0;">
-    <img src="images/PSR_UE_Repubblica Italiana_RER_LOGHI_4 loghi_rgb.jpg" alt="Ca' Leone vineyard" style="max-width: 100%; height: auto; display: block;">
+                            <span class="ct-item-label">Intervento</span>
+                            Per lo svolgimento e incremento dell'attività aziendale, in attuazione dell'intervento SRE01 – INSEDIAMENTO GIOVANI AGRICOLTORI – del Programma di Sviluppo Rurale 2023–2027.<br>
+                            Gli investimenti sono stati realizzati presso il seguente allevamento:<br>
+                            Ozzano dell'Emilia, via della Quercia 15 (BO) – Importo premio: € 60.000,00<br>
+                            La ditta individuale CA' LEONE DI COOK AMY LEIGH ha beneficiato, nell'anno 2026, di contributi da fondi europei (FEASR) per un importo complessivo di € 60.000,00.<br>
+                            L'intervento ha previsto l'insediamento e avviamento della titolare giovane Cook Amy Leigh, attraverso la realizzazione dei seguenti investimenti:
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ct-investments">
+                    <div class="ct-item">
+                        <div class="ct-item-text">
+                            <span class="ct-item-label">Investimenti realizzati</span>
+                            Realizzazione di nuovo oliveto a vaso, sesto 6x6, 140 piante, 0.50.40 ha (foglio 86 part. 215, 217 Castel San Pietro)<br><br>
+                            Macchine NON di precisione per gestione e distribuzione antiparassitari: atomizzatore portato con ugelli antideriva da 120 litri<br><br>
+                            Altre attrezzature: trincia<br><br>
+                            Trattori specializzati con protezione arco/telaio (a costo standard), potenza 69 kW<br><br>
+                            Altre attrezzature: erpice rotante<br><br>
+                            Spese connesse a sistemi di qualità regolamentati – biologico
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
 
+        <!-- Funding logos -->
+        <div class="ct-wrap">
+            <div class="ct-logos">
+                <img src="images/PSR_UE_Repubblica Italiana_RER_LOGHI_4 loghi_rgb.jpg" alt="Loghi PSR UE, Repubblica Italiana, Regione Emilia-Romagna">
+            </div>
+        </div>
     </main>
 
     <footer>
