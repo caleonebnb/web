@@ -202,6 +202,20 @@ dialog form{padding:18px;display:flex;flex-direction:column;gap:12px}
 .set-head{display:flex;align-items:center;justify-content:space-between;gap:8px;font-weight:700}
 .set-bar{position:sticky;bottom:0;display:flex;gap:8px;justify-content:flex-end;align-items:center;flex-wrap:wrap;padding:10px 0;background:var(--bg);border-top:1px solid var(--line);z-index:5}
 .set-bar #set-msg{margin-right:auto;font-size:13px;color:var(--warn);font-weight:600}
+.unit-card{border-left:5px solid var(--c,var(--line))}
+.unit-card.occ{background:color-mix(in srgb,var(--c) 28%,var(--surface));border-color:color-mix(in srgb,var(--c) 50%,var(--line));border-left-color:var(--c)}
+.unit-card .unit-name{font-size:16px}
+.pill.big{font-size:13.5px;padding:3px 11px}
+.cl .cl-head .unit-name{font-size:17px}
+.cl .due{font-size:15px;font-weight:700;color:var(--ink)}
+.cl .due.bad{color:var(--bad)}
+.next-clean{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:6px;grid-column:1 / -1}
+.next-clean .big{font-size:17px;font-weight:700;color:var(--ok)}
+.next-clean .line{font-size:15px}
+.extra{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.set-card.off{opacity:.7}
+.opt-big{display:flex;gap:10px;align-items:center;font-weight:600;font-size:14px}
+.opt-big input{width:18px;height:18px;accent-color:var(--accent)}
 .toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:9px;font-weight:600;font-size:14px;z-index:60;max-width:calc(100vw - 32px);box-shadow:0 4px 14px rgba(0,0,0,.2)}
 .toast.err{background:var(--bad);color:#fff}
 </style>
@@ -264,7 +278,7 @@ dialog form{padding:18px;display:flex;flex-direction:column;gap:12px}
   <div id="panel-clean" class="section" role="tabpanel" aria-labelledby="tab-clean" hidden>
     <p class="hint">Qui compaiono solo gli alloggi da pulire: dopo ogni partenza l'alloggio appare da solo e resta finché la pulizia non viene inviata.</p>
     <div class="clean-grid" id="clean"></div>
-    <div class="ready" id="clean-ready"></div>
+    <div class="extra" id="clean-extra"></div>
     <h2>Registro pulizie</h2>
     <div id="clean-log"></div>
   </div>
@@ -378,6 +392,9 @@ const owner = ()=> ROLE==='owner';
 const unitById = id=> S.units.find(u=>u.id===id);
 const swatch = u=> el('span',{class:'swatch',style:`background:var(--${u.color||'muted'})`});
 const BK = ()=> S.bookings.filter(b=>!b.hidden && unitById(b.unit));
+// "In uso" spento = nascosto, ma riappare da solo se ha una prenotazione in corso/futura o è da pulire
+function shown(u){ if(u.active!==false) return true; if(S.bookings.some(b=>!b.hidden && b.unit===u.id && dn(b.to)>=TODAY)) return true; const c=S.cleaning[u.id]; return !!(c && (c.state==='progress' || Object.keys(c.items||{}).length)); }
+const VU = ()=> S.units.filter(shown);
 function checklist(u){ const c=S.checklists.find(x=>x.id===u.kind); return c?c.items:[]; }
 
 /* ---------- Collegamento con lo script Google ---------- */
@@ -512,24 +529,32 @@ function cleanStatus(u){
   const due = need && nx ? (arrToday?'Arrivo oggi: pulire subito':'Pronta entro '+nice(dn(nx.from))) : (need?'Nessun arrivo in programma':'');
   return {need,label,cls,due,ticked,nx,arrToday};
 }
-const openManual=new Set(); const confirmSend={}; const sending={}; const photos={};
+let pickExtra=false; const openManual=new Set(); const confirmSend={}; const sending={}; const photos={};
 
 /* ---------- Oggi ---------- */
 function renderToday(){
   $('today-label').textContent = 'Oggi · ' + fmt(TODAY,{weekday:'long',day:'numeric',month:'long'});
   const box=$('today'); box.replaceChildren();
-  S.units.forEach(u=>{
-    const cur=current(u.id), arr=arriving(u.id), lv=leaving(u.id), nx=nextArrival(u.id);
-    const pills=el('div',{class:'pills'});
-    if(lv) pills.append(el('span',{class:'pill warn',text:'Partenza oggi'}));
-    if(arr) pills.append(el('span',{class:'pill acc',text:'Arrivo oggi'}));
-    if(!lv && !arr) pills.append(el('span',{class:'pill'+(cur?' acc':''),text:cur?'Occupata':'Libera'}));
-    const cs=cleanStatus(u); pills.append(el('span',{class:'pill '+cs.cls,text:cs.label}));
-    let line;
-    if(cur) line=el('div',{class:'line'},el('b',{text:cur.guest}),' · fino a '+short(dn(cur.to)));
-    else if(nx) line=el('div',{class:'line'},'Prossimo arrivo: ',el('b',{text:short(dn(nx.from))}),' · '+nx.guest);
-    else line=el('div',{class:'line',text:'Nessun arrivo in programma'});
-    box.append(el('div',{class:'unit-card'},el('div',{class:'unit-name'},swatch(u),u.name),pills,line));
+  VU().forEach(u=>{
+    const cur=current(u.id), arr=arriving(u.id), lv=leaving(u.id), nx=nextArrival(u.id), cs=cleanStatus(u);
+    let label, cls, line, occ=false;
+    if(cs.need){
+      label=cs.label; cls=cs.cls;
+      line=el('div',{class:'line'},(lv?'Partenza oggi · ':''),el('b',{text:cs.due||'Nessun arrivo in programma'}));
+    } else if(arr){
+      label='Arrivo oggi'; cls='acc'; occ=true;
+      line=el('div',{class:'line'},el('b',{text:arr.guest}),' · fino a '+short(dn(arr.to)));
+    } else if(cur){
+      label='Occupata'; cls='acc'; occ=true;
+      line=el('div',{class:'line'},el('b',{text:cur.guest}),' · fino a '+short(dn(cur.to)));
+    } else {
+      label='Libera e pronta'; cls='ok';
+      line = nx ? el('div',{class:'line'},'Prossimo arrivo: ',el('b',{text:nice(dn(nx.from))})) : el('div',{class:'line',text:'Nessun arrivo in programma'});
+    }
+    box.append(el('div',{class:'unit-card'+(occ?' occ':''),style:`--c:var(--${u.color})`},
+      el('div',{class:'unit-name'},swatch(u),u.name),
+      el('div',{class:'pills'},el('span',{class:'pill big '+cls,text:label})),
+      line));
   });
 }
 
@@ -544,7 +569,7 @@ function renderCal(){
     const n=startN+i, we=[0,6].includes(dow(n));
     tl.append(el('div',{class:'dh'+(we?' we':'')+(n===TODAY?' is-today':'')},fmt(n,{weekday:'short'}),el('b',{class:'num',text:fmt(n,{day:'numeric'})})));
   }
-  S.units.forEach(u=>{
+  VU().forEach(u=>{
     tl.append(el('div',{class:'rl'},swatch(u),u.name));
     const row=el('div',{class:'row'});
     for(let i=0;i<14;i++){
@@ -596,11 +621,11 @@ $('import-btn').onclick=()=>{
 
 /* ---------- Finestra prenotazione (solo titolare) ---------- */
 let editing=null;
-function fillUnitSelect(sel,withGeneral){ const v=sel.value; sel.replaceChildren(); if(withGeneral) sel.append(el('option',{value:'all',text:'Generale / esterni'})); S.units.forEach(u=>sel.append(el('option',{value:u.id,text:u.name}))); if(v && [...sel.options].some(o=>o.value===v)) sel.value=v; }
+function fillUnitSelect(sel,withGeneral,all){ const v=sel.value; sel.replaceChildren(); if(withGeneral) sel.append(el('option',{value:'all',text:'Generale / esterni'})); (all?S.units:VU()).forEach(u=>sel.append(el('option',{value:u.id,text:u.name+(shown(u)?'':' (non in uso)')}))); if(v && [...sel.options].some(o=>o.value===v)) sel.value=v; }
 function openBooking(b,preset){
   if(!owner()) return;
   editing=b;
-  fillUnitSelect($('b-unit'));
+  fillUnitSelect($('b-unit'),false,true);
   const d=b||Object.assign({guest:'',people:2,notes:''},preset||{unit:S.units[0].id,from:ds(TODAY),to:ds(TODAY+2)});
   $('dlg-title').textContent=b?'Modifica prenotazione':'Nuova prenotazione';
   $('b-guest').value=d.guest; $('b-unit').value=d.unit; $('b-from').value=d.from; $('b-to').value=d.to; $('b-people').value=d.people||''; $('b-notes').value=d.notes||'';
@@ -684,13 +709,13 @@ function sendCleaning(u){
 }
 function renderClean(){
   const box=$('clean'); box.replaceChildren(); let todo=0; const ready=[];
-  S.units.forEach(u=>{
+  const rank=u=>{ const st=cleanStatus(u); if(!st.need) return 1e9; if(st.arrToday) return -1; return st.nx?dn(st.nx.from):1e8; };
+  VU().slice().sort((a,b)=>rank(a)-rank(b)).forEach(u=>{
     const c=cleanState(u), list=checklist(u), done=cleanDone(u), st=cleanStatus(u);
     if(st.need) todo++;
     if(!st.need && !openManual.has(u.id)){ ready.push(u); return; }
     const pills=el('div',{class:'pills'});
-    pills.append(el('span',{class:'pill '+st.cls,text:st.need?st.label:'Pulizia extra'}));
-    if(leaving(u.id)) pills.append(el('span',{class:'pill warn',text:'Partenza oggi'}));
+    pills.append(el('span',{class:'pill big '+st.cls,text:st.need?st.label:'Pulizia fuori programma'}));
     const ul=el('ul');
     list.forEach((txt,i)=>{
       const id=`ck-${u.id}-${i}`, on=!!c.items[txt];
@@ -724,7 +749,7 @@ function renderClean(){
     }
     box.append(el('div',{class:'cl'},
       el('div',{class:'cl-head'},el('div',{class:'unit-name'},swatch(u),u.name),pills),
-      el('div',{class:'meta',text:st.due||'Pulizia fuori programma'}),
+      el('div',{class:'due'+(st.arrToday?' bad':''),text:(leaving(u.id)?'Partenza oggi · ':'')+(st.due||'Pulizia fuori programma')}),
       el('div',{class:'progress'},el('i',{style:`width:${list.length?done/list.length*100:0}%`})),
       el('span',{class:'meta num',text:`${done} di ${list.length} fatte`}),
       ul, durRow, ta, photoCtl('u:'+u.id),
@@ -733,9 +758,20 @@ function renderClean(){
       (!st.need && openManual.has(u.id)) ? el('button',{class:'btn small',type:'button',onclick:()=>{openManual.delete(u.id);renderClean();}},'Chiudi') : null
     ));
   });
-  if(!box.children.length) box.append(el('div',{class:'empty',style:'grid-column:1 / -1',text:'Tutto pulito: nessun alloggio da preparare.'}));
-  const r=$('clean-ready'); r.replaceChildren();
-  if(ready.length){ r.append('Pronte:'); ready.forEach(u=>r.append(el('button',{class:'chip',type:'button',title:'Apri la checklist per una pulizia extra',onclick:()=>{openManual.add(u.id);renderClean();}},swatch(u),u.name))); r.append(el('span',{style:'font-size:12.5px',text:'(tocca per una pulizia extra)'})); }
+  if(!box.children.length){
+    // niente da pulire: mostro la prossima pulizia prevista (prossima partenza)
+    const nexts=BK().filter(b=>dn(b.to)>TODAY && shown(unitById(b.unit))).sort((a,b)=>dn(a.to)-dn(b.to));
+    const nb=nexts[0];
+    box.append(el('div',{class:'next-clean'},
+      el('div',{class:'big',text:'Tutto pulito ✓'}),
+      nb ? el('div',{class:'line'},'Prossima pulizia: ',el('b',{text:unitById(nb.unit).name}),', '+fmt(dn(nb.to),{weekday:'long',day:'numeric',month:'long'})+' (partenza ospiti)')
+         : el('div',{class:'line',text:'Nessuna partenza in programma.'})));
+  }
+  const r=$('clean-extra'); r.replaceChildren();
+  if(ready.length){
+    if(!pickExtra) r.append(el('button',{class:'btn',type:'button',onclick:()=>{pickExtra=true;renderClean();}},'+ Pulizia fuori programma'));
+    else { r.append('Quale casa?'); ready.forEach(u=>r.append(el('button',{class:'chip',type:'button',onclick:()=>{pickExtra=false;openManual.add(u.id);renderClean();}},swatch(u),u.name))); r.append(el('button',{class:'btn small',type:'button',onclick:()=>{pickExtra=false;renderClean();}},'Annulla')); }
+  }
   const cc=$('clean-count'); cc.hidden=!todo; cc.textContent=todo;
   const lg=$('clean-log'); lg.replaceChildren();
   if(!S.log.length){ lg.append(el('div',{class:'empty',text:'Ancora nessuna pulizia inviata. Quando la cleaner preme «Invia pulizia», la trovi qui con data, ora e voci completate.'})); return; }
@@ -827,12 +863,17 @@ function drawSettings(){
     const kind=el('select'); d.checklists.forEach(c=>kind.append(el('option',{value:c.id,text:c.name||'Checklist'}))); kind.value=u.kind; kind.onchange=()=>{u.kind=kind.value;markDirty();};
     const col=el('select'); COLORS.forEach(([v,n])=>col.append(el('option',{value:v,text:n}))); col.value=u.color; col.onchange=()=>{u.color=col.value;sw.style.background=`var(--${u.color})`;markDirty();};
     const ical=el('textarea',{rows:'2',placeholder:'https://www.airbnb.it/calendar/ical/….ics'}); ical.value=u.ical||''; ical.oninput=()=>{u.ical=ical.value;markDirty();};
+    const act=el('input',{type:'checkbox',checked:u.active!==false?'':false});
     const rm=el('button',{class:'btn small danger',type:'button'},'Rimuovi');
     rm.onclick=()=>{ if(d.units.length<2){ toast('Serve almeno un alloggio',true); return; } if(rm.dataset.sure){ d.units.splice(i,1); markDirty(); drawSettings(); } else { rm.dataset.sure='1'; rm.textContent='Conferma rimozione'; } };
-    uBox.append(el('div',{class:'set-card'},
+    const card=el('div',{class:'set-card'+(u.active===false?' off':'')});
+    act.onchange=()=>{ u.active=act.checked; card.classList.toggle('off',!act.checked); markDirty(); };
+    uBox.append(card); card.append(
       el('div',{class:'set-head'},el('span',{class:'unit-name'},sw,'Alloggio '+(i+1)),rm),
       field('Nome',name), el('div',{class:'two'},field('Checklist',kind),field('Colore',col)),
-      field('Link iCal (uno per riga)',ical)));
+      el('label',{class:'opt-big'},act,'In uso'),
+      el('p',{class:'hint',text:'Se spento, l\'alloggio è nascosto nel planner. Riappare da solo se arriva una prenotazione.'}),
+      field('Link iCal (uno per riga)',ical));
   });
   const lBox=$('set-lists'); lBox.replaceChildren();
   d.checklists.forEach((c,i)=>{
@@ -848,13 +889,13 @@ function drawSettings(){
   $('set-msg').textContent=settingsDirty?'Modifiche non salvate':'';
 }
 $('set-add-unit').onclick=()=>{ const d=draft(); const usedC=new Set(d.units.map(u=>u.color)); const c=(COLORS.find(([v])=>!usedC.has(v))||COLORS[0])[0];
-  d.units.push({id:'u'+uid(),name:'Nuovo alloggio',kind:d.checklists[0].id,color:c,ical:''}); markDirty(); drawSettings(); };
+  d.units.push({id:'u'+uid(),name:'Nuovo alloggio',kind:d.checklists[0].id,color:c,ical:'',active:true}); markDirty(); drawSettings(); };
 $('set-add-list').onclick=()=>{ const d=draft(); d.checklists.push({id:'c'+uid(),name:'Nuova checklist',items:[]}); markDirty(); drawSettings(); };
 $('set-reset').onclick=()=>{ settingsDirty=false; SD=null; drawSettings(); };
 $('set-save').onclick=()=>{
   const d=draft();
   if(d.units.some(u=>!u.name.trim())){ toast('Ogni alloggio deve avere un nome',true); return; }
-  const payload={units:d.units.map(u=>({id:u.id,name:u.name.trim(),kind:u.kind,color:u.color,ical:u.ical||''})),checklists:d.checklists.map(c=>({id:c.id,name:(c.name||'').trim()||'Checklist',items:c.items.map(s=>s.trim()).filter(Boolean)}))};
+  const payload={units:d.units.map(u=>({id:u.id,name:u.name.trim(),kind:u.kind,color:u.color,ical:u.ical||'',active:u.active!==false})),checklists:d.checklists.map(c=>({id:c.id,name:(c.name||'').trim()||'Checklist',items:c.items.map(s=>s.trim()).filter(Boolean)}))};
   const b=$('set-save'); b.disabled=true; b.textContent='Salvataggio…';
   send('saveSettings',payload).then(()=>{ settingsDirty=false; SD=null; toast('Impostazioni salvate ✓'); renderAll(); })
     .catch(()=>{}).finally(()=>{ b.disabled=false; b.textContent='Salva impostazioni'; });
