@@ -89,7 +89,7 @@ nav.tabs .count{display:inline-block;min-width:20px;padding:0 6px;margin-left:6p
 .tl .corner,.tl .dh{position:sticky;top:0;background:var(--surface);border-bottom:1px solid var(--line);padding:8px 0;text-align:center;font-size:12px;color:var(--muted)}
 .tl .dh b{display:block;font-size:15px;color:var(--ink)}
 .tl .dh.we{background:var(--sunk)}
-.tl .dh.is-today{color:var(--today)}
+.tl .dh.is-today{color:var(--today);background:color-mix(in srgb,var(--accent) 30%,var(--surface));font-weight:700;box-shadow:inset 2px 0 0 var(--today),inset -2px 0 0 var(--today),inset 0 2px 0 var(--today)}
 .tl .dh.is-today b{color:var(--today)}
 .tl .rl{position:sticky;left:0;z-index:2;background:var(--surface);border-right:1px solid var(--line);padding:0 10px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;height:58px;border-bottom:1px solid var(--line)}
 .tl .corner{position:sticky;left:0;z-index:3}
@@ -98,7 +98,8 @@ nav.tabs .count{display:inline-block;min-width:20px;padding:0 6px;margin-left:6p
 .tl .cell{border-left:1px solid var(--line);background:transparent;border-top:0;border-right:0;border-bottom:0;padding:0}
 .tl .cell.we{background:color-mix(in srgb,var(--sunk) 70%,transparent)}
 .tl button.cell:hover{background:var(--accent-soft)}
-.tl .cell.is-today{box-shadow:inset 2px 0 0 var(--today)}
+.tl .cell.is-today{background:color-mix(in srgb,var(--accent) 20%,transparent);box-shadow:inset 2px 0 0 var(--today),inset -2px 0 0 var(--today)}
+.tl button.cell.is-today:hover{background:var(--accent-soft)}
 .bk{position:absolute;top:9px;height:40px;border-radius:7px;border:0;color:#fff;text-align:left;padding:3px 8px;font-size:12.5px;line-height:1.25;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;box-shadow:0 1px 2px rgba(0,0,0,.15)}
 .bk b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis}
 .bk span{opacity:.9}
@@ -216,6 +217,14 @@ dialog form{padding:18px;display:flex;flex-direction:column;gap:12px}
 .set-card.off{opacity:.7}
 .opt-big{display:flex;gap:10px;align-items:center;font-weight:600;font-size:14px}
 .opt-big input{width:18px;height:18px;accent-color:var(--accent)}
+details.upc summary{list-style:none;display:flex;align-items:center;gap:8px;color:var(--ink)}
+details.upc summary::-webkit-details-marker{display:none}
+details.upc summary::before{content:"▸";color:var(--muted);font-size:14px;transition:transform .15s}
+details.upc[open] summary::before{transform:rotate(90deg)}
+details.upc summary h2{display:inline}
+.next-list{display:flex;flex-direction:column;gap:6px}
+.next-list .line{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.next-list .line.first{font-size:16px}
 .toast{position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 16px;border-radius:9px;font-weight:600;font-size:14px;z-index:60;max-width:calc(100vw - 32px);box-shadow:0 4px 14px rgba(0,0,0,.2)}
 .toast.err{background:var(--bad);color:#fff}
 </style>
@@ -271,8 +280,7 @@ dialog form{padding:18px;display:flex;flex-direction:column;gap:12px}
     <p class="imp" id="imp" hidden></p>
     <div class="tl-wrap"><div class="tl" id="tl"></div></div>
     <p class="hint" id="cal-hint"></p>
-    <h2>Prossimi arrivi</h2>
-    <div id="upcoming"></div>
+    <details class="upc"><summary><h2 id="upc-sum">Prossimi arrivi</h2></summary><div id="upcoming" style="margin-top:10px"></div></details>
   </div>
 
   <div id="panel-clean" class="section" role="tabpanel" aria-labelledby="tab-clean" hidden>
@@ -567,7 +575,7 @@ function renderCal(){
   tl.append(el('div',{class:'corner'}));
   for(let i=0;i<14;i++){
     const n=startN+i, we=[0,6].includes(dow(n));
-    tl.append(el('div',{class:'dh'+(we?' we':'')+(n===TODAY?' is-today':'')},fmt(n,{weekday:'short'}),el('b',{class:'num',text:fmt(n,{day:'numeric'})})));
+    tl.append(el('div',{class:'dh'+(we?' we':'')+(n===TODAY?' is-today':'')},(n===TODAY?'oggi':fmt(n,{weekday:'short'})),el('b',{class:'num',text:fmt(n,{day:'numeric'})})));
   }
   VU().forEach(u=>{
     tl.append(el('div',{class:'rl'},swatch(u),u.name));
@@ -590,7 +598,8 @@ function renderCal(){
     });
     tl.append(row);
   });
-  const up=BK().filter(b=>dn(b.from)>=TODAY && dn(b.from)<=TODAY+45).sort((a,b)=>dn(a.from)-dn(b.from));
+  const up=BK().filter(b=>dn(b.from)>=TODAY && dn(b.from)<=TODAY+45 && shown(unitById(b.unit))).sort((a,b)=>dn(a.from)-dn(b.from));
+  $('upc-sum').textContent='Prossimi arrivi ('+up.length+')';
   const box=$('upcoming'); box.replaceChildren();
   if(!up.length){ box.append(el('div',{class:'empty',text:'Nessun arrivo nei prossimi 45 giorni.'})); return; }
   const tb=el('tbody');
@@ -760,12 +769,14 @@ function renderClean(){
   });
   if(!box.children.length){
     // niente da pulire: mostro la prossima pulizia prevista (prossima partenza)
-    const nexts=BK().filter(b=>dn(b.to)>TODAY && shown(unitById(b.unit))).sort((a,b)=>dn(a.to)-dn(b.to));
-    const nb=nexts[0];
+    // prossima pulizia per ogni casa (prossima partenza), la più vicina in alto
+    const nexts=VU().map(u=>({u,b:bookingsFor(u.id).filter(b=>dn(b.to)>TODAY).sort((a,b)=>dn(a.to)-dn(b.to))[0]})).filter(x=>x.b).sort((a,b)=>dn(a.b.to)-dn(b.b.to));
     box.append(el('div',{class:'next-clean'},
       el('div',{class:'big',text:'Tutto pulito ✓'}),
-      nb ? el('div',{class:'line'},'Prossima pulizia: ',el('b',{text:unitById(nb.unit).name}),', '+fmt(dn(nb.to),{weekday:'long',day:'numeric',month:'long'})+' (partenza ospiti)')
-         : el('div',{class:'line',text:'Nessuna partenza in programma.'})));
+      nexts.length ? el('div',{class:'next-list'},
+          el('div',{class:'meta',text:nexts.length>1?'Prossime pulizie:':'Prossima pulizia:'}),
+          nexts.map((x,i)=>el('div',{class:'line'+(i===0?' first':'')},swatch(x.u),el('b',{text:x.u.name}),'· '+fmt(dn(x.b.to),{weekday:'long',day:'numeric',month:'long'})+' (partenza ospiti)')))
+        : el('div',{class:'line',text:'Nessuna partenza in programma.'})));
   }
   const r=$('clean-extra'); r.replaceChildren();
   if(ready.length){
