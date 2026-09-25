@@ -240,6 +240,7 @@
                        Leave empty to show example dates (requests aren't sent).
        data-unit       apartment, tiny-house or roulotte
        data-email      shown to guests only if a request can't be sent
+       data-airbnb     the Airbnb listing link for the "Book instantly" button
        data-max-guests maximum number of guests
        data-min-nights  minimum stay (3)
        data-short-nights  shorter stay allowed only when that's all that fits
@@ -254,6 +255,7 @@
      data-source="https://script.google.com/macros/s/AKfycbxaV1Mf8v7HcDMZbEMYfy8JAR7nyO7VHUvqp6BWdNIWYcUVs4p8muwn9LuioRcV9-cj/exec"
      data-unit="apartment"
      data-email="caleonebio@gmail.com"
+     data-airbnb="https://www.airbnb.com/rooms/35970510"
      data-max-guests="6"
      data-min-nights="3"
      data-short-nights="2"
@@ -354,10 +356,15 @@
 .cl-avail .cl-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .cl-avail .cl-send { display: flex; flex-direction: column; align-items: stretch; gap: .4rem; margin-top: .2rem; }
 .cl-avail .cl-cta {
-  padding: .8rem 1.8rem; border: 0; border-radius: 999px; background: var(--cl-olive); color: #fff;
-  font: inherit; font-weight: 600; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; width: 100%; min-height: 3rem;
+  padding: .75rem 1.4rem; border: 0; border-radius: 10px; background: var(--cl-olive); color: #fff;
+  font: inherit; font-size: 1.05em; font-weight: 500; line-height: 1.2; text-align: center; text-decoration: none; cursor: pointer;
 }
+.cl-avail .cl-cta:hover { filter: brightness(.94); }
 .cl-avail .cl-cta:disabled { opacity: .7; cursor: progress; }
+.cl-avail .cl-cta.cl-airbnb { background: #EA6565; color: #fff; }
+.cl-avail .cl-or { display: flex; align-items: center; gap: .8rem; margin: 1rem 0 .9rem; font-size: .9em; color: var(--cl-muted); }
+.cl-avail .cl-or::before, .cl-avail .cl-or::after { content: ""; flex: 1; border-top: 1px solid var(--cl-line); }
 .cl-avail .cl-reply { margin: 0; font-size: .82em; color: var(--cl-muted); text-align: center; }
 .cl-avail .cl-status { margin: 0; font-size: .9em; }
 .cl-avail .cl-status:empty { display: none; }
@@ -367,7 +374,7 @@
 .cl-avail .cl-done p:last-child { margin-bottom: 0; }
 .cl-avail .cl-done-title { font-weight: 700; font-size: 1.05em; }
 
-.cl-avail .cl-day:focus-visible, .cl-avail .cl-nav:focus-visible, .cl-avail .cl-clear:focus-visible, .cl-avail .cl-cta:focus-visible {
+.cl-avail .cl-day:focus-visible, .cl-avail .cl-nav:focus-visible, .cl-avail .cl-clear:focus-visible, .cl-avail .cl-cta:focus-visible, .cl-avail a.cl-cta:focus-visible {
   outline: 2px solid var(--cl-olive); outline-offset: 2px; z-index: 1;
 }
 @media (max-width: 860px) {
@@ -403,6 +410,7 @@
       note: "Your message", notePh: "Let us know your plans, arrival time, children, etc.",
       needNote: "Please add a short message about your stay.",
       cta: "Send request", sending: "Sending…",
+      or: "or", airbnb: "Book instantly on Airbnb",
       needDates: "Choose your check-in and checkout dates first.",
       needName: "Please add your name.",
       needEmail: "Please add a valid email address so we can reply.",
@@ -436,6 +444,7 @@
       note: "Messaggio", notePh: "Raccontaci i tuoi programmi, l'orario di arrivo, se ci sono bambini, ecc.",
       needNote: "Scrivi un breve messaggio sul tuo soggiorno.",
       cta: "Invia richiesta", sending: "Invio in corso…",
+      or: "oppure", airbnb: "Prenota subito su Airbnb",
       needDates: "Scegli prima le date di arrivo e partenza.",
       needName: "Inserisci il tuo nome.",
       needEmail: "Inserisci un indirizzo email valido per ricevere la risposta.",
@@ -499,6 +508,7 @@
       source: (root.getAttribute("data-source") || "").trim(),
       unit: root.getAttribute("data-unit") || "apartment",
       email: root.getAttribute("data-email") || "",
+      airbnb: (root.getAttribute("data-airbnb") || "").trim(),
       maxGuests: parseInt(root.getAttribute("data-max-guests"), 10) || 6,
       minNights: parseInt(root.getAttribute("data-min-nights"), 10) || 1,
       shortNights: parseInt(root.getAttribute("data-short-nights"), 10) || 0,
@@ -516,6 +526,15 @@
     };
 
     function isBooked(d) { return !!st.booked[d]; }
+    // A free night squeezed between bookings, too short for any stay.
+    function isOrphan(d) {
+      if (isBooked(d) || d < today) return false;
+      var need = cfg.shortNights || cfg.minNights, len = 1, x = addDays(d, -1);
+      while (len < need && x >= today && !isBooked(x)) { len++; x = addDays(x, -1); }
+      x = addDays(d, 1);
+      while (len < need && !isBooked(x)) { len++; x = addDays(x, 1); }
+      return len < need;
+    }
     function rangeFree(a, b) {
       for (var d = a; d < b; d = addDays(d, 1)) if (isBooked(d)) return false;
       return true;
@@ -534,7 +553,7 @@
       return len < cfg.minNights;
     }
     function canStart(d) {
-      if (d < today || d > horizon || isBooked(d)) return false;
+      if (d < today || d > horizon || isBooked(d) || isOrphan(d)) return false;
       if (rangeFree(d, addDays(d, cfg.minNights))) return true;
       if (!cfg.shortNights) return false;
       var e = addDays(d, cfg.shortNights);
@@ -542,7 +561,7 @@
     }
     function selectable(d) {
       if (st.active === "out" && validCheckout(d)) return true;
-      return d >= today && d <= horizon && !isBooked(d);
+      return d >= today && d <= horizon && !isBooked(d) && !isOrphan(d);
     }
     function minMsg() { return T.minStay(cfg.minNights, cfg.shortNights || cfg.minNights); }
 
@@ -650,6 +669,23 @@
     form.addEventListener("submit", function (e) { e.preventDefault(); submit(); });
     right.appendChild(form);
 
+    var airbnbLink = null;
+    if (cfg.airbnb) {
+      right.appendChild(el("p", "cl-or", T.or));
+      airbnbLink = el("a", "cl-cta cl-airbnb", T.airbnb);
+      airbnbLink.target = "_blank"; airbnbLink.rel = "noopener";
+      right.appendChild(airbnbLink);
+      guestSel.addEventListener("change", function () { updateAirbnb(); });
+    }
+    // Opens the listing with the chosen dates and guests already filled in.
+    function updateAirbnb() {
+      if (!airbnbLink) return;
+      var q = [];
+      if (st.checkIn && st.checkOut) q.push("check_in=" + st.checkIn, "check_out=" + st.checkOut);
+      q.push("adults=" + guestSel.value);
+      airbnbLink.href = cfg.airbnb + (cfg.airbnb.indexOf("?") > -1 ? "&" : "?") + q.join("&");
+    }
+
     // ---------- behaviour ----------
     function showMonth(d) {
       var p = d.split("-"), y = +p[0], m = p[1] - 1;
@@ -661,7 +697,7 @@
       var d = parseDMY(v);
       if (!d) { st.msg = T.badDate; return update(); }
       if (key === "in") {
-        if (!canStart(d)) { st.msg = isBooked(d) || d < today || d > horizon ? T.unavailable : minMsg(); return update(); }
+        if (!canStart(d)) { st.msg = isBooked(d) || isOrphan(d) || d < today || d > horizon ? T.unavailable : minMsg(); return update(); }
         st.checkIn = d;
         if (st.checkOut && !(validCheckout(st.checkOut) && stayOk(d, st.checkOut))) st.checkOut = null;
         st.msg = null; showMonth(d); update();
@@ -682,7 +718,7 @@
         if (!stayOk(st.checkIn, d)) st.msg = minMsg();
         else { st.checkOut = d; st.active = null; }
       } else {
-        if (d < today || d > horizon || isBooked(d)) return;
+        if (d < today || d > horizon || isBooked(d) || isOrphan(d)) return;
         if (!canStart(d)) { st.msg = minMsg(); return update(d); }
         st.checkIn = d; st.checkOut = null; st.active = "out";
       }
@@ -704,14 +740,14 @@
         b.type = "button"; b.setAttribute("data-date", s);
         var ok = selectable(s);
         if (s < today) cls.push("is-past");
-        else if (isBooked(s) || (s > horizon && !ok)) cls.push("is-booked");
+        else if (isBooked(s) || isOrphan(s) || (s > horizon && !ok)) cls.push("is-booked");
         if (s === today) cls.push("is-today");
         if (s === st.checkIn) { cls.push("is-start"); if (!st.checkOut) cls.push("is-single"); }
         if (s === st.checkOut) cls.push("is-end");
         if (st.checkIn && st.checkOut && s > st.checkIn && s < st.checkOut) cls.push("in-range");
         if (cls.length) b.className += " " + cls.join(" ");
         b.disabled = !ok;
-        b.setAttribute("aria-label", fmtLong(s) + ", " + (isBooked(s) ? T.bookedDay : T.freeDay));
+        b.setAttribute("aria-label", fmtLong(s) + ", " + (ok || (s >= today && !isBooked(s) && !isOrphan(s) && s <= horizon) ? T.freeDay : T.bookedDay));
         if (s === st.checkIn || s === st.checkOut) b.setAttribute("aria-pressed", "true");
         b.addEventListener("click", (function (date) { return function () { pick(date); }; })(s));
         grid.appendChild(b);
@@ -745,6 +781,7 @@
         stay.appendChild(clear);
       }
       msg.textContent = st.msg || "";
+      updateAirbnb();
 
       // calendar
       months.innerHTML = "";
@@ -866,6 +903,7 @@
 })();
 </script>
 <!-- END widget -->
+
 
                 <div class="ap-booking-inner">
                     <a href="https://www.airbnb.com/rooms/35970510" target="_blank" rel="noopener" class="ap-book-btn">
